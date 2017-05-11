@@ -1,5 +1,4 @@
 <%@include file='../../includes/cabecera.jsp' %>
-
 	</head>
 	<body>
 		<div class="row">
@@ -34,5 +33,4 @@
 				<br>
 			</c:if>	
 		</div>
-
 <%@include file='../../includes/pie.jsp' %>
