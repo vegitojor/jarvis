@@ -53,4 +53,10 @@
 				<br>
 			</c:if>	
 		</div>
+<<<<<<< HEAD
 <%@include file='../../includes/pie.jsp' %>
+=======
+
+<%@include file='../../includes/pie.jsp' %>
+
+>>>>>>> branch 'master' of https://github.com/vegitojor/jarvis.git
