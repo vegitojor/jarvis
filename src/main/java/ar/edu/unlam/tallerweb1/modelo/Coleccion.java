@@ -10,6 +10,7 @@ public class Coleccion {
 	private Formato formato;
 	private Personaje personaje;
 	private Boolean enCurso;
+	
 	public Long getId() {
 		return id;
 	}
