@@ -1,0 +1,54 @@
+/* FUENTES */
+
+@font-face { font-family: Black; src: url(../fonts/Roboto-Black.ttf); }
+@font-face { font-family: Bold; src: url(../fonts/Roboto-Bold.ttf); }
+@font-face { font-family: Medium; src: url(../fonts/Roboto-Medium.ttf); }
+@font-face { font-family: Regular; src: url(../fonts/Roboto-Regular.ttf); }
+@font-face { font-family: Thin; src: url(../fonts/Roboto-Thin.ttf); }
+
+/* ESTILOS GENERALES */
+
+body {
+	font-family: Regular;
+	overflow: hidden;
+}
+	
+/* CLASES */
+	
+.indexForm {
+	margin-top: 50px;
+}
+
+.blanco {
+	color: #ffffff;
+}
+
+.jarvis-img-bg {
+	background-image: url(../img/index_bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* ID'S */
+
+#indexScreen {
+	height: 100vh;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+	#indexScreen .subtitulo {
+		margin: 20px 0;
+		font-size: 20px;
+		font-family: Medium;
+	}
+	
+@media screen and (max-width: 768px) {
+	#indexScreen .subtitulo {
+		font-size: 16px;
+		margin: 10px 0;
+	}
+}
