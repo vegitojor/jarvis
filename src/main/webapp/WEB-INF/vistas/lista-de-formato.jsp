@@ -3,9 +3,9 @@
 <body>
 	<div class="row">
 		<c:choose>
-			<c:when test="${not empty modelo.formatos}">
+			<c:when test="${not empty formatos}">
 				<ul>
-					<c:forEach items="${modelo.formatos}" var="formato">
+					<c:forEach items="${formatos}" var="formato">
 						<li><c:out value="${formato.nombre}">
 							</c:out></li>
 					</c:forEach>

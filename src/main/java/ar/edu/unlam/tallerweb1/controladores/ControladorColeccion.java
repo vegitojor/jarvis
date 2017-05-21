@@ -25,7 +25,7 @@ public class ControladorColeccion {
 	public ModelAndView mostrarColeccion(){
 		ModelMap model = new ModelMap();
 		
-		Editorial editorial1 = new Editorial(1L, "edit");
+		Editorial editorial1 = new Editorial(1L, "edit",null,null,null);
 		Formato formato1 = new Formato(1L, "form");
 		Personaje personaje1 = new Personaje(1L, "pers", "onaje");
 		Coleccion coleccion1 = new Coleccion(1L, "coleccion1", "holamundo", "imagen", editorial1, formato1, personaje1, true);
