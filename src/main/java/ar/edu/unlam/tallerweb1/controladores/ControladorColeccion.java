@@ -28,11 +28,12 @@ public class ControladorColeccion {
 		Editorial editorial1 = new Editorial(1L, "edit",null,null,null);
 		Formato formato1 = new Formato(1L, "form");
 		Personaje personaje1 = new Personaje(1L, "pers", "onaje");
-		Coleccion coleccion1 = new Coleccion(1L, "coleccion1", "holamundo", "imagen", editorial1, formato1, personaje1, true);
+		Coleccion coleccion1 = new Coleccion(1L, "coleccion1", "holamundo", "../img/500px/venf3010.jpg", editorial1, formato1, personaje1, true);
 		
 		List<Comic> lista = servicioColeccion.buscarComic(coleccion1.getId());
 		
 		model.put("listaFiltrada", lista);
+		model.put("coleccion", coleccion1);
 		
 		return new ModelAndView("vistaColeccion", model);
 		
