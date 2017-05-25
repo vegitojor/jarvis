@@ -1,48 +1,19 @@
 <%@include file='../../includes/cabecera.jsp' %>
-
-		<title>Registrar Usuario</title>
 	</head>
 	<body>
 		<div class="container">
 			<div class="row main">
-				<div class="main-login main-center">
 				<h1>Registrar Usuario.</h1><br>
-				<c:if test="${not empty error}">
-				   			<h4><span>${error}</span></h4>
-				       		<br>
-			    </c:if>	
-				
 					<form:form action="registrar-usuario" method="POST" modelAttribute="usuario">
-					
-
-
-<!--         <label for="email">Ingresar Correo Electronico</label> -->
-<%--         <form:input path="email" id="email" type="email" class="form-control"/> --%>
-
-<!--         <br> -->
-<!--         <label for="password">Ingresar Contraseña</label> -->
-<%--         <form:input path="password" type="password" id="password" class="form-control"/> --%>
-
-<!--         <br> -->
-
-<!--         <div class="form-group col-lg-12"> -->
-<!--             <button type="submit" class="btn btn-success">Registrar</button> -->
-<!--         </div> -->
-
-						
-						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Su Nombre</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									
-									
 									<input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Ingrese su nombre"/>
 								</div>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="username" class="cols-sm-2 control-label">Su Apellido</label>
 							<div class="cols-sm-10">
@@ -52,8 +23,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Su Email</label>
 							<div class="cols-sm-10">
@@ -63,7 +32,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="password" class="cols-sm-2 control-label">Password</label>
 							<div class="cols-sm-10">
@@ -73,7 +41,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
 							<div class="cols-sm-10">
@@ -83,64 +50,10 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="form-group ">
-<!-- 							<a href="http://deepak646.blogspot.in" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a> -->
 						 <button type="submit" class="btn btn-success">Registrar</button>
 						</div>
-<!--             <button type="submit" class="btn btn-success">Registrar</button> -->						
 					</form:form> 
-				</div>
 			</div>
 		</div>
-
-		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-	</body>
-</html>
-
-
-
-
-<!-- <html> -->
-<!-- <head> -->
-<!--     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
-<!--     <title>Registro Usuario</title> -->
-<!-- </head> -->
-<!-- <body> -->
-
-
-<!-- <div> -->
-<%--     <form:form action="registrar-usuario" method="POST" modelAttribute="usuario"> --%>
-
-<!--         <label for="nombre">Ingresar Nombre</label> -->
-<%--         <form:input path="nombre" id="nombre" type="text" class="form-control"/> --%>
-<!--         <br> -->
-
-<!--         <label for="apellido">Ingresar Apellido</label> -->
-<%--         <form:input path="apellido" id="apellido" type="text" class="form-control"/> --%>
-<!--         <br> -->
-
-<!--         <label for="email">Ingresar Correo Electronico</label> -->
-<%--         <form:input path="email" id="email" type="email" class="form-control"/> --%>
-
-<!--         <br> -->
-<!--         <label for="password">Ingresar Contraseña</label> -->
-<%--         <form:input path="password" type="password" id="password" class="form-control"/> --%>
-
-<!--         <br> -->
-
-<!--         <div class="form-group col-lg-12"> -->
-<!--             <button type="submit" class="btn btn-success">Registrar</button> -->
-<!--         </div> -->
-
-<!--         <br> -->
-
-<%--     </form:form> --%>
-<!-- </div> -->
-
-<!-- </body> -->
-<!-- </html> -->
-
+<%@include file='../../includes/pie.jsp' %>

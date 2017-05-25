@@ -10,7 +10,7 @@
 
 body {
 	font-family: Regular;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 	
 /* CLASES */

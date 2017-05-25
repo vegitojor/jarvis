@@ -3,7 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.sql.Timestamp;
 
 public class Comic {
-	
+
 	private Long id;
 	private String isbn;
 	private String numero;
@@ -14,7 +14,7 @@ public class Comic {
 	private String cantPaginas;
 	private Autor autor;
 	private Formato formato;
-	
+
 	public Comic(Long id, String isbn, String numero, Timestamp fechaPublicacion, Coleccion coleccion, Coleccion volumen, String pvp, String cantPaginas, Autor autor, Formato formato) {
 		super();
 		this.id = id;
@@ -28,44 +28,30 @@ public class Comic {
 		this.autor = autor;
 		this.formato = formato;
 	}
-	
-	
 
 	public Formato getFormato() {
 		return formato;
 	}
 
-
-
 	public void setFormato(Formato formato) {
 		this.formato = formato;
 	}
-
-
 
 	public Coleccion getVolumen() {
 		return volumen;
 	}
 
-
-
 	public void setVolumen(Coleccion volumen) {
 		this.volumen = volumen;
 	}
-
-
 
 	public Autor getAutor() {
 		return autor;
 	}
 
-
-
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
-
-
 
 	public String getCantPaginas() {
 		return cantPaginas;

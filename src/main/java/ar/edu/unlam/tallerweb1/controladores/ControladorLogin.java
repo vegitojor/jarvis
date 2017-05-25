@@ -52,6 +52,8 @@ public class ControladorLogin {
 	
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
 	public ModelAndView irARegistroUsuario() {
-		return new ModelAndView("registroUsuario");
+		ModelMap modelo = new ModelMap();
+		modelo.put("titulo", "Registro de usuario");
+		return new ModelAndView("registroUsuario", modelo);
 	}
 }

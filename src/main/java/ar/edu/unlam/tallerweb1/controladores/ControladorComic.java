@@ -16,7 +16,7 @@ public class ControladorComic {
 		ModelMap modelo = new ModelMap();
 		Comic comic = new Comic(1L,"12345","01",null,null,null, "17,95","24",null, null);
 		modelo.put("comic", comic);
-		
+		modelo.put("titulo", "Jojojo");
 		return new ModelAndView ("comic", modelo);
 	}
 

@@ -26,7 +26,7 @@
 						</div>
 					</form:form>
 					<br>
-					<p class="text-center">Si no tienes cuenta, registrate haciendo click <a href="#">aqu&iacute;.</a></p>
+					<p class="text-center">Si no tienes cuenta, registrate haciendo click <a href="registro-usuario">aqu&iacute;.</a></p>
 				</div>
 			</div>
 		</div>

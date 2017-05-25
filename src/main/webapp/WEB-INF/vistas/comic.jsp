@@ -1,9 +1,4 @@
 <%@include file='../../includes/cabecera.jsp' %>
-	<title>Vista Comic</title>
-	<link rel="stylesheet" type="text/css" href="css\css_demian.css">
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.css">
-	<script type="text/javascript" src="js\jquery-3.1.1.js"></script>	
-	<script type="text/javascript"  src="js\bootstrap.js"></script>
 </head>
 <body>
 	<div class="body-comic">
