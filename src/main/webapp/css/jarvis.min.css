@@ -12,6 +12,10 @@ body {
 	font-family: Regular;
 	overflow-x: hidden;
 }
+
+h1, h2, h3, h4, h5 {
+	font-family: Medium;
+}
 	
 /* CLASES */
 	
@@ -19,11 +23,11 @@ body {
 	margin-top: 50px;
 }
 
-.blanco {
+.white {
 	color: #ffffff;
 }
 
-.jarvis-img-bg {
+.jarvis-bg {
 	background-image: url(../img/index_bg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
