@@ -7,15 +7,15 @@
 			<section class="imagen-movil"><img class="imagen-movil" src="img\250px\venf3010_250px.jpg"></section>
 		</div>
 		<div class="col-md-12 col-xs-12 col-xl-6">
-			<p><h2>${comic.coleccion}</h2></p>
-			<p><h3>${comic.volumen}</h3></p>
-			<p><h3>Nro. ${comic.numero}</h3></p>
-			<p><h4>${comic.autor}</h4></p>
-			<p><h4>${comic.formato}</h4></p>
-			<p><h4>${comic.cantPaginas} p&aacute;ginas</h4></p>
-			<p><h4>${comic.fechaPublicacion}</h4></p>
-			<p><h4>P.V.P.: ${comic.pvp}</h4></p>
-			<p><h4>ISBN: ${comic.isbn}</h4></p>
+			<h2>${comic.coleccion}</h2>
+			<h3>${comic.volumen}</h3>
+			<h3>Nro. ${comic.numero}</h3>
+			<h4>${comic.autor}</h4>
+			<h4>${comic.formato}</h4>
+			<h4>${comic.cantPaginas} p&aacute;ginas</h4>
+			<h4>${comic.fechaPublicacion}</h4>
+			<h4>P.V.P.: ${comic.pvp}</h4>
+			<h4>ISBN: ${comic.isbn}</h4>
 		
 		<!-- REEMPLAZAR LO ANTERIOR POR ESTO QUE SIGUE		
 			<p><h2>${comic.coleccion.nombre}</h2></p>
