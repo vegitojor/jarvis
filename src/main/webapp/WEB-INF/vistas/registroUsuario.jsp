@@ -1,4 +1,6 @@
 <%@include file='../../includes/cabecera.jsp'%>
+		<link href="css/bootstrap-select.min.css" rel="stylesheet">
+		<script src="js/bootstrap-select.min.js"></script>
 		<script src="js/jarvis-web.registroUsuario.js"></script>
 	</head>
 	<body>
@@ -25,7 +27,14 @@
 					<div class="form-group">
 						<label for="pais" class="cols-sm-2 control-label">Pa&iacute;s</label>
 						<div class="cols-sm-10">
-							<input type="text" class="form-control" name="pais" id="pais" placeholder="Pa&iacute;s" required="required"/>
+							<select class="form-control selectpicker" name="pais" id="pais" required="required"
+								data-title="Pa&iacute;s"
+								data-live-search-placeholder="Seleccione su pa&iacute;s"
+								data-dropup-auto="false"
+								data-size="5"
+								data-live-search="true"
+								data-show-tick="true">
+							</select>
 						</div>
 					</div>
 				</div>
@@ -51,8 +60,8 @@
 				</div>
 				<div class="col-sm-12">
 					<div class="form-group ">
-						<a href="login" class="btn btn-danger">Cancelar</a>
-						<button type="submit" class="btn btn-success">Registrar</button>
+						<a href="login" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar</a>
+						<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;Confirmar</button>
 					</div>
 				</div>
 			</form:form>
