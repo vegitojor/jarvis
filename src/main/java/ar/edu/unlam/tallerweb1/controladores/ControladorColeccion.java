@@ -29,7 +29,7 @@ public class ControladorColeccion {
 		Editorial editorial1 = new Editorial(1L, "edit",null,null,null);
 		Formato formato1 = new Formato(1L, "form");
 		Personaje personaje1 = new Personaje(1L, "pers", "onaje");
-		Coleccion coleccion1 = new Coleccion(1L, "coleccion1", "holamundo", null, editorial1, formato1, personaje1, true);
+		Coleccion coleccion1 = new Coleccion(1L, "nombre", "Descripcion de coleccion 1", null, editorial1, formato1, personaje1, true, "1");
 		
 		List<Comic> lista = servicioColeccion.buscarComic(coleccion1.getId());
 		

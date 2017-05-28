@@ -39,7 +39,7 @@
 			
 			</div>
 			<div class="container">
-				<c:forEach items="${listaFiltrada }" var="comic">
+				<c:forEach items="${listaFiltrada}" var="comic">
 					<div class="col-md-4 center" id="comic-${comic.numero}">
 						<img alt="jarvis" src="../../img/logo_small.png">
 						<h5>Nro: ${comic.numero }</h5>
