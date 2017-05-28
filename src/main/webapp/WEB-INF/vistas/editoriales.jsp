@@ -1,4 +1,5 @@
 <%@include file='../../includes/cabecera.jsp' %>
+	
 	<title>Listado de Editoriales</title>
 	<link rel="stylesheet" type="text/css" href="css\css_demian.css">
 	<link rel="stylesheet" type="text/css" href="css\bootstrap.css">
