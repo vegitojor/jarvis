@@ -39,12 +39,25 @@
 			
 			</div>
 			<div class="container">
-				<c:forEach items="${listaFiltrada}" var="comic">
+				<c:forEach items="${listaFiltrada }" var="comic">
+				
 					<div class="col-md-4 center" id="comic-${comic.numero}">
-						<img alt="jarvis" src="../../img/logo_small.png">
-						<h5>Nro: ${comic.numero }</h5>
-						<p>Cantidad de paginas: ${comic.cantPaginas }</p>
-			
+						
+							<div class="col-md-8">
+								<c:choose>
+								 	<c:when test="${ not empty comic.pathImagen}">
+								 		<img alt="jarvis" src="img/comics/${comic.pathImagen }">
+								 	</c:when>
+								 	<c:otherwise>
+								 		<img class="img-responsive " src="img/jarvis_default.jpg">						 		
+								 	</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="col-md-4">
+								<h5>Nro: ${comic.numero }</h5>
+								<p>Cantidad de paginas: ${comic.cantPaginas }</p>
+							</div>
+						
 					</div>
 				</c:forEach>
 			</div>
