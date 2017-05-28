@@ -9,7 +9,14 @@
 				<div class="jumbotron jarvis-bg ">
 					<div class="container">
 						<div class="col-md-4">
-							<img class="img-responsive " src="../../img/logo_small.png">
+							<c:choose>
+								<c:when test="${not empty coleccion.pathImagen }">
+									<img class="img-responsive " src="img/colecciones/${coleccion.pathImagen }">
+								</c:when>
+								<c:otherwise>
+									<img class="img-responsive " src="img/jarvis_default.jpg">
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="col-md-8">
 							<h1 ><span class="white">${coleccion.nombre }</span></h1>
@@ -31,14 +38,16 @@
 				</div>
 			
 			</div>
-			<c:forEach items="${listaFiltrada }" var="comic">
-				<div class="col-md-4 center" id="comic-${comic.numero}">
-					<img alt="jarvis" src="../../img/logo_small.png">
-					<h5>Nro: ${comic.numero }</h5>
-					<p>Cantidad de paginas: ${comic.cantPaginas }</p>
-		
-				</div>
-			</c:forEach>
+			<div class="container">
+				<c:forEach items="${listaFiltrada }" var="comic">
+					<div class="col-md-4 center" id="comic-${comic.numero}">
+						<img alt="jarvis" src="../../img/logo_small.png">
+						<h5>Nro: ${comic.numero }</h5>
+						<p>Cantidad de paginas: ${comic.cantPaginas }</p>
+			
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 
