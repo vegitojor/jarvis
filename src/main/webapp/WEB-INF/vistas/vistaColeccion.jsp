@@ -5,25 +5,35 @@
 	<div class="row">
 		<div class="conteniner">
 			<div class="col-md-12" id="presentacion">
-				<img class="img-responsive" src="${coleccion.pathImagen}">
-				<h1>${coleccion.nombre }</h1>
-				<h3>${coleccion.descripcion }</h3>
-				<!-- <h3>${coleccion.editorial}</h3>  -->
-				<h3>Editorial</h3>
-				<!-- <h3>${coleccion.formato }]</h3>  -->
-				<h3>Formato</h3>
-				<c:choose>
-					<c:when test="${coleccion.enCurso }">
-						<h3>Coleccion en curso</h3>
-					</c:when>
-					<c:otherwise>
-						<h3>Coleccion finalizada</h3>
-					</c:otherwise>
-				</c:choose>
+			
+				<div class="jumbotron jarvis-bg ">
+					<div class="container">
+						<div class="col-md-4">
+							<img class="img-responsive " src="../../img/logo_small.png">
+						</div>
+						<div class="col-md-8">
+							<h1 ><span class="white">${coleccion.nombre }</span></h1>
+							<h5>${coleccion.descripcion }</h5>
+							<!-- <h5>${coleccion.editorial}</h5>  -->
+							<h5>Editorial</h5>
+							<!-- <h5>${coleccion.formato }]</h5>  -->
+							<h5>Formato</h5>
+							<c:choose>
+								<c:when test="${coleccion.enCurso }">
+									<h5>Coleccion en curso</h5>
+								</c:when>
+								<c:otherwise>
+									<h5>Coleccion finalizada</h5>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+			
 			</div>
 			<c:forEach items="${listaFiltrada }" var="comic">
-				<div class="col-md-4 " id="comic-${comic.numero}">
-					<img alt="" src="${comic.pathImagen }">
+				<div class="col-md-4 center" id="comic-${comic.numero}">
+					<img alt="jarvis" src="../../img/logo_small.png">
 					<h5>Nro: ${comic.numero }</h5>
 					<p>Cantidad de paginas: ${comic.cantPaginas }</p>
 		
