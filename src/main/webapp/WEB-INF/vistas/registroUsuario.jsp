@@ -34,8 +34,10 @@
 								data-size="5"
 								data-live-search="true"
 								data-show-tick="true">
+								<c:forEach items="${paises}" var="pais">
+									<option value="${pais.id}"><c:out value="${pais.nombre}"/></option>
+								</c:forEach>
 							</select>
-							
 						</div>
 					</div>
 				</div>
