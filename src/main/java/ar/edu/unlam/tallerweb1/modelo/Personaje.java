@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity 
 public class Personaje {
 	
 	private Long id;

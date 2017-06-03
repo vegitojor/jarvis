@@ -2,6 +2,9 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Comic {
 
 	private Long id;

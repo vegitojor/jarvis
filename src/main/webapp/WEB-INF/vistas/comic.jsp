@@ -12,13 +12,12 @@
 								<img class="img-responsive" src="img/comics/${comic.pathImagen }">
 							</c:when>
 							<c:otherwise>	
-								<img class="img-responsive" src="img\comics\jarvis_default.jpg">
+								<img clsass="img-responsive" src="img\comics\jarvis_default.jpg">
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="col-md-8">	
 						<h2>${comic.coleccion}</h2>
-						<h3>${comic.volumen}</h3>
 						<h3>Nro. ${comic.numero}</h3>
 						<h4>${comic.autor}</h4>
 						<h4>${comic.formato}</h4>

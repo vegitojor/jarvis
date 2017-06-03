@@ -33,7 +33,11 @@
 									<h5>Coleccion finalizada</h5>
 								</c:otherwise>
 							</c:choose>
+							<a href="" class="btn btn-success">Lo tengo</a>
 						</div>
+					</div>
+					<div>
+						
 					</div>
 				</div>
 			

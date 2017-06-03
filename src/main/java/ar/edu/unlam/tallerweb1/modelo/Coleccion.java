@@ -1,7 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-public class Coleccion {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Coleccion {
+	
+	@Id
 	private Long id;
 	private String nombre;
 	private String descripcion;
