@@ -9,11 +9,6 @@ public class Editorial {
 	private String editorial;
 	private String pathImagen;
 	
-	public Editorial (Long id, String editorial, String pathImagen){
-		this.id = id;
-		this.editorial = editorial;
-		this.pathImagen = pathImagen;
-	}
 	public Long getId() {
 		return id;
 	}

@@ -26,8 +26,16 @@ public class ControladorColeccion {
 	public ModelAndView mostrarColeccion(){
 		ModelMap model = new ModelMap();
 		
+<<<<<<< HEAD
 		Editorial editorial1 = new Editorial(1L, "edit","darkhorse.jpg");
+=======
+		Editorial editorial1 = new Editorial();
+		editorial1.setId(1L);
+		editorial1.setEditorial("Nombre de la editorial");
+		
+>>>>>>> branch 'master' of https://github.com/vegitojor/jarvis.git
 		Formato formato1 = new Formato(1L, "form");
+		
 		Personaje personaje1 = new Personaje(1L, "pers", "onaje");
 		Coleccion coleccion1 = new Coleccion(1L, "nombre", "Descripcion de coleccion 1", null, editorial1, formato1, personaje1, true, "1");
 		
