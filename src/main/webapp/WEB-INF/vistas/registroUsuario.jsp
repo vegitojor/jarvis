@@ -34,10 +34,6 @@
 								data-size="5"
 								data-live-search="true"
 								data-show-tick="true">
-								<option value="" >1</option>
-								<option value="" >2</option>
-								<option value="" >3</option>
-								<option value="" >11</option>
 							</select>
 							
 						</div>
