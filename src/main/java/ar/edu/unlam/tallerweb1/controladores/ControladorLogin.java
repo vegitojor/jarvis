@@ -49,11 +49,4 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
-	
-	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
-	public ModelAndView irARegistroUsuario() {
-		ModelMap modelo = new ModelMap();
-		modelo.put("titulo", "Registro de usuario");
-		return new ModelAndView("registroUsuario", modelo);
-	}
 }
