@@ -18,7 +18,7 @@
 									<img class="img-responsive" src="img/jarvis_default.jpg">
 								</c:otherwise>
 							</c:choose>
-							<h2 class="text-center"><span class="white"><c:out value="${editorial.editorial}"></c:out></span></h2>
+							<h2 class="text-center"><span class="white"><c:out value="${editorial.nombre}"></c:out></span></h2>
 							<a href="verEditorial?id=${editorial.id}" class="btn btn-primary">Ver detalle</a>
 						</div>
 					</c:forEach>
