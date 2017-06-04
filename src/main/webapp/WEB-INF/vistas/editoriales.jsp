@@ -1,8 +1,5 @@
 <%@include file='../../includes/cabecera.jsp' %>
 	<title>Listado de Editoriales</title>
-	<link rel="stylesheet" type="text/css" href="css\bootstrap.css">
-	<script type="text/javascript" src="js\jquery-3.1.1.js"></script>	
-	<script type="text/javascript"  src="js\bootstrap.js"></script>
 </head>
 <body>
 	<div>
@@ -22,6 +19,7 @@
 								</c:otherwise>
 							</c:choose>
 							<h2 class="text-center"><span class="white"><c:out value="${editorial.editorial}"></c:out></span></h2>
+							<a href="verEditorial?id=${editorial.id}" class="btn btn-primary">Ver detalle</a>
 						</div>
 					</c:forEach>
 			</c:when>

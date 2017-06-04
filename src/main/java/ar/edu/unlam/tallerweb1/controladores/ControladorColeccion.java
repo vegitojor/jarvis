@@ -27,8 +27,8 @@ public class ControladorColeccion {
 		ModelMap model = new ModelMap();
 		
 		Editorial editorial1 = new Editorial();
-		editorial1.setId(1L);
-		editorial1.setEditorial("Nombre de la editorial");
+		
+		editorial1.setNombre("Nombre de la editorial");
 		
 		Formato formato1 = new Formato(1L, "form");
 		
