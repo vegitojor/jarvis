@@ -39,7 +39,7 @@
 								</c:when>
 								<c:otherwise>
 									<form:form action="seguir-coleccion" modelAttribute="seguirColeccion" method="POST" >
-									<form:input type="hidden" value="true" name="verdadero">
+									<form:input type="hidden" value="true" name="verdadero" />
 									<button type="submit" class="btn btn-success">Seguir</button>
 								</form:form>	
 								</c:otherwise>
