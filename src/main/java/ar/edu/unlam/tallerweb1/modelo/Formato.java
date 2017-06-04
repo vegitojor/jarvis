@@ -16,7 +16,8 @@ public class Formato {
 	public static final Long DELUXE = 6L;
 	public static final Long ABSOLUTE = 7L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	

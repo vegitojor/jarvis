@@ -17,13 +17,20 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public Usuario consultarUsuario(Usuario usuario) {
-		
+
 		final Session session = sessionFactory.getCurrentSession();
 		return (Usuario) session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
-		
+
+	}
+
+	@Override
+	public void registrarUsuario(Usuario usuario) {
+		final Session session = sessionFactory.openSession();
+		session.saveOrUpdate(usuario);
+
 	}
 
 }

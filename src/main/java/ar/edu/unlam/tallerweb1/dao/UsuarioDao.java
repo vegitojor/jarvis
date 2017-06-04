@@ -4,5 +4,9 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface UsuarioDao {
 
-	Usuario consultarUsuario(Usuario usuario);
+	
+	Usuario consultarUsuario (Usuario usuario);
+	
+	void registrarUsuario(Usuario usuario);
+
 }

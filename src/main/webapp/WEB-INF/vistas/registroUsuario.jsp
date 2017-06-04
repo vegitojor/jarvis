@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<label for="pais" class="cols-sm-2 control-label">Pa&iacute;s</label>
 						<div class="cols-sm-10">
-							<select class="form-control selectpicker" name="pais" id="pais" required="required"
+							<select class="form-control selectpicker" name="pais" id="pais"
 								data-title="Pa&iacute;s"
 								data-live-search-placeholder="Seleccione su pa&iacute;s"
 								data-dropup-auto="false"

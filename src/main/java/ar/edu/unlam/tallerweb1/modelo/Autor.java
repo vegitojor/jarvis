@@ -8,14 +8,13 @@ import javax.persistence.Id;
 @Entity
 public class Autor {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	
-	public Autor (Long id, String nombre){
-		this.id = id;
-		this.nombre = nombre;
-	}
+	
 	public Long getId() {
 		return id;
 	}

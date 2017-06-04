@@ -8,8 +8,10 @@ import javax.persistence.Id;
 @Entity
 public class Editorial {
 	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private Long id;
 	private String nombre;
 	private String pathImagen;
