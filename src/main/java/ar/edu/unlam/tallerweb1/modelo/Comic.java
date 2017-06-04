@@ -3,18 +3,29 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GeneratorType;
 
 @Entity
 public class Comic {
-
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String isbn;
 	private String numero;
 	private Timestamp fechaPublicacion;
+	@Transient
 	private Coleccion coleccion;
 	private String pvp;
 	private String cantPaginas;
+	@Transient
 	private Autor autor;
+	@Transient
 	private Formato formato;
 	private String pathImagen;
 

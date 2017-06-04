@@ -6,7 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Coleccion;
@@ -26,14 +28,14 @@ public class ControladorColeccion {
 	public ModelAndView mostrarColeccion(){
 		ModelMap model = new ModelMap();
 		
-<<<<<<< HEAD
-		Editorial editorial1 = new Editorial(1L, "edit","darkhorse.jpg");
-=======
+
+		
+
 		Editorial editorial1 = new Editorial();
 		editorial1.setId(1L);
-		editorial1.setEditorial("Nombre de la editorial");
+		editorial1.setEditorial("editorial 1");
+		editorial1.setPathImagen("daekhorse.jpg");
 		
->>>>>>> branch 'master' of https://github.com/vegitojor/jarvis.git
 		Formato formato1 = new Formato(1L, "form");
 		
 		Personaje personaje1 = new Personaje(1L, "pers", "onaje");
@@ -46,5 +48,14 @@ public class ControladorColeccion {
 		
 		return new ModelAndView("vistaColeccion", model);
 		
+	}
+	
+	@RequestMapping(path = "/seguir-coleccion", method = RequestMethod.POST)
+	public ModelAndView seguirColeccion(@ModelAttribute("seguirColeccion") Boolean seguirColeccion){
+		ModelMap modeloSeguir = new ModelMap();
+		Boolean siguiendo = seguirColeccion;
+		modeloSeguir.put("seguir", siguiendo);
+		
+		return new ModelAndView ("vistaColeccion", modeloSeguir);
 	}
 }

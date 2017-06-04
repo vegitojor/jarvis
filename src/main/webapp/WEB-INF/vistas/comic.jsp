@@ -12,7 +12,7 @@
 								<img class="img-responsive" src="img/comics/${comic.pathImagen }">
 							</c:when>
 							<c:otherwise>	
-								<img clsass="img-responsive" src="img\comics\jarvis_default.jpg">
+								<img class="img-responsive" src="img\comics\jarvis_default.jpg">
 							</c:otherwise>
 						</c:choose>
 					</div>

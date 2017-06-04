@@ -33,7 +33,17 @@
 									<h5>Coleccion finalizada</h5>
 								</c:otherwise>
 							</c:choose>
-							<a href="" class="btn btn-success">Lo tengo</a>
+							<c:choose>
+								<c:when test="${seguir }">
+									<h3>Siguiendo coleccion</h3>
+								</c:when>
+								<c:otherwise>
+									<form:form action="seguir-coleccion" modelAttribute="seguirColeccion" method="POST" >
+									<input type="hidden" value="true" name="verdadero">
+									<button type="submit" class="btn btn-success">Seguir</button>
+								</form:form>	
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div>

@@ -1,18 +1,25 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Coleccion {
 	
-	@Id
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String descripcion;
 	private String pathImagen;
+	@Transient
 	private Editorial editorial;
+	@Transient
 	private Formato formato;
+	@Transient
 	private Personaje personaje;
 	private Boolean enCurso;
 	private String volumen;
