@@ -4,6 +4,8 @@ import ar.edu.unlam.tallerweb1.modelo.Comic;
 
 public interface ComicDao {
 	
-	Comic insertarEnLaTabla(Comic comic);
+	Comic agregarNuevoComic(Long id);
+	
+	Comic buscarComic(Long id);
 
 }
