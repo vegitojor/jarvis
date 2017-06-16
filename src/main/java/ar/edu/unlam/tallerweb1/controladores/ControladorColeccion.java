@@ -3,12 +3,14 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Coleccion;
@@ -16,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Comic;
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
 import ar.edu.unlam.tallerweb1.modelo.Formato;
 import ar.edu.unlam.tallerweb1.modelo.Personaje;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioColeccion;
 
 @Controller
@@ -25,10 +28,12 @@ public class ControladorColeccion {
 	private ServicioColeccion servicioColeccion;
 	
 	@RequestMapping("/coleccion")
-	public ModelAndView mostrarColeccion(){
+	public ModelAndView mostrarColeccion(HttpServletRequest request){
 		ModelMap model = new ModelMap();
 		
-
+		
+		//se trae al usuario del servlet
+		Usuario usuario = (Usuario) request.getSession().getAttribute("user");
 		
 
 		Editorial editorial1 = new Editorial();
@@ -42,20 +47,14 @@ public class ControladorColeccion {
 		Coleccion coleccion1 = new Coleccion(1L, "nombre", "Descripcion de coleccion 1", null, editorial1, formato1, personaje1, true, "1");
 		
 		List<Comic> lista = servicioColeccion.buscarComic(coleccion1.getId());
-		
+
 		model.put("listaFiltrada", lista);
 		model.put("coleccion", coleccion1);
+		model.put("usuario", usuario);
 		
 		return new ModelAndView("vistaColeccion", model);
 		
 	}
 	
-	@RequestMapping(path = "/seguir-coleccion", method = RequestMethod.POST)
-	public ModelAndView seguirColeccion(@ModelAttribute("seguirColeccion") Boolean seguirColeccion){
-		ModelMap modeloSeguir = new ModelMap();
-		Boolean siguiendo = seguirColeccion;
-		modeloSeguir.put("seguir", siguiendo);
-		
-		return new ModelAndView ("vistaColeccion", modeloSeguir);
-	}
+	
 }

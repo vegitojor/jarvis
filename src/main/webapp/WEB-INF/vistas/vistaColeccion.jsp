@@ -33,17 +33,17 @@
 									<h5>Coleccion finalizada</h5>
 								</c:otherwise>
 							</c:choose>
-							<c:choose>
+							 <c:choose>
 								<c:when test="${seguir }">
 									<h3>Siguiendo coleccion</h3>
 								</c:when>
 								<c:otherwise>
 									<form:form action="seguir-coleccion" modelAttribute="seguirColeccion" method="POST" >
-									<form:input path="" type="hidden" value="true" name="verdadero" />
+									<input  type="hidden" value="true" name="verdadero" />
 									<button type="submit" class="btn btn-success">Seguir</button>
 								</form:form>	
 								</c:otherwise>
-							</c:choose>
+							</c:choose> 
 						</div>
 					</div>
 					<div>
