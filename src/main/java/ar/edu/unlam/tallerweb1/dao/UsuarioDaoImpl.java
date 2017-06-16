@@ -23,13 +23,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
-		
+
 	}
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
 		final Session session = sessionFactory.openSession();
 		session.saveOrUpdate(usuario);
+
 	}
 
 }

@@ -37,9 +37,11 @@ public class ControladorColeccion {
 		
 
 		Editorial editorial1 = new Editorial();
-		editorial1.setId(1L);
-		editorial1.setEditorial("editorial 1");
+
+		
+		editorial1.setNombre("Nombre de la editorial");
 		editorial1.setPathImagen("daekhorse.jpg");
+
 		
 		Formato formato1 = new Formato(1L, "form");
 		
