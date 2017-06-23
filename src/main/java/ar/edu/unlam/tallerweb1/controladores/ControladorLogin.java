@@ -17,7 +17,14 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioLogin servicioLogin;
-	
+	private Usuario usuarioCreado;
+	public Usuario getUsuarioCreado() {
+		return usuarioCreado;
+	}
+	public void setUsuarioCreado(Usuario usuarioCreado) {
+		this.usuarioCreado = usuarioCreado;
+	}
+
 	@RequestMapping("/login")
 	public ModelAndView irALogin() {
 
@@ -32,6 +39,7 @@ public class ControladorLogin {
 		ModelMap model = new ModelMap();
 
 		if (servicioLogin.consultarUsuario(usuario) != null) {
+			usuarioCreado = usuario;
 			return new ModelAndView("redirect:/home");
 		} else {
 			model.put("error", "Usuario o clave incorrecta");

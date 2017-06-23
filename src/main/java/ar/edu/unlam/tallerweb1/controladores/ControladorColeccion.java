@@ -24,15 +24,19 @@ public class ControladorColeccion {
 	@Inject
 	private ServicioColeccion servicioColeccion;
 	
+	/*
+	
+	// PONEMOS ESTA CLASE PARA MANTENER EL USUARIO LOGUEADO - VERIFICAR LUEGO
+	@Inject
+	private ControladorLogin controladorLogin; 
+	
+	*/
+	
 	@RequestMapping("/coleccion")
 	public ModelAndView mostrarColeccion(){
 		ModelMap model = new ModelMap();
-		
-
-		
 
 		Editorial editorial1 = new Editorial();
-
 		
 		editorial1.setNombre("Nombre de la editorial");
 		editorial1.setPathImagen("daekhorse.jpg");

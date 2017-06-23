@@ -21,7 +21,6 @@ public class ControladorUsuario {
 	@Inject
 	private ServicioUsuario servicioUsuario;
 	
-	
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
 	public ModelAndView irARegistroUsuario() {
 		ModelMap modelo = new ModelMap();
