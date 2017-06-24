@@ -19,7 +19,9 @@
 							<label for="password">Clave</label>
 							<form:input path="password" type="password" id="password" class="form-control"/>
 						</div>
-						<br>    		  
+						<c:if test="${not empty error}">
+							<p class="error"><c:out value="${error}"/></p>
+						</c:if>
 						<div class="form-group">
 							<button class="btn btn-lg btn-primary btn-block" name="submit" value="login" type="submit">Ingresar</button>  			
 						</div>

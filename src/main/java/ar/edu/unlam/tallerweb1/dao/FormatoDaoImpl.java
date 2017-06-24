@@ -16,7 +16,7 @@ public class FormatoDaoImpl implements FormatoDao{
 	@Inject SessionFactory sessionFactory;
 	
 	@Override
-	public List<Formato> listarFormato() {
+	public List<Formato> listarFormatos() {
 		@SuppressWarnings("unchecked")
 		List<Formato> lista = sessionFactory.getCurrentSession().createCriteria(Formato.class).list();
 		return lista;

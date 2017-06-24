@@ -17,7 +17,7 @@ public class ComicDaoImpl implements ComicDao {
 
 	@Override
 	public Comic agregarNuevoComic(Long id) {
-		final Session session = sessionFactory.openSession();
+		final Session session = sessionFactory.getCurrentSession();
 		Comic comic = (Comic) session.createCriteria(Comic.class)
 				.add(Restrictions.eq("id", id)).uniqueResult();
 		return comic;
@@ -25,7 +25,7 @@ public class ComicDaoImpl implements ComicDao {
 
 	@Override
 	public Comic buscarComic(Long id) {
-		final Session session = sessionFactory.openSession();
+		final Session session = sessionFactory.getCurrentSession();
 		Comic comic = (Comic) session.createCriteria(Comic.class)
 				.add(Restrictions.eq("id", id)).uniqueResult();
 		return comic;

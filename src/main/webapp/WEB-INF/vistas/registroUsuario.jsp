@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="container">
-			<form:form action="registrar-usuario" method="POST" modelAttribute="usuario">
+			<form:form action="registrar-usuario" method="POST">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="nombre" class="cols-sm-2 control-label">Nombre</label>
@@ -19,9 +19,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="fechaNacimiento" class="cols-sm-2 control-label">Fecha de nacimiento</label>
+						<label for="fechaDeNacimiento" class="cols-sm-2 control-label">Fecha de nacimiento</label>
 						<div class="cols-sm-10">
-							<input type="text" class="form-control birthdate" name="fechaNacimiento" id="fechaNacimiento" placeholder="Fecha de nacimiento" required="required"/>
+							<input type="text" class="form-control birthdate" name="fechaDeNacimiento" id="fechaDeNacimiento" placeholder="Fecha de nacimiento" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -45,7 +45,7 @@
 					<div class="form-group">
 						<label for="email" class="cols-sm-2 control-label">E-mail</label>
 						<div class="cols-sm-10">
-							<input type="text" class="form-control" name="email" id="email" placeholder="E-mail" required="required"/>
+							<input type="text" class="form-control" path="email" name="email" id="email" placeholder="E-mail" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">

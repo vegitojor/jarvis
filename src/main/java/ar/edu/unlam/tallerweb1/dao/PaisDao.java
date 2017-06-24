@@ -8,5 +8,7 @@ public interface PaisDao {
 	
 	Pais consultarPais(Pais pais);
 	
+	Pais obtenerPaisPorId(Long id);
+	
 	List<Pais> listarPaises();
 }

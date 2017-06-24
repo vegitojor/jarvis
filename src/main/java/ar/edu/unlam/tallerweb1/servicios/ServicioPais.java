@@ -7,4 +7,6 @@ import ar.edu.unlam.tallerweb1.modelo.Pais;
 public interface ServicioPais {
 
 	List<Pais> listarPaises();
+	
+	Pais obtenerPaisPorId(Long id);
 }

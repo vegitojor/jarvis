@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -23,14 +25,26 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
-
 	}
 
 	@Override
 	public void registrarUsuario(Usuario usuario) {
-		final Session session = sessionFactory.openSession();
+		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(usuario);
 
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorMail(String email) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add( Restrictions.eq("email", email) )
+				.uniqueResult();
+	}
+	
+	@Override
+	public List<Usuario> obtenerUsuarioConCriterion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

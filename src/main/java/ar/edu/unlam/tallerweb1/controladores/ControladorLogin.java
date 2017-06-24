@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -26,10 +27,12 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping("/login")
-	public ModelAndView irALogin() {
+	public ModelAndView irALogin(@RequestParam (value="email", required=false) String email) {
 
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = new Usuario();
+		if (email!=null && email!="")
+			usuario.setEmail(email);
 		modelo.put("usuario", usuario);
 		return new ModelAndView("login", modelo);
 	}
@@ -42,10 +45,9 @@ public class ControladorLogin {
 			usuarioCreado = usuario;
 			return new ModelAndView("redirect:/home");
 		} else {
-			model.put("error", "Usuario o clave incorrecta");
-					
+			model.put("error", "Usuario o clave incorrecta.");
 		}
-		return new ModelAndView("registroUsuario", model);
+		return new ModelAndView("login", model);
 	}
 	
 	@RequestMapping(path = "/home", method = RequestMethod.GET)

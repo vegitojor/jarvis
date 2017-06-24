@@ -22,4 +22,11 @@ public class ServicioPaisImpl implements ServicioPais {
 	public List<Pais> listarPaises() {
 		return paisDao.listarPaises();
 	}
+
+	@Override
+	public Pais obtenerPaisPorId(Long id) {
+		return paisDao.obtenerPaisPorId(id);
+	}
+	
+	
 }

@@ -18,19 +18,37 @@ h1, h2, h3, h4, h5 {
 }
 	
 /* CLASES */
+
+.error {
+	font-weight: bold;
+	color: #dd0000;
+}
 	
 .indexForm {
 	margin-top: 50px;
-}
-
-.white {
-	color: #ffffff;
 }
 
 .jarvis-bg {
 	background-image: url(../img/index_bg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.registro-exitoso {
+	width: 100%;
+	height: 100vh;
+}
+
+.registro-exitoso-panel {
+	margin-top: 2em;
+	background-color: #ffffff;
+	box-sizing: border-box;
+	border-radius: 1em;
+	padding: 1.5em;
+}
+
+.white {
+	color: #ffffff;
 }
 
 /* ID'S */
@@ -49,7 +67,17 @@ h1, h2, h3, h4, h5 {
 		font-size: 20px;
 		font-family: Medium;
 	}
-	
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 425px) {
+	.registro-exitoso-panel {
+		margin-top: 0;
+		padding-top: 4em;
+		height: 100vh;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	#indexScreen .subtitulo {
 		font-size: 16px;

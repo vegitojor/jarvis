@@ -5,11 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.EditorialDao;
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
 
 @Service("servicioEditorial")
+@Transactional
 public class ServicioEditorialImpl implements ServicioEditorial {
 	
 	@Inject
