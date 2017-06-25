@@ -22,6 +22,4 @@ public class ControladorColeccion {
 		return new ModelAndView("vistaColeccion", model);
 		
 	}
-	
-	
 }

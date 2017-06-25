@@ -10,8 +10,10 @@ public interface UsuarioDao {
 	
 	List<Usuario> obtenerUsuarioConCriterion();
 	
+	Usuario obtenerUsuarioPorId(Long id);
+	
 	Usuario obtenerUsuarioPorMail(String email);
 	
-	void registrarUsuario(Usuario usuario);
+	void guardarUsuario(Usuario usuario);
 
 }

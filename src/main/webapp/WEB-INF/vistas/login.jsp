@@ -1,4 +1,5 @@
 <%@include file='../../includes/cabecera.jsp' %>
+		<script type="text/javascript" src="js/jarvis-web.login.js"></script>
 	</head>
 	<body>
 		<div class="row">

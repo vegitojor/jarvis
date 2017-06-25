@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.Pais;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Service("usuarioDao")
@@ -28,10 +29,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public void registrarUsuario(Usuario usuario) {
+	public void guardarUsuario(Usuario usuario) {
 		final Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(usuario);
-
 	}
 
 	@Override
@@ -46,5 +46,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public List<Usuario> obtenerUsuarioConCriterion() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Usuario obtenerUsuarioPorId(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add( Restrictions.eq("id", id) )
+				.uniqueResult();
 	}
 }

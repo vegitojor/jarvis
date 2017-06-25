@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioUsuario {
 	
-	void registrarUsuario(Usuario usuario);
+	Usuario guardarUsuario(Long id, String nombre, String fechaDeNacimiento, Long idPais, String email, String password);
 	
 	Usuario obtenerUsuarioPorMail(String email);
 }

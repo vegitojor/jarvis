@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,13 +20,6 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioLogin servicioLogin;
-	private Usuario usuarioCreado;
-	public Usuario getUsuarioCreado() {
-		return usuarioCreado;
-	}
-	public void setUsuarioCreado(Usuario usuarioCreado) {
-		this.usuarioCreado = usuarioCreado;
-	}
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin(@RequestParam (value="email", required=false) String email) {
@@ -38,25 +33,40 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuario) {
-		ModelMap model = new ModelMap();
-
-		if (servicioLogin.consultarUsuario(usuario) != null) {
-			usuarioCreado = usuario;
+	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuarioFromLogin,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuario = servicioLogin.consultarUsuario(usuarioFromLogin);
+		
+		if ( usuario!=null ) {
+			request.getSession().setAttribute("usuario", usuario);
 			return new ModelAndView("redirect:/home");
 		} else {
-			model.put("error", "Usuario o clave incorrecta.");
+			modelo.put("error", "Usuario o clave incorrecta.");
 		}
-		return new ModelAndView("login", model);
+		
+		return new ModelAndView("login", modelo);
 	}
 	
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
-		return new ModelAndView("home");
+	public ModelAndView irAHome(HttpServletRequest request) {
+		
+		if ( request.getSession().getAttribute("usuario") != null )
+			return new ModelAndView("home");
+		
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
+		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request) {
+		request.getSession().removeAttribute("usuario");
 		return new ModelAndView("redirect:/login");
 	}
 }

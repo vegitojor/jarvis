@@ -53,6 +53,10 @@ h1, h2, h3, h4, h5 {
 
 /* ID'S */
 
+#contenido {
+	margin-top: 50px;
+}
+
 #indexScreen {
 	height: 100vh;
 	

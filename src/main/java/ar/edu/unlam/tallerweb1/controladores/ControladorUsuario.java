@@ -1,8 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.servicios.FechaHelper;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPais;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
@@ -40,16 +36,8 @@ public class ControladorUsuario {
 	@RequestMapping(path="/registrar-usuario", method=RequestMethod.POST)
 	public ModelAndView registrarUsuario(@RequestParam String nombre, @RequestParam String fechaDeNacimiento,
 			@RequestParam (value="pais") Long idPais, @RequestParam String email, @RequestParam String password){
-
-		Usuario usuario = new Usuario();
-		usuario.setEmail(email);
-		usuario.setPassword(password);
-		usuario.setNombre(nombre);
-		Date fechaDeNacimientoDate =  FechaHelper.convertirFechaADate(fechaDeNacimiento);
-		usuario.setFechaDeNacimiento( new Timestamp(fechaDeNacimientoDate.getTime()) );
-		usuario.setPais( servicioPais.obtenerPaisPorId(idPais) );
 		
-		servicioUsuario.registrarUsuario(usuario);
+		servicioUsuario.guardarUsuario(null, nombre, fechaDeNacimiento, idPais, email, password);
 
 		return new ModelAndView("redirect:/registro-exitoso?username="+nombre+"&usermail="+email);
 	}
