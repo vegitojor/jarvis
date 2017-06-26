@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioFormato;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 @Controller
@@ -20,6 +21,8 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioLogin servicioLogin;
+	@Inject
+	private ServicioFormato servicioFormato;
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin(@RequestParam (value="email", required=false) String email) {
@@ -42,6 +45,10 @@ public class ControladorLogin {
 		
 		if ( usuario!=null ) {
 			request.getSession().setAttribute("usuario", usuario);
+			
+			/* LISTAMOS TODOS LOS FORMATOS PARA MOSTRARLOS EN EL NAVBAR */
+			request.getSession().setAttribute("formatos", servicioFormato.listarFormatos());
+			
 			return new ModelAndView("redirect:/home");
 		} else {
 			modelo.put("error", "Usuario o clave incorrecta.");

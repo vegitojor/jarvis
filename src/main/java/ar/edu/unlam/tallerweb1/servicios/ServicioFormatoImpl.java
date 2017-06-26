@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,15 +13,18 @@ import ar.edu.unlam.tallerweb1.modelo.Formato;
 @Service("servicioFormato")
 @Transactional
 public class ServicioFormatoImpl implements ServicioFormato {
+	
 	@Inject
 	private FormatoDao formatoDao;
-	
+
 	@Override
-	public List<Formato> listarFormato() {
+	public List<Formato> listarFormatos() {
 		List<Formato> formatos = formatoDao.listarFormatos();
 		return formatos;
 	}
-	
-	
 
+	@Override
+	public Formato buscarFormatoPorNombre(String nombre) {
+		return formatoDao.buscarFormatoPorNombre(nombre.replace("-", "%"));
+	}
 }

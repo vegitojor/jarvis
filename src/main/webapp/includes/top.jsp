@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
+	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#jarvis-navbar-collapse" aria-expanded="false">
@@ -17,15 +17,22 @@
 		<div class="collapse navbar-collapse" id="jarvis-navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="colecciones">Colecciones</a></li>
-				<li><a href="comics">Comics</a></li>
 				<li><a href="editoriales">Editoriales</a></li>
 				<li><a href="personajes">Personajes</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formatos&nbsp;<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<c:forEach items="${formatos}" var="formato">
+							<li><a href="formato-<c:out value="${fn:replace(fn:toLowerCase(formato.nombre), ' ', '-')}"/>"><c:out value="${formato.nombre}"/></a></li>
+						</c:forEach>
+					</ul>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><c:out value="${usuario.nombre}"/>&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="home"><span class="glyphicon glyphicon-user"></span>&nbsp;Mi perfil</a></li>
+						<li><a href="home"><span class="glyphicon glyphicon-user"></span>&nbsp;Mis comics</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Salir</a></li>
 					</ul>

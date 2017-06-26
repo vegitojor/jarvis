@@ -21,6 +21,7 @@ public class ControladorEditorial {
 	public ModelAndView listarEditoriales(){
 		ModelMap modelo = new ModelMap();
 		modelo.put("editoriales", servicioEditorial.listarEditoriales());
+		modelo.put("titulo", "Editoriales");
 		return new ModelAndView ("editoriales", modelo);
 	}
 	
