@@ -1,9 +1,12 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -15,28 +18,16 @@ public class Coleccion {
 	private String nombre;
 	private String descripcion;
 	private String pathImagen;
-	@Transient
+	@ManyToOne ( cascade = CascadeType.ALL)
+	@JoinColumn( name="id_editorial" )
 	private Editorial editorial;
-	@Transient
+	@ManyToOne ( cascade = CascadeType.ALL)
+	@JoinColumn( name="id_formato" )
 	private Formato formato;
 	@Transient
 	private Personaje personaje;
 	private Boolean enCurso;
 	private String volumen;
-	
-	public Coleccion(Long id, String nombre, String descripcion, String pathImagen, Editorial editorial,
-			Formato formato, Personaje personaje, Boolean enCurso, String volumen) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.pathImagen = pathImagen;
-		this.editorial = editorial;
-		this.formato = formato;
-		this.personaje = personaje;
-		this.enCurso = enCurso;
-		this.volumen = volumen;
-	}
 	
 	public Long getId() {
 		return id;

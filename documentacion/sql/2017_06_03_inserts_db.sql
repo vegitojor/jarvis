@@ -8,7 +8,7 @@ insert into pais
 	('Colombia'),
 	('Ecuador'),
 	('Paraguay'),
-	('PerÃº'),
+	('Perú'),
 	('Uruguay'),
 	('Venezuela');
 

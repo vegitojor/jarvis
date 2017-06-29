@@ -8,23 +8,19 @@ import javax.persistence.Id;
 @Entity
 public class Formato {
 	
-	public static final Long ISSUE = 1L;
-	public static final Long TP = 2L;
-	public static final Long HC = 3L;
-	public static final Long OMNIBUS = 4L;
-	public static final Long COMPENDIUM = 5L;
-	public static final Long DELUXE = 6L;
-	public static final Long ABSOLUTE = 7L;
+	public static final Long ABSOLUTE = 1L;
+	public static final Long COMPENDIUM = 2L;
+	public static final Long DELUXE = 3L;
+	public static final Long HC = 4L;
+	public static final Long ISSUE = 5L;
+	public static final Long OMNIBUS = 6L;
+	public static final Long TPB = 7L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	
-	public Formato (Long id, String nombre){
-		this.id = id;
-		this.nombre = nombre;
-	}
 	public Long getId() {
 		return id;
 	}

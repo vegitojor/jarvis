@@ -19,22 +19,19 @@ public class EditorialDaoImpl implements EditorialDao {
 
 	@Override
 	public Editorial buscarEditorial(Long id) {
-		final Session session = sessionFactory.openSession();
-
+		final Session session = sessionFactory.getCurrentSession();
 		Editorial editorial = (Editorial) session.createCriteria(Editorial.class)
 				.add(Restrictions.eq("id", id)).uniqueResult();
-
 		return editorial;
 	}
 
 	@Override
 	public List<Editorial> listarEditoriales() {
-		final Session session = sessionFactory.openSession();
+		final Session session = sessionFactory.getCurrentSession();
 		
 		@SuppressWarnings("unchecked")
 		List<Editorial> editoriales = session.createCriteria(Editorial.class).list();
 		
 		return editoriales;
-
 	}
 }

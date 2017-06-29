@@ -2,10 +2,10 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.modelo.Comic;
+import ar.edu.unlam.tallerweb1.modelo.Coleccion;
 
 public interface ServicioColeccion {
 	
-	public List<Comic> buscarComic(Long id);
+	public List<Coleccion> listarColecciones();
 
 }
