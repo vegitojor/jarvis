@@ -71,6 +71,22 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 	
+	public ServicioEditorial getServicioEditorial() {
+		return servicioEditorial;
+	}
+
+	public void setServicioEditorial(ServicioEditorial servicioEditorial) {
+		this.servicioEditorial = servicioEditorial;
+	}
+
+	public ServicioFormato getServicioFormato() {
+		return servicioFormato;
+	}
+
+	public void setServicioFormato(ServicioFormato servicioFormato) {
+		this.servicioFormato = servicioFormato;
+	}
+
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome(HttpServletRequest request) {
 		
