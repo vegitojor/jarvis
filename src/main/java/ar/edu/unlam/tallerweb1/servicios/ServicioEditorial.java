@@ -8,5 +8,7 @@ public interface ServicioEditorial {
 	
 	public Editorial buscarEditorial(Long id);
 	
+	public Editorial buscarEditorialPorNombre(String nombre);
+	
 	public List<Editorial> listarEditoriales();
 }

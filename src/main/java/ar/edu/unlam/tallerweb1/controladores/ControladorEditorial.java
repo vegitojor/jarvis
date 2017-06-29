@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,4 +35,14 @@ public class ControladorEditorial {
 		return new ModelAndView ("editorial", modelo);
 	}
 	
+	@RequestMapping("/editorial-{nombreEditorial}")
+	public ModelAndView coleccionesPorEditorial(@PathVariable ("nombreEditorial") String nombreEditorial){
+		ModelMap modelo = new ModelMap();
+		Editorial editorial = servicioEditorial.buscarEditorialPorNombre(nombreEditorial);
+		
+		modelo.put("editorial", editorial);
+		modelo.put("titulo", editorial.getNombre());
+		
+		return new ModelAndView("coleccionesPorEditorial", modelo);
+	}
 }

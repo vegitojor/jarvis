@@ -9,4 +9,6 @@ public interface EditorialDao {
 	Editorial buscarEditorial(Long id);
 	
 	List<Editorial> listarEditoriales();
+	
+	Editorial buscarEditorialPorNombre(String nombre);
 }

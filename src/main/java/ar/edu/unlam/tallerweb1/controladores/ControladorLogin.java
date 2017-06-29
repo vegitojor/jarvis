@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFormato;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
@@ -22,7 +23,8 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioLogin servicioLogin;
-	
+	@Inject
+	private ServicioEditorial servicioEditorial;
 	@Inject
 	private ServicioFormato servicioFormato;
 	
@@ -33,8 +35,6 @@ public class ControladorLogin {
 	public void setServicioLogin(ServicioLogin servicioLogin) {
 		this.servicioLogin = servicioLogin;
 	}
-
-	
 
 	@RequestMapping("/login")
 	public ModelAndView irALogin(@RequestParam (value="email", required=false) String email) {
@@ -59,8 +59,8 @@ public class ControladorLogin {
 		if ( usuario!=null ) {
 			request.getSession().setAttribute("usuario", usuario);
 			
-			/* LISTAMOS TODOS LOS FORMATOS PARA MOSTRARLOS EN EL NAVBAR */
-			request.getSession().setAttribute("formatos", servicioFormato.listarFormatos());
+			/* LISTAMOS TODAS LAS EDITORIALES PARA MOSTRARLAS EN EL NAVBAR */
+			request.getSession().setAttribute("editoriales", servicioEditorial.listarEditoriales());
 
 			
 			return new ModelAndView("redirect:/home");

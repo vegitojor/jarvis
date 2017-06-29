@@ -17,16 +17,15 @@
 		<div class="collapse navbar-collapse" id="jarvis-navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="colecciones">Colecciones</a></li>
-				<li><a href="editoriales">Editoriales</a></li>
-				<li><a href="personajes">Personajes</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Formatos&nbsp;<span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Editoriales&nbsp;<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<c:forEach items="${formatos}" var="formato">
-							<li><a href="formato-<c:out value="${fn:replace(fn:toLowerCase(formato.nombre), ' ', '-')}"/>"><c:out value="${formato.nombre}"/></a></li>
+						<c:forEach items="${editoriales}" var="editorial">
+							<li><a href="editorial-<c:out value="${fn:replace(fn:toLowerCase(editorial.nombre), ' ', '-')}"/>"><c:out value="${editorial.nombre}"/></a></li>
 						</c:forEach>
 					</ul>
 				</li>
+				<li><a href="personajes">Personajes</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">

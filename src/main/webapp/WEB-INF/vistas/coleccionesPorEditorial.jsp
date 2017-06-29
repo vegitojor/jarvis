@@ -4,7 +4,7 @@
 		<%@include file='../../includes/top.jsp' %>
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
-				<h1><span class="white">Formato <c:out value="${formato.nombre}"/></span></h1>
+				<h1><span class="white"><c:out value="${editorial.nombre}"/></span></h1>
 			</div>
 		</div>
 		<div class="container">
