@@ -2,7 +2,7 @@
 	
 	</head>
 	<body>
-		<%@include file='../../includes/top.jsp' %>
+		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class = "container">
 			<div class="row">
 				<h2>Colecciones que sigo</h2>
