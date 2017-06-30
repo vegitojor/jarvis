@@ -1,7 +1,7 @@
 <%@include file='../../includes/cabecera.jsp' %>
 	</head>
 	<body>
-		<%@include file='../../includes/top.jsp' %>
+		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
 				<h1><span class="white">Formato <c:out value="${formato.nombre}"/></span></h1>
