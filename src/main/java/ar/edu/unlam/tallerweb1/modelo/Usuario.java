@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity 
@@ -24,6 +27,16 @@ public class Usuario {
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name="id_pais" )
 	private Pais pais;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_coleccion", 
+	joinColumns = @JoinColumn(name = "usuario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "coleccion_id"))
+	private List<Coleccion> colecciones;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_comic", 
+	joinColumns = @JoinColumn(name = "usuario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "comic_id"))
+	private List<Comic> comics;
 	
 	public Long getId() {
 		return id;

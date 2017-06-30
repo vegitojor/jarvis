@@ -19,6 +19,8 @@ public class ControladorColeccion {
 	@RequestMapping("/coleccion-{nombreColeccion}")
 	public ModelAndView mostrarColeccion(@PathVariable ("nombreColeccion") String nombreColeccion){
 		ModelMap model = new ModelMap();
+		
+		
 		return new ModelAndView("vistaColeccion", model);
 		
 	}

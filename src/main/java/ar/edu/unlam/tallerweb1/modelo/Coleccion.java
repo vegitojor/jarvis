@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -28,6 +31,8 @@ public class Coleccion {
 	private Personaje personaje;
 	private Boolean enCurso;
 	private String volumen;
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
+    private List<Usuario> usuarios;
 	
 	public Long getId() {
 		return id;

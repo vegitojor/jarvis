@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GeneratorType;
@@ -28,6 +31,8 @@ public class Comic {
 	@Transient
 	private Formato formato;
 	private String pathImagen;
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="comics")  
+    private List<Usuario> usuarios;
 
 	public Comic(Long id, String isbn, String numero, Timestamp fechaPublicacion, Coleccion coleccion,
 			String pvp, String cantPaginas, Autor autor, Formato formato, String pathImagen) {
