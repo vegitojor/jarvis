@@ -21,17 +21,19 @@ public class Coleccion {
 	private String nombre;
 	private String descripcion;
 	private String pathImagen;
+	
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_editorial" )
 	private Editorial editorial;
+	
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_formato" )
 	private Formato formato;
-	@Transient
-	private Personaje personaje;
+	
 	private Boolean enCurso;
 	private String volumen;
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
+    
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
     private List<Usuario> usuarios;
 	
 	public Long getId() {
@@ -82,20 +84,17 @@ public class Coleccion {
 		this.formato = formato;
 	}
 	
-	public Personaje getPersonaje() {
-		return personaje;
-	}
-	
-	public void setPersonaje(Personaje personaje) {
-		this.personaje = personaje;
-	}
-	
 	public Boolean getEnCurso() {
 		return enCurso;
 	}
 	
 	public void setEnCurso(Boolean enCurso) {
 		this.enCurso = enCurso;
+	}
+	
+	@Transient
+	public Boolean isEnCurso() {
+		return enCurso;
 	}
 	
 	public String getVolumen() {

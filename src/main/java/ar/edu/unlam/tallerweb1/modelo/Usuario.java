@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity 
 public class Usuario {
@@ -20,23 +21,29 @@ public class Usuario {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private Long id;
+	
 	private String email;
 	private String password;
 	private String nombre;
 	private Timestamp fechaDeNacimiento;
+	
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name="id_pais" )
 	private Pais pais;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_coleccion", 
 	joinColumns = @JoinColumn(name = "usuario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "coleccion_id"))
 	private List<Coleccion> colecciones;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_comic", 
 	joinColumns = @JoinColumn(name = "usuario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "comic_id"))
 	private List<Comic> comics;
+	
+	private Boolean administrador;
 	
 	public Long getId() {
 		return id;
@@ -84,5 +91,18 @@ public class Usuario {
 	
 	public void setPais(Pais pais) {
 		this.pais = pais;
+	}
+
+	public Boolean getAdministrador() {
+		return administrador;
+	}
+
+	public void setAdministrador(Boolean administrador) {
+		this.administrador = administrador;
+	}
+	
+	@Transient
+	public Boolean isAdministrador() {
+		return administrador;
 	}
 }

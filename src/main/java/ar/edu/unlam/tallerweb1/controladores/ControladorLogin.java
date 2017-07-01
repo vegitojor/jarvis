@@ -61,9 +61,12 @@ public class ControladorLogin {
 			
 			/* LISTAMOS TODAS LAS EDITORIALES PARA MOSTRARLAS EN EL NAVBAR */
 			request.getSession().setAttribute("editoriales", servicioEditorial.listarEditoriales());
-
 			
-			return new ModelAndView("redirect:/home");
+			if ( usuario.isAdministrador() ) {
+				return new ModelAndView("redirect:/colecciones");
+			} else {
+				return new ModelAndView("redirect:/home");
+			}
 		} else {
 			modelo.put("error", "Usuario o clave incorrecta.");
 		}
