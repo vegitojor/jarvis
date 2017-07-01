@@ -20,23 +20,6 @@ public class ControladorEditorial {
 	@Inject
 	private ServicioEditorial servicioEditorial;
 	
-//	@RequestMapping("/editoriales")
-//	public ModelAndView listarEditoriales(){
-//		ModelMap modelo = new ModelMap();
-//		modelo.put("editoriales", servicioEditorial.listarEditoriales());
-//		modelo.put("titulo", "Editoriales");
-//		return new ModelAndView ("editoriales", modelo);
-//	}
-//	
-//	@RequestMapping("/verEditorial")
-//	public ModelAndView verEditorial(@RequestParam(value="id") Long id){
-//		ModelMap modelo = new ModelMap();
-//		Editorial editorial = (Editorial) servicioEditorial.buscarEditorial(id);
-//		modelo.put("editorial", editorial);
-//		modelo.put("titulo", editorial.getNombre());
-//		return new ModelAndView ("editorial", modelo);
-//	}
-	
 	@RequestMapping("/editorial-{nombreEditorial}")
 	public ModelAndView coleccionesPorEditorial(@PathVariable ("nombreEditorial") String nombreEditorial){
 		ModelMap modelo = new ModelMap();
@@ -63,7 +46,7 @@ public class ControladorEditorial {
 	}
 	
 	@RequestMapping("/editar-editorial")
-	public ModelAndView editarEditorial(@RequestParam (value="id") Long idEditorial){
+	public ModelAndView editarEditorial(@RequestParam (value="editorial") Long idEditorial){
 		ModelMap modelo = new ModelMap();
 		modelo.put("editorial", servicioEditorial.buscarEditorial(idEditorial));
 		return new ModelAndView("formularioEditorial", modelo);

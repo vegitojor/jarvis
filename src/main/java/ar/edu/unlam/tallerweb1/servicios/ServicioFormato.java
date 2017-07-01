@@ -9,4 +9,8 @@ public interface ServicioFormato {
 	public List<Formato> listarFormatos();
 	
 	public Formato buscarFormatoPorNombre(String nombre);
+	
+	public Formato buscarFormato(Long id);
+	
+	public void guardarFormato(Formato formato);
 }
