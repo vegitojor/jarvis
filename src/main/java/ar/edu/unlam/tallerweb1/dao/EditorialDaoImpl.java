@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
-import ar.edu.unlam.tallerweb1.modelo.Formato;
 
 @Service("editorialDao")
 public class EditorialDaoImpl implements EditorialDao {
@@ -42,5 +41,17 @@ public class EditorialDaoImpl implements EditorialDao {
 		return (Editorial) session.createCriteria(Editorial.class)
 				.add(Restrictions.ilike("nombre", nombre))
 				.uniqueResult();
+	}
+
+	@Override
+	public void guardarNuevaEditorial(Editorial editorial) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(editorial);
+	}
+
+	@Override
+	public void guardarEditorial(Editorial editorial) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(editorial);
 	}
 }

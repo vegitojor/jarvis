@@ -11,4 +11,6 @@ public interface ServicioEditorial {
 	public Editorial buscarEditorialPorNombre(String nombre);
 	
 	public List<Editorial> listarEditoriales();
+	
+	public void guardarEditorial(Editorial editorial);
 }

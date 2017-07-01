@@ -47,8 +47,7 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
-	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-
+	@RequestMapping(path="/validar-login", method=RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuarioFromLogin,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -63,7 +62,7 @@ public class ControladorLogin {
 			request.getSession().setAttribute("editoriales", servicioEditorial.listarEditoriales());
 			
 			if ( usuario.isAdministrador() ) {
-				return new ModelAndView("redirect:/colecciones");
+				return new ModelAndView("redirect:/administrar-colecciones");
 			} else {
 				return new ModelAndView("redirect:/home");
 			}
@@ -72,22 +71,6 @@ public class ControladorLogin {
 		}
 		
 		return new ModelAndView("login", modelo);
-	}
-	
-	public ServicioEditorial getServicioEditorial() {
-		return servicioEditorial;
-	}
-
-	public void setServicioEditorial(ServicioEditorial servicioEditorial) {
-		this.servicioEditorial = servicioEditorial;
-	}
-
-	public ServicioFormato getServicioFormato() {
-		return servicioFormato;
-	}
-
-	public void setServicioFormato(ServicioFormato servicioFormato) {
-		this.servicioFormato = servicioFormato;
 	}
 
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
@@ -108,5 +91,22 @@ public class ControladorLogin {
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("usuario");
 		return new ModelAndView("redirect:/login");
+	}
+	
+	
+	public ServicioEditorial getServicioEditorial() {
+		return servicioEditorial;
+	}
+
+	public void setServicioEditorial(ServicioEditorial servicioEditorial) {
+		this.servicioEditorial = servicioEditorial;
+	}
+
+	public ServicioFormato getServicioFormato() {
+		return servicioFormato;
+	}
+
+	public void setServicioFormato(ServicioFormato servicioFormato) {
+		this.servicioFormato = servicioFormato;
 	}
 }

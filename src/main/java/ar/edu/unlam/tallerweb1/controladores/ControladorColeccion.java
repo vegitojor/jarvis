@@ -19,9 +19,13 @@ public class ControladorColeccion {
 	@RequestMapping("/coleccion-{nombreColeccion}")
 	public ModelAndView mostrarColeccion(@PathVariable ("nombreColeccion") String nombreColeccion){
 		ModelMap model = new ModelMap();
-		
-		
 		return new ModelAndView("vistaColeccion", model);
-		
+	}
+	
+	@RequestMapping("/administrar-colecciones")
+	public ModelAndView administrarColecciones(){
+		ModelMap modelo = new ModelMap();
+		modelo.put("colecciones", servicioColeccion.listarColecciones());
+		return new ModelAndView("administrarColecciones", modelo);
 	}
 }

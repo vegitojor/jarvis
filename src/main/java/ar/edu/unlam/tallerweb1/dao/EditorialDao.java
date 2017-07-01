@@ -11,4 +11,8 @@ public interface EditorialDao {
 	List<Editorial> listarEditoriales();
 	
 	Editorial buscarEditorialPorNombre(String nombre);
+	
+	void guardarNuevaEditorial(Editorial editorial);
+	
+	void guardarEditorial(Editorial editorial);
 }

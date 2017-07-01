@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.EditorialDao;
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
-import ar.edu.unlam.tallerweb1.modelo.Formato;
 
 @Service("servicioEditorial")
 @Transactional
@@ -31,5 +30,14 @@ public class ServicioEditorialImpl implements ServicioEditorial {
 	@Override
 	public Editorial buscarEditorialPorNombre(String nombre) {
 		return editorialDao.buscarEditorialPorNombre(nombre.replace("-", "%"));
+	}
+
+	@Override
+	public void guardarEditorial(Editorial editorial) {
+		if ( editorial.getId() != null ) {
+			editorialDao.guardarEditorial(editorial);
+		} else {
+			editorialDao.guardarNuevaEditorial(editorial);
+		}
 	}
 }
