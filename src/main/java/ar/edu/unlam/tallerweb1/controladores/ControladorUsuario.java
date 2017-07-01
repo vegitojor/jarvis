@@ -37,7 +37,7 @@ public class ControladorUsuario {
 	public ModelAndView registrarUsuario(@RequestParam String nombre, @RequestParam String fechaDeNacimiento,
 			@RequestParam (value="pais") Long idPais, @RequestParam String email, @RequestParam String password){
 		
-		servicioUsuario.guardarUsuario(null, nombre, fechaDeNacimiento, idPais, email, password);
+		servicioUsuario.guardarUsuario(null, nombre, fechaDeNacimiento, idPais, email, password, false);
 
 		return new ModelAndView("redirect:/registro-exitoso?username="+nombre+"&usermail="+email);
 	}
