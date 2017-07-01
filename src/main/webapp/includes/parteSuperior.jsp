@@ -50,11 +50,8 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="administrar-colecciones">Colecciones</a></li>
-								<li role="separator" class="divider"></li>
 								<li><a href="administrar-comics">Comics</a></li>
-								<li role="separator" class="divider"></li>
 								<li><a href="administrar-editoriales">Editoriales</a></li>
-								<li role="separator" class="divider"></li>
 								<li><a href="administrar-formatos">Formatos</a></li>
 							</ul>
 						</li>
