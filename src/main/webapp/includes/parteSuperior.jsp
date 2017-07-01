@@ -25,7 +25,6 @@
 						</c:forEach>
 					</ul>
 				</li>
-				<li><a href="personajes">Personajes</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
