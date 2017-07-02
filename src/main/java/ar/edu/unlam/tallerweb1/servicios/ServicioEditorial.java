@@ -13,4 +13,6 @@ public interface ServicioEditorial {
 	public List<Editorial> listarEditoriales();
 	
 	public void guardarEditorial(Editorial editorial);
+	
+	public void cambiarEstadoEditorial(Long id, Boolean activo);
 }

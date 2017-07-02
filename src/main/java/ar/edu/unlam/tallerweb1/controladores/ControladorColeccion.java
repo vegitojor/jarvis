@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ImagenHelper;
 import ar.edu.unlam.tallerweb1.servicios.ServicioColeccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
@@ -40,10 +41,20 @@ public class ControladorColeccion {
 	}
 	
 	@RequestMapping("/administrar-colecciones")
-	public ModelAndView administrarColecciones(){
-		ModelMap modelo = new ModelMap();
-		modelo.put("colecciones", servicioColeccion.listarColecciones());
-		return new ModelAndView("administrarColecciones", modelo);
+	public ModelAndView administrarColecciones(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("colecciones", servicioColeccion.listarColecciones());
+				return new ModelAndView("administrarColecciones", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping("/nueva-coleccion")
@@ -86,7 +97,7 @@ public class ControladorColeccion {
 				imagenFile.transferTo(logo);
 
 				BufferedImage imagen = ImageIO.read(logo);
-				BufferedImage thumbnail = Scalr.resize(imagen, 900);
+				BufferedImage thumbnail = Scalr.resize(imagen, 950);
 				File outputfileThumbnail = new File(request.getRealPath("/img/colecciones") + "/" + nombreArchivoImagen + "." + extensionArchivoImagen);
 				ImageIO.write(thumbnail, extensionArchivoImagen, outputfileThumbnail);
 				

@@ -40,4 +40,10 @@ public class ServicioEditorialImpl implements ServicioEditorial {
 			editorialDao.guardarNuevaEditorial(editorial);
 		}
 	}
+
+	@Override
+	public void cambiarEstadoEditorial(Long id, Boolean activo) {
+		Editorial editorial = editorialDao.buscarEditorial(id);
+		editorial.setActivo(activo);
+	}
 }

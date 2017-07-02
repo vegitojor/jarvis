@@ -4,6 +4,7 @@
 	<body>
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class = "container">
+			<%@include file='../../includes/alerta.jsp' %>
 			<div class="row">
 				<h2>Colecciones que sigo</h2>
 				<c:choose>

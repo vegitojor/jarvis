@@ -20,6 +20,7 @@
 									<tr>
 										<th>Id</th>
 										<th>Nombre</th>
+										<th>Activo</th>
 										<th>Acciones</th>
 									</tr>
 								</thead>
@@ -29,7 +30,25 @@
 											<td><c:out value="${formato.id}"/></td>
 											<td><c:out value="${formato.nombre}"/>&nbsp;</td>
 											<td>
+												<c:choose>
+													<c:when test="${formato.activo}">
+														Si
+													</c:when>
+													<c:otherwise>
+														No
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
 												<a href="editar-formato?formato=<c:out value="${formato.id}"/>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Editar</a>
+												<c:choose>
+													<c:when test="${formato.activo}">
+														<a href="desactivar-formato?formato=<c:out value="${formato.id}"/>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;Desactivar</a>
+													</c:when>
+													<c:otherwise>
+														<a href="activar-formato?formato=<c:out value="${formato.id}"/>" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;Activar</a>
+													</c:otherwise>
+												</c:choose>
 											</td>
 										</tr>
 									</c:forEach>

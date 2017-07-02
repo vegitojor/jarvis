@@ -20,6 +20,7 @@
 									<tr>
 										<th>Id</th>
 										<th>Nombre</th>
+										<th>Activo</th>
 										<th>Acciones</th>
 									</tr>
 								</thead>
@@ -29,7 +30,25 @@
 											<td><c:out value="${editorial.id}"/></td>
 											<td><c:out value="${editorial.nombre}"/>&nbsp;</td>
 											<td>
+												<c:choose>
+													<c:when test="${editorial.activo}">
+														Si
+													</c:when>
+													<c:otherwise>
+														No
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
 												<a href="editar-editorial?editorial=<c:out value="${editorial.id}"/>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Editar</a>
+												<c:choose>
+													<c:when test="${editorial.activo}">
+														<a href="desactivar-editorial?editorial=<c:out value="${editorial.id}"/>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;Desactivar</a>
+													</c:when>
+													<c:otherwise>
+														<a href="activar-editorial?editorial=<c:out value="${editorial.id}"/>" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;Activar</a>
+													</c:otherwise>
+												</c:choose>
 											</td>
 										</tr>
 									</c:forEach>

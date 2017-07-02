@@ -13,4 +13,6 @@ public interface ServicioFormato {
 	public Formato buscarFormato(Long id);
 	
 	public void guardarFormato(Formato formato);
+	
+	public void cambiarEstadoFormato(Long id, Boolean activo);
 }

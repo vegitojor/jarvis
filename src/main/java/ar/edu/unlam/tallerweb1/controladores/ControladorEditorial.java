@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 
 @Controller
@@ -32,10 +34,19 @@ public class ControladorEditorial {
 	}
 	
 	@RequestMapping("/administrar-editoriales")
-	public ModelAndView administrarEditoriales(){
-		ModelMap modelo = new ModelMap();
-		modelo.put("editoriales", servicioEditorial.listarEditoriales());
-		return new ModelAndView("administrarEditoriales", modelo);
+	public ModelAndView administrarEditoriales(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("editoriales", servicioEditorial.listarEditoriales());
+				return new ModelAndView("administrarEditoriales", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping("/nueva-editorial")
@@ -44,9 +55,10 @@ public class ControladorEditorial {
 		Editorial editorial = new Editorial();
 		editorial.setActivo(true);
 		modelo.put("editorial", editorial);
+
 		return new ModelAndView("formularioEditorial", modelo);
 	}
-	
+
 	@RequestMapping("/editar-editorial")
 	public ModelAndView editarEditorial(@RequestParam (value="editorial") Long idEditorial){
 		ModelMap modelo = new ModelMap();
@@ -58,5 +70,17 @@ public class ControladorEditorial {
 	public ModelAndView guardarEditorial(@ModelAttribute("editorial") Editorial editorial) {
 		servicioEditorial.guardarEditorial(editorial);
 		return new ModelAndView("redirect:/administrar-editoriales?mensaje=La editorial ha sido guardada.");
+	}
+	
+	@RequestMapping("/activar-editorial")
+	public ModelAndView activarEditorial(@RequestParam (value="editorial") Long idEditorial){
+		servicioEditorial.cambiarEstadoEditorial(idEditorial, true);
+		return new ModelAndView("redirect:/administrar-editoriales?mensaje=La editorial "+idEditorial+" ha sido activada.");
+	}
+	
+	@RequestMapping("/desactivar-editorial")
+	public ModelAndView desactivarEditorial(@RequestParam (value="editorial") Long idEditorial){
+		servicioEditorial.cambiarEstadoEditorial(idEditorial, false);
+		return new ModelAndView("redirect:/administrar-editoriales?mensaje=La editorial "+idEditorial+" ha sido desactivada.");
 	}
 }

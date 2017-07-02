@@ -46,7 +46,7 @@
 								<select id="editorial" name="editorial" class="form-control" required="required">
 									<option value="">Seleccione una editorial</option>
 									<c:forEach items="${editoriales}" var="editorial">
-										<option value="<c:out value="${editorial.id}"/>"><c:out value="${editorial.nombre}"/></option>
+										<option value="<c:out value="${editorial.id}"/>" <c:if test="${coleccion.editorial.id eq editorial.id}">selected='selected'</c:if>><c:out value="${editorial.nombre}"/></option>
 									</c:forEach>
 								</select>
 							</div>
@@ -55,7 +55,7 @@
 								<select id="formato" name="formato" class="form-control" required="required">
 									<option value="">Seleccione un formato</option>
 									<c:forEach items="${formatos}" var="formato">
-										<option value="<c:out value="${formato.id}"/>"><c:out value="${formato.nombre}"/></option>
+										<option value="<c:out value="${formato.id}"/>" <c:if test="${coleccion.formato.id eq formato.id}">selected='selected'</c:if>><c:out value="${formato.nombre}"/></option>
 									</c:forEach>
 								</select>
 							</div>
@@ -77,6 +77,7 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<a href="administrar-colecciones" class="btn btn-danger">Cancelar</a>
 						<button class="btn btn-success" name="submit" type="submit" value="guardar">Guardar</button>  			
 					</div>
 				</form:form>
