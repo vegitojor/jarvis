@@ -33,7 +33,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Editoriales&nbsp;<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${editoriales}" var="editorial">
-									<li><a href="editorial-<c:out value="${fn:replace(fn:toLowerCase(editorial.nombre), ' ', '-')}"/>"><c:out value="${editorial.nombre}"/></a></li>
+									<li><a href="editorial-<c:out value="${fn:replace(fn:replace(fn:toLowerCase(editorial.nombre), ' ', '-'), '.', '-')}"/>"><c:out value="${editorial.nombre}"/></a></li>
 								</c:forEach>
 							</ul>
 						</li>
