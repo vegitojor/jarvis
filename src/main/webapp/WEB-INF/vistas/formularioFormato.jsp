@@ -19,6 +19,7 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<a href="administrar-formatos" class="btn btn-danger">Cancelar</a>
 						<button class="btn btn-success" name="submit" type="submit" value="guardar">Guardar</button>  			
 					</div>
 				</form:form>
