@@ -18,18 +18,16 @@
 							</div>
 							<div class="form-group">
 								<label for="descripcion">Descripci&oacute;n</label>
-								<textarea class="form-control" rows="5" name="descripcion" id="descripcion">
-									<c:out value="${coleccion.descripcion}"/>
-								</textarea>
+								<textarea class="form-control" rows="5" name="descripcion" id="descripcion"><c:out value="${coleccion.descripcion}"/></textarea>
 							</div>
 							<div class="form-group">
 								<label for="imagenFile">Imagen</label>
 								<c:choose>
-									<c:when test="${not empty producto and not empty producto.pathImagen}">
+									<c:when test="${not empty coleccion and not empty coleccion.pathImagen}">
 										<input type="file" class="form-control" id="imagenFileCargada" name="imagenFileCargada" disabled="disabled"/>
 										<div class="btn-group btn-group-justified" role="group" aria-label="" id="botones">
 											<div class="btn-group" role="group">
-												<button type="button" class="btn btn-primary" id="verImagen" pathImagen="<c:out value="${producto.pathImagen}"/>">Ver imagen</button>
+												<button type="button" class="btn btn-primary" id="verImagen" pathImagen="<c:out value="${coleccion.pathImagen}"/>">Ver imagen</button>
 											</div>
 											<div class="btn-group" role="group">
 												<button type="button" class="btn btn-default" id="btnCambiarImagen">Cambiar imagen</button>

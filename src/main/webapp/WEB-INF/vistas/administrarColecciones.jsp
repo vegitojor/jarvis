@@ -11,6 +11,7 @@
 					</div>
 				</h1>
 				<hr>
+				<%@include file='../../includes/alerta.jsp' %>
 				<c:choose>
 					<c:when test="${not empty colecciones}">
 						<table class="table table-striped">
@@ -31,7 +32,18 @@
 										<td><c:out value="${coleccion.editorial.nombre}"/>&nbsp;</td>
 										<td><c:out value="${coleccion.formato.nombre}"/>&nbsp;</td>
 										<td>
-											&nbsp;
+											<c:choose>
+												<c:when test="${coleccion.enCurso}">
+													Si
+												</c:when>
+												<c:otherwise>
+													No
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td><c:out value="${coleccion.volumen}"/>&nbsp;</td>
+										<td>
+											<a href="editar-coleccion?coleccion=<c:out value="${coleccion.id}"/>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Editar</a>
 										</td>
 									</tr>
 								</c:forEach>

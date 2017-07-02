@@ -6,6 +6,7 @@ $(document).ready(function(){
 		$("#imagenFileCargada").removeAttr('disabled');
 		$("#imagenFileCargada").attr('name', 'imagenFile');
 		$("#imagenFileCargada").prop('required', true);
+		$("#imagenFileCargada").click();
 		$(this).parents("div#botones").hide();
 	});
 

@@ -23,7 +23,12 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 	private EditorialDao editorialDao;
 	@Inject
 	private FormatoDao formatoDao;
-
+	
+	@Override
+	public Coleccion buscarColeccion(Long id) {
+		return coleccionDao.buscarColeccion(id);
+	}
+	
 	@Override
 	public List<Coleccion> listarColecciones() {
 		return coleccionDao.listarColecciones();

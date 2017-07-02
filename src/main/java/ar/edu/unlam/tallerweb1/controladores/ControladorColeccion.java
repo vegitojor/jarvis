@@ -55,6 +55,17 @@ public class ControladorColeccion {
 		return new ModelAndView("formularioColeccion", modelo);
 	}
 	
+	@RequestMapping("/editar-coleccion")
+	public ModelAndView editarColeccion(@RequestParam (value="coleccion") Long idColeccion){
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("coleccion", servicioColeccion.buscarColeccion(idColeccion));
+		modelo.put("editoriales", servicioEditorial.listarEditoriales());
+		modelo.put("formatos", servicioFormato.listarFormatos());
+		
+		return new ModelAndView("formularioColeccion", modelo);
+	}
+	
 	@RequestMapping(path="/guardar-coleccion", method=RequestMethod.POST)
 	public ModelAndView guardarColeccion(@RequestParam (required=false, value="id") Long id, @RequestParam (required=false, value="nombre") String nombre,
 			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile, @RequestParam (required=false, value="descripcion") String descripcion,

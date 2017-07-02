@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Coleccion;
-import ar.edu.unlam.tallerweb1.modelo.Editorial;
 
 @Service("coleccionDao")
 public class ColeccionDaoImpl implements ColeccionDao {
