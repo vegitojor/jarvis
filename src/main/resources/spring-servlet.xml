@@ -13,6 +13,8 @@
 						http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+						
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
  
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.UrlBasedViewResolver">

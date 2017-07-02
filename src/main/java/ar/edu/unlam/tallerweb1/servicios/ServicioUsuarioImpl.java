@@ -28,7 +28,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Usuario guardarUsuario(Long id, String nombre, String fechaDeNacimiento, Long idPais, String email,
-			String password) {
+			String password, Boolean administrador) {
 
 		Usuario usuario = null;
 		Date fechaDeNacimientoDate =  FechaHelper.convertirFechaADate(fechaDeNacimiento);
@@ -39,11 +39,12 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			usuario = new Usuario();
 		}
 
-		usuario.setEmail(email);
+		usuario.setEmail(email.toLowerCase());
 		usuario.setPassword(password);
 		usuario.setNombre(nombre);
 		usuario.setFechaDeNacimiento( new Timestamp(fechaDeNacimientoDate.getTime()) );
 		usuario.setPais( paisDao.obtenerPaisPorId(idPais) );
+		usuario.setAdministrador(administrador);
 
 		usuarioDao.guardarUsuario(usuario);
 

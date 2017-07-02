@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.FormatoDao;
+import ar.edu.unlam.tallerweb1.modelo.Editorial;
 import ar.edu.unlam.tallerweb1.modelo.Formato;
 
 @Service("servicioFormato")
@@ -26,5 +27,19 @@ public class ServicioFormatoImpl implements ServicioFormato {
 	@Override
 	public Formato buscarFormatoPorNombre(String nombre) {
 		return formatoDao.buscarFormatoPorNombre(nombre.replace("-", "%"));
+	}
+
+	@Override
+	public Formato buscarFormato(Long id) {
+		return formatoDao.buscarFormato(id);
+	}
+
+	@Override
+	public void guardarFormato(Formato formato) {
+		if ( formato.getId() != null ) {
+			formatoDao.guardarFormato(formato);
+		} else {
+			formatoDao.guardarNuevoFormato(formato);
+		}
 	}
 }

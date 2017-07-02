@@ -1,11 +1,14 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Coleccion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFormato;
@@ -47,8 +51,7 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
-	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-
+	@RequestMapping(path="/validar-login", method=RequestMethod.POST)
 	public ModelAndView validarLogin(@ModelAttribute("usuario") Usuario usuarioFromLogin,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -61,15 +64,45 @@ public class ControladorLogin {
 			
 			/* LISTAMOS TODAS LAS EDITORIALES PARA MOSTRARLAS EN EL NAVBAR */
 			request.getSession().setAttribute("editoriales", servicioEditorial.listarEditoriales());
-
 			
-			return new ModelAndView("redirect:/home");
+			if ( usuario.isAdministrador() ) {
+				return new ModelAndView("redirect:/administrar-colecciones");
+			} else {
+				
+				return new ModelAndView("redirect:/home");
+			}
 		} else {
 			modelo.put("error", "Usuario o clave incorrecta.");
 		}
 		
 		return new ModelAndView("login", modelo);
 	}
+
+	@RequestMapping(path = "/home", method = RequestMethod.GET)
+	public ModelAndView irAHome(HttpServletRequest request) {
+		ModelMap modelo = new ModelMap();
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		//usuario.setColecciones(servicio);
+		List<Coleccion> colecciones = usuario.getColecciones();
+		if ( request.getSession().getAttribute("usuario") != null ){
+			modelo.put("coleccionesDeUsuario", colecciones);
+			modelo.put("comicsDeUsuario", usuario.getComics());
+			return new ModelAndView("home");
+		}
+		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public ModelAndView inicio() {
+		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request) {
+		request.getSession().removeAttribute("usuario");
+		return new ModelAndView("redirect:/login");
+	}
+	
 	
 	public ServicioEditorial getServicioEditorial() {
 		return servicioEditorial;
@@ -85,25 +118,5 @@ public class ControladorLogin {
 
 	public void setServicioFormato(ServicioFormato servicioFormato) {
 		this.servicioFormato = servicioFormato;
-	}
-
-	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome(HttpServletRequest request) {
-		
-		if ( request.getSession().getAttribute("usuario") != null )
-			return new ModelAndView("home");
-		
-		return new ModelAndView("redirect:/login");
-	}
-	
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public ModelAndView inicio() {
-		return new ModelAndView("redirect:/login");
-	}
-	
-	@RequestMapping("/logout")
-	public ModelAndView logout(HttpServletRequest request) {
-		request.getSession().removeAttribute("usuario");
-		return new ModelAndView("redirect:/login");
 	}
 }

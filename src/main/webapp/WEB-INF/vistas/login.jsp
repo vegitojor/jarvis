@@ -24,7 +24,7 @@
 							<p class="error"><c:out value="${error}"/></p>
 						</c:if>
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" name="submit" value="login" type="submit">Ingresar</button>  			
+							<button class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="login">Ingresar</button>  			
 						</div>
 					</form:form>
 					<br>

@@ -13,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.GeneratorType;
-
 @Entity
 public class Comic {
 	
@@ -28,30 +26,20 @@ public class Comic {
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_coleccion" )	
 	private Coleccion coleccion;
+
 	private String pvp;
 	private String cantPaginas;
+	
 	@Transient
 	private Autor autor;
-	@Transient
+	
+	@ManyToOne ( cascade = CascadeType.ALL)
+	@JoinColumn( name="id_formato" )
 	private Formato formato;
 	private String pathImagen;
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="comics")  
+    
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="comics")  
     private List<Usuario> usuarios;
-
-	public Comic(Long id, String isbn, String numero, Timestamp fechaPublicacion, Coleccion coleccion,
-			String pvp, String cantPaginas, Autor autor, Formato formato, String pathImagen) {
-		super();
-		this.id = id;
-		this.isbn = isbn;
-		this.numero = numero;
-		this.fechaPublicacion = fechaPublicacion;
-		this.coleccion = coleccion;
-		this.pvp = pvp;
-		this.cantPaginas = cantPaginas;
-		this.autor = autor;
-		this.formato = formato;
-		this.setPathImagen(pathImagen);
-	}
 
 	public Formato getFormato() {
 		return formato;
@@ -131,5 +119,13 @@ public class Comic {
 
 	public void setPathImagen(String pathImagen) {
 		this.pathImagen = pathImagen;
+	}
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.Editorial;
 import ar.edu.unlam.tallerweb1.modelo.Formato;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -35,4 +36,23 @@ public class FormatoDaoImpl implements FormatoDao{
 				.uniqueResult();
 	}
 
+	@Override
+	public Formato buscarFormato(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		Formato formato = (Formato) session.createCriteria(Formato.class)
+				.add(Restrictions.eq("id", id)).uniqueResult();
+		return formato;
+	}
+
+	@Override
+	public void guardarNuevoFormato(Formato formato) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(formato);
+	}
+
+	@Override
+	public void guardarFormato(Formato formato) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(formato);
+	}
 }

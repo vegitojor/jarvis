@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -21,18 +23,24 @@ public class Coleccion {
 	private String nombre;
 	private String descripcion;
 	private String pathImagen;
+	
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_editorial" )
 	private Editorial editorial;
+	
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_formato" )
 	private Formato formato;
-	@Transient
-	private Personaje personaje;
+	
 	private Boolean enCurso;
 	private String volumen;
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
-    private List<Usuario> usuarios;
+    
+	//@ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "usuario_coleccion", 
+	joinColumns = @JoinColumn(name = "usuario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "coleccion_id"))
+    private List<Usuario> usuarios = new ArrayList();
 	
 	public Long getId() {
 		return id;
@@ -82,14 +90,6 @@ public class Coleccion {
 		this.formato = formato;
 	}
 	
-	public Personaje getPersonaje() {
-		return personaje;
-	}
-	
-	public void setPersonaje(Personaje personaje) {
-		this.personaje = personaje;
-	}
-	
 	public Boolean getEnCurso() {
 		return enCurso;
 	}
@@ -98,11 +98,24 @@ public class Coleccion {
 		this.enCurso = enCurso;
 	}
 	
+	@Transient
+	public Boolean isEnCurso() {
+		return enCurso;
+	}
+	
 	public String getVolumen() {
 		return volumen;
 	}
 	
 	public void setVolumen(String volumen) {
 		this.volumen = volumen;
+	}
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }
