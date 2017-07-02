@@ -41,7 +41,9 @@ public class ControladorEditorial {
 	@RequestMapping("/nueva-editorial")
 	public ModelAndView nuevaEditorial(){
 		ModelMap modelo = new ModelMap();
-		modelo.put("editorial", new Editorial());
+		Editorial editorial = new Editorial();
+		editorial.setActivo(true);
+		modelo.put("editorial", editorial);
 		return new ModelAndView("formularioEditorial", modelo);
 	}
 	

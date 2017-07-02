@@ -1,4 +1,5 @@
 <%@include file='../../includes/cabecera.jsp' %>
+		<script type="text/javascript" src="js/jarvis-web.formularioEditorial.js"></script>
 	</head>
 	<body>
 		<%@include file='../../includes/parteSuperior.jsp' %>
@@ -14,6 +15,7 @@
 								<label for="nombre">Nombre</label>
 								<form:input type="text" path="nombre" id="nombre" class="form-control" required="required" placeholder="Nombre"/>
 							</div>
+							<form:input type="hidden" path="activo" id="activo"/>
 						</div>
 					</div>
 					<div class="form-group">

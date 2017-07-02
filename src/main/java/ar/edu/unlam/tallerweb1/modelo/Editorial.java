@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Editorial {
@@ -12,6 +13,7 @@ public class Editorial {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private Boolean activo;
 	
 	public Long getId() {
 		return id;
@@ -27,5 +29,18 @@ public class Editorial {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
+	
+	@Transient
+	public Boolean isActivo() {
+		return activo;
 	}
 }
