@@ -27,11 +27,13 @@ public class Usuario {
 	@ManyToOne( cascade = CascadeType.ALL )
 	@JoinColumn( name="id_pais" )
 	private Pais pais;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_coleccion", 
 	joinColumns = @JoinColumn(name = "usuario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "coleccion_id"))
 	private List<Coleccion> colecciones;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "usuario_comic", 
 	joinColumns = @JoinColumn(name = "usuario_id"), 

@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GeneratorType;
@@ -22,7 +24,9 @@ public class Comic {
 	private String isbn;
 	private String numero;
 	private Timestamp fechaPublicacion;
-	@Transient
+	
+	@ManyToOne ( cascade = CascadeType.ALL)
+	@JoinColumn( name="id_coleccion" )	
 	private Coleccion coleccion;
 	private String pvp;
 	private String cantPaginas;
