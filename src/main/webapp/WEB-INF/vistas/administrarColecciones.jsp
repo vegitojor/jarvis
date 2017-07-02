@@ -19,6 +19,8 @@
 									<th>Nombre</th>
 									<th>Editorial</th>
 									<th>Formato</th>
+									<th>En curso</th>
+									<th>Volumen</th>
 									<th>Acciones</th>
 								</tr>
 							</thead>

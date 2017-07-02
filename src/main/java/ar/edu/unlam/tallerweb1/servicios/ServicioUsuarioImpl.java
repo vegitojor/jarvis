@@ -39,7 +39,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			usuario = new Usuario();
 		}
 
-		usuario.setEmail(email);
+		usuario.setEmail(email.toLowerCase());
 		usuario.setPassword(password);
 		usuario.setNombre(nombre);
 		usuario.setFechaDeNacimiento( new Timestamp(fechaDeNacimientoDate.getTime()) );
