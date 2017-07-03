@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,16 @@ public class ColeccionDaoImpl implements ColeccionDao {
 
 		@SuppressWarnings("unchecked")
 		List<Coleccion> colecciones = session.createCriteria(Coleccion.class).list();
+
+		return colecciones;
+	}
+	
+	@Override
+	public List<Coleccion> listarColeccionesPorCriterion(Criterion criterion) {
+		final Session session = sessionFactory.getCurrentSession();
+
+		@SuppressWarnings("unchecked")
+		List<Coleccion> colecciones = session.createCriteria(Coleccion.class).add(criterion).list();
 
 		return colecciones;
 	}

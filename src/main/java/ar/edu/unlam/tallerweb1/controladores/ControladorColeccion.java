@@ -40,6 +40,17 @@ public class ControladorColeccion {
 		return new ModelAndView("vistaColeccion", model);
 	}
 	
+	@RequestMapping("/colecciones")
+	public ModelAndView verTodasLasColecciones(@RequestParam (required=false, value="nombre") String nombre,
+			@RequestParam (required=false, value="editorial") Long idEditorial,
+			@RequestParam (required=false, value="formato") Long idFormato){
+		
+		ModelMap modelo = servicioColeccion.coleccionesFiltradas(nombre, idEditorial, idFormato);
+		modelo.put("titulo", "Colecciones");
+		
+		return new ModelAndView("colecciones", modelo);
+	}
+	
 	@RequestMapping("/administrar-colecciones")
 	public ModelAndView administrarColecciones(HttpServletRequest request){
 		if ( request.getSession().getAttribute("usuario") != null ){
