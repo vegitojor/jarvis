@@ -59,19 +59,22 @@
 							<div class="col-sm-6 col-md-4">
 								<div class="panel panel-default panel-coleccion">
 									<div class="panel-body">
-										<div class="col-sm-6">
+										<div class="col-xs-6 imagen">
 											<c:choose>
 												<c:when test="${not empty coleccion.pathImagen}">
-													<img alt="<c:out value="${coleccion.nombre}"/>" class="img-responsive center-block" src="img/colecciones/<c:out value="${coleccion.pathImagen}"/>">
+													<c:set var="pathImagen" value="img/colecciones/${coleccion.pathImagen}"/>
 												</c:when>
 												<c:otherwise>
-													<img alt="<c:out value="${coleccion.nombre}"/>" src="img/jarvis_default.jpg">
+													<c:set var="pathImagen" value="img/jarvis_default.jpg"/>
 												</c:otherwise>
 											</c:choose>
+											<div class="coleccion-imagen-bg" style="background-image: url(<c:out value="${pathImagen}"/>);"></div>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-xs-6 texto">
 											<h3 class=""><c:out value="${coleccion.nombre}"/></h3>
-											<p><c:out value="${coleccion.descripcion}"/></p>
+											<p class="coleccion-editorial"><strong>Editorial: </strong><c:out value="${coleccion.editorial.nombre}"/></p>
+											<p class="coleccion-formato"><strong>Formato: </strong><c:out value="${coleccion.formato.nombre}"/></p>
+											<a href="detalle-coleccion?coleccion=<c:out value="${coleccion.id}"/>" class="btn btn-info btn-block btn-ver-mas">Ver m&aacute;s</a>
 										</div>
 									</div>
 								</div>

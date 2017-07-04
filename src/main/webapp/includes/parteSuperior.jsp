@@ -14,6 +14,9 @@
 			
 			<!-- SETEAMOS EL DESTINO HACIA DONDE SE IRÁ AL HACER CLICK EN EN LOGO -->
 			<c:choose>
+				<c:when test="${empty usuario}">
+					<c:set var="inicio" value="login" />
+				</c:when>
 				<c:when test="${not empty usuario.administrador and not usuario.administrador}">
 					<c:set var="inicio" value="home" />
 				</c:when>
@@ -44,35 +47,42 @@
 				</c:choose>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				
+				<!-- MOSTRAMOS LOS DATOS DEL NAVBAR DEPENDIENDO DEL USUARIO EN SESSION. SI NO ESTÁ LOGUEADO, SE MUESTRA EL LINK AL LOGIN -->
 				<c:choose>
-					<c:when test="${not empty usuario.administrador and usuario.administrador}">
+					<c:when test="${not empty usuario}">
+						<c:choose>
+							<c:when test="${not empty usuario.administrador and usuario.administrador}">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<span class="glyphicon glyphicon-cog"></span>&nbsp;Configuraci&oacute;n&nbsp;<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="administrar-colecciones">Colecciones</a></li>
+										<li><a href="administrar-comics">Comics</a></li>
+										<li><a href="administrar-editoriales">Editoriales</a></li>
+										<li><a href="administrar-formatos">Formatos</a></li>
+									</ul>
+								</li>
+							</c:when>
+						</c:choose>
+						
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<span class="glyphicon glyphicon-cog"></span>&nbsp;Configuraci&oacute;n&nbsp;<span class="caret"></span>
-							</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<c:out value="${usuario.nombre}"/>&nbsp;<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="administrar-colecciones">Colecciones</a></li>
-								<li><a href="administrar-comics">Comics</a></li>
-								<li><a href="administrar-editoriales">Editoriales</a></li>
-								<li><a href="administrar-formatos">Formatos</a></li>
+								<c:choose>
+									<c:when test="${not empty usuario.administrador and not usuario.administrador}">
+										<li><a href="home"><span class="glyphicon glyphicon-book"></span>&nbsp;Mis comics</a></li>
+										<li role="separator" class="divider"></li>
+									</c:when>
+								</c:choose>
+								<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Salir</a></li>
 							</ul>
 						</li>
 					</c:when>
+					<c:otherwise>
+						<li><a href="login"><span class="glyphicon glyphicon-log-in"></span>&nbspIngresar</a></li>
+					</c:otherwise>
 				</c:choose>
-				
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<c:out value="${usuario.nombre}"/>&nbsp;<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<c:choose>
-							<c:when test="${not empty usuario.administrador and not usuario.administrador}">
-								<li><a href="home"><span class="glyphicon glyphicon-book"></span>&nbsp;Mis comics</a></li>
-								<li role="separator" class="divider"></li>
-							</c:when>
-						</c:choose>
-						<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Salir</a></li>
-					</ul>
-				</li>
 			
 			</ul>
 		</div><!-- /.navbar-collapse -->

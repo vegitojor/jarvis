@@ -34,6 +34,20 @@ h1, h2, h3, h4, h5 {
 	background-size: cover;
 }
 
+.panel-coleccion > .panel-body > .imagen > .coleccion-imagen-bg {
+	height: 15em;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.panel-coleccion > .panel-body > .texto > p.coleccion-formato, 
+.panel-coleccion > .panel-body > .texto > p.coleccion-editorial {
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
 .registro-exitoso {
 	width: 100%;
 	height: 100vh;
