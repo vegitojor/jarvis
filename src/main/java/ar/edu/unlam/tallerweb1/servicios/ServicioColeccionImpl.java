@@ -1,6 +1,6 @@
-
 package ar.edu.unlam.tallerweb1.servicios;
 
+import static com.wagnerandade.coollection.Coollection.from;
 import java.util.List;
 
 import javax.inject.Inject;
