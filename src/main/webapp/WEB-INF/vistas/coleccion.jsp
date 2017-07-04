@@ -40,6 +40,9 @@
 											<div class="comic-imagen-bg" style="background-image: url(<c:out value="${pathImagen}"/>);"></div>
 										</div>
 										<div class="col-xs-6 texto">
+											<p class="comic-fecha"><strong>Fecha de publicaci&oacute;n: </strong><fmt:formatDate pattern = "dd/MM/yyyy" value="${comic.fechaPublicacion}"/></p>
+											<p class="comic-autor"><strong>Autor: </strong><c:out value="${comic.autor.nombre}"/>&nbsp;</p>
+											<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comic.cantidadDePaginas}"/></p>
 											<a href="detalle-comic?comic=<c:out value="${comic.id}"/>" class="btn btn-info btn-block btn-ver-mas">Ver m&aacute;s</a>
 										</div>
 									</div>
