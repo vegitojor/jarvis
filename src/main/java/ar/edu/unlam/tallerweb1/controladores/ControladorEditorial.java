@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioColeccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 
 @Controller
@@ -21,6 +22,9 @@ public class ControladorEditorial {
 
 	@Inject
 	private ServicioEditorial servicioEditorial;
+	
+	@Inject
+	private ServicioColeccion servicioColeccion;
 
 	@RequestMapping("/editorial-{nombreEditorial}")
 	public ModelAndView coleccionesPorEditorial(@PathVariable ("nombreEditorial") String nombreEditorial){
@@ -29,6 +33,7 @@ public class ControladorEditorial {
 
 		modelo.put("editorial", editorial);
 		modelo.put("titulo", editorial.getNombre());
+		modelo.put("colecciones", servicioColeccion.listarColeccionesPorEditorial(editorial.getId()));
 
 		return new ModelAndView("coleccionesPorEditorial", modelo);
 	}

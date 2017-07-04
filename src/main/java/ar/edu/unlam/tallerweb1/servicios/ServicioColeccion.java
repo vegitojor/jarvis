@@ -14,6 +14,8 @@ public interface ServicioColeccion {
 	
 	public ModelMap coleccionesFiltradas(String nombre, Long idEditorial, Long idFormato);
 	
+	public List<Coleccion> listarColeccionesPorEditorial(Long idEditorial);
+	
 	public ModelMap datosColeccion(Long idColeccion);
 	
 	public Coleccion guardarColecion(Long id, String nombre, String descripcion, String pathImagen, Long idEditorial, Long idFormato, String volumen, Boolean enCurso);
