@@ -25,9 +25,10 @@ public class Comic {
 	private String pathImagen;
 	
 	@ManyToOne ( cascade = CascadeType.ALL)
-	@JoinColumn( name="id_coleccion" )	
+	@JoinColumn( name="id_coleccion" )
 	private Coleccion coleccion;
-	@Transient
+	@ManyToOne ( cascade = CascadeType.ALL)
+	@JoinColumn( name="id_autor" )
 	private Autor autor;
 	
 	public Long getId() {

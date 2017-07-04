@@ -60,20 +60,38 @@ public class ControladorFormato {
 	}
 
 	@RequestMapping("/nuevo-formato")
-	public ModelAndView nuevoFormato(){
-		ModelMap modelo = new ModelMap();
-		Formato formato = new Formato();
-		formato.setActivo(true);
-		modelo.put("formato", formato);
+	public ModelAndView nuevoFormato(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				Formato formato = new Formato();
+				formato.setActivo(true);
+				modelo.put("formato", formato);
 
-		return new ModelAndView("formularioFormato", modelo);
+				return new ModelAndView("formularioFormato", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping("/editar-formato")
-	public ModelAndView editarFormato(@RequestParam (value="formato") Long idFormato){
-		ModelMap modelo = new ModelMap();
-		modelo.put("formato", servicioFormato.buscarFormato(idFormato));
-		return new ModelAndView("formularioFormato", modelo);
+	public ModelAndView editarFormato(@RequestParam (value="formato") Long idFormato, HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("formato", servicioFormato.buscarFormato(idFormato));
+				return new ModelAndView("formularioFormato", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping(path="/guardar-formato", method=RequestMethod.POST)

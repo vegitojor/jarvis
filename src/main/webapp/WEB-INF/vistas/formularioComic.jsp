@@ -17,11 +17,20 @@
 								<input type="text" class="form-control" name="numero" id="numero" placeholder="N&uacute;mero" required="required" value="<c:out value="${comic.numero}"/>"/>
 							</div>
 							<div class="form-group">
-								<label for="editorial">Colecci&oacute;n</label>
+								<label for="coleccion">Colecci&oacute;n</label>
 								<select id="coleccion" name="coleccion" class="form-control" required="required">
 									<option value="">Seleccione una colecci&oacute;n</option>
 									<c:forEach items="${colecciones}" var="coleccion">
 										<option value="<c:out value="${coleccion.id}"/>" <c:if test="${comic.coleccion.id eq coleccion.id}">selected='selected'</c:if>><c:out value="${coleccion.nombre}"/></option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="autor">Autor</label>
+								<select id="autor" name="autor" class="form-control" required="required">
+									<option value="">Seleccione un autor</option>
+									<c:forEach items="${autores}" var="autor">
+										<option value="<c:out value="${autor.id}"/>" <c:if test="${comic.autor.id eq autor.id}">selected='selected'</c:if>><c:out value="${autor.nombre}"/></option>
 									</c:forEach>
 								</select>
 							</div>

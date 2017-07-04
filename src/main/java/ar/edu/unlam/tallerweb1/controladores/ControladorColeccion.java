@@ -33,35 +33,35 @@ public class ControladorColeccion {
 	private ServicioEditorial servicioEditorial;
 	@Inject
 	private ServicioFormato servicioFormato;
-	
+
 	@RequestMapping("/coleccion-{nombreColeccion}")
 	public ModelAndView mostrarColeccion(@PathVariable ("nombreColeccion") String nombreColeccion){
 		ModelMap model = new ModelMap();
 		return new ModelAndView("vistaColeccion", model);
 	}
-	
+
 	@RequestMapping("/colecciones")
 	public ModelAndView verTodasLasColecciones(@RequestParam (required=false, value="nombre") String nombre,
 			@RequestParam (required=false, value="editorial") Long idEditorial,
 			@RequestParam (required=false, value="formato") Long idFormato){
-		
+
 		ModelMap modelo = servicioColeccion.coleccionesFiltradas(nombre, idEditorial, idFormato);
-		
+
 		modelo.put("editoriales", servicioEditorial.listarEditoriales());
 		modelo.put("formatos", servicioFormato.listarFormatos());
-		
+
 		modelo.put("action", "colecciones");
-		
+
 		modelo.put("titulo", "Colecciones");
-		
+
 		return new ModelAndView("colecciones", modelo);
 	}
-	
+
 	@RequestMapping("/administrar-colecciones")
 	public ModelAndView administrarColecciones(HttpServletRequest request){
 		if ( request.getSession().getAttribute("usuario") != null ){
 			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
-			
+
 			if ( usuario.isAdministrador() ) {
 				ModelMap modelo = new ModelMap();
 				modelo.put("colecciones", servicioColeccion.listarColecciones());
@@ -70,37 +70,55 @@ public class ControladorColeccion {
 				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
 			}
 		}
-		
+
 		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping("/nueva-coleccion")
-	public ModelAndView nuevaColeccion(){
-		ModelMap modelo = new ModelMap();
-		modelo.put("editoriales", servicioEditorial.listarEditoriales());
-		modelo.put("formatos", servicioFormato.listarFormatos());
-		
-		return new ModelAndView("formularioColeccion", modelo);
+	public ModelAndView nuevaColeccion(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("editoriales", servicioEditorial.listarEditoriales());
+				modelo.put("formatos", servicioFormato.listarFormatos());
+
+				return new ModelAndView("formularioColeccion", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping("/editar-coleccion")
-	public ModelAndView editarColeccion(@RequestParam (value="coleccion") Long idColeccion){
-		ModelMap modelo = new ModelMap();
-		
-		modelo.put("coleccion", servicioColeccion.buscarColeccion(idColeccion));
-		modelo.put("editoriales", servicioEditorial.listarEditoriales());
-		modelo.put("formatos", servicioFormato.listarFormatos());
-		
-		return new ModelAndView("formularioColeccion", modelo);
+	public ModelAndView editarColeccion(@RequestParam (value="coleccion") Long idColeccion, HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+
+				modelo.put("coleccion", servicioColeccion.buscarColeccion(idColeccion));
+				modelo.put("editoriales", servicioEditorial.listarEditoriales());
+				modelo.put("formatos", servicioFormato.listarFormatos());
+
+				return new ModelAndView("formularioColeccion", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping(path="/guardar-coleccion", method=RequestMethod.POST)
 	public ModelAndView guardarColeccion(@RequestParam (required=false, value="id") Long id, @RequestParam (value="nombre") String nombre,
 			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile, @RequestParam (required=false, value="descripcion") String descripcion,
 			@RequestParam (value="editorial") Long idEditorial, @RequestParam (value="formato") Long idFormato,
 			@RequestParam (required=false, value="volumen") String volumen, @RequestParam (required=false, value="enCurso", defaultValue="false") Boolean enCurso,
 			HttpServletRequest request){
-		
+
 		String nombreArchivoImagen = null;
 		String extensionArchivoImagen = null;
 		String pathImagen = null;
@@ -117,7 +135,7 @@ public class ControladorColeccion {
 				BufferedImage thumbnail = Scalr.resize(imagen, 950);
 				File outputfileThumbnail = new File(request.getRealPath("/img/colecciones") + "/" + nombreArchivoImagen + "." + extensionArchivoImagen);
 				ImageIO.write(thumbnail, extensionArchivoImagen, outputfileThumbnail);
-				
+
 				pathImagen = nombreArchivoImagen+"."+extensionArchivoImagen;
 			}
 
@@ -126,9 +144,9 @@ public class ControladorColeccion {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		servicioColeccion.guardarColecion(id, nombre, descripcion, pathImagen, idEditorial, idFormato, volumen, enCurso);
-		
+
 		return new ModelAndView("redirect:/administrar-colecciones?mensaje=La coleccion ha sido guardada.");
 	}
 }

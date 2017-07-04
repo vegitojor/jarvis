@@ -20,31 +20,34 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Comic;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ImagenHelper;
+import ar.edu.unlam.tallerweb1.servicios.ServicioAutor;
 import ar.edu.unlam.tallerweb1.servicios.ServicioColeccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComic;
 
 @Controller
 public class ControladorComic {
-	
+
+	@Inject
+	private ServicioAutor servicioAutor;
 	@Inject
 	private ServicioColeccion servicioColeccion;
 	@Inject
 	private ServicioComic servicioComic;
-	
+
 	@RequestMapping ("/comic")
 	public ModelAndView verComic (){
-		
+
 		ModelMap modelo = new ModelMap();
 		Comic comic = new Comic();
 		modelo.put("comic", comic);
 		return new ModelAndView ("comic", modelo);
 	}
-	
+
 	@RequestMapping("/administrar-comics")
 	public ModelAndView administrarComics(HttpServletRequest request){
 		if ( request.getSession().getAttribute("usuario") != null ){
 			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
-			
+
 			if ( usuario.isAdministrador() ) {
 				ModelMap modelo = new ModelMap();
 				modelo.put("comics", servicioComic.listarComics());
@@ -53,35 +56,54 @@ public class ControladorComic {
 				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
 			}
 		}
-		
+
 		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping("/nuevo-comic")
-	public ModelAndView nuevoComic(){
-		ModelMap modelo = new ModelMap();
-		modelo.put("colecciones", servicioColeccion.listarColecciones());
-		
-		return new ModelAndView("formularioComic", modelo);
+	public ModelAndView nuevoComic(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("autores", servicioAutor.listarAutores());
+				modelo.put("colecciones", servicioColeccion.listarColecciones());
+
+				return new ModelAndView("formularioComic", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");	
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping("/editar-comic")
-	public ModelAndView editarComic(@RequestParam (value="comic") Long idComic){
-		ModelMap modelo = new ModelMap();
-		
-		modelo.put("comic", servicioComic.buscarComic(idComic));
-		modelo.put("colecciones", servicioColeccion.listarColecciones());
-		
-		return new ModelAndView("formularioComic", modelo);
+	public ModelAndView editarComic(@RequestParam (value="comic") Long idComic, HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+
+				modelo.put("comic", servicioComic.buscarComic(idComic));
+				modelo.put("autores", servicioAutor.listarAutores());
+				modelo.put("colecciones", servicioColeccion.listarColecciones());
+
+				return new ModelAndView("formularioComic", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");	
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping(path="/guardar-comic", method=RequestMethod.POST)
 	public ModelAndView guardarComic(@RequestParam (required=false, value="id") Long id, @RequestParam (value="numero") String numero,
-			@RequestParam (value="coleccion") Long idColeccion, @RequestParam (required=false, value="fechaPublicacion") String fechaPublicacion,
+			@RequestParam (value="coleccion") Long idColeccion, @RequestParam (value="autor") Long idAutor, @RequestParam (required=false, value="fechaPublicacion") String fechaPublicacion,
 			@RequestParam (required=false, value="isbn") String isbn, @RequestParam (required=false, value="cantidadDePaginas") String cantidadDePaginas, @RequestParam (required=false, value="pvp") String pvp,
 			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile,
 			HttpServletRequest request){
-		
+
 		String nombreArchivoImagen = null;
 		String extensionArchivoImagen = null;
 		String pathImagen = null;
@@ -98,7 +120,7 @@ public class ControladorComic {
 				BufferedImage thumbnail = Scalr.resize(imagen, 950);
 				File outputfileThumbnail = new File(request.getRealPath("/img/comics") + "/" + nombreArchivoImagen + "." + extensionArchivoImagen);
 				ImageIO.write(thumbnail, extensionArchivoImagen, outputfileThumbnail);
-				
+
 				pathImagen = nombreArchivoImagen+"."+extensionArchivoImagen;
 			}
 
@@ -107,9 +129,9 @@ public class ControladorComic {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		servicioComic.guardarComic(id, numero, idColeccion, fechaPublicacion, isbn, cantidadDePaginas, pvp, pathImagen);
-		
+
+		servicioComic.guardarComic(id, numero, idColeccion, idAutor, fechaPublicacion, isbn, cantidadDePaginas, pvp, pathImagen);
+
 		return new ModelAndView("redirect:/administrar-comics?mensaje=El comic ha sido guardado.");
 	}
 }

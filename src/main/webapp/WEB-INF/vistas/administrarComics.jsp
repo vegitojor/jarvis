@@ -19,6 +19,7 @@
 								<tr>
 									<th>Id</th>
 									<th>Colecci&oacute;n</th>
+									<th>Autor</th>
 									<th>N&uacute;mero</th>
 									<th>ISBN</th>
 									<th>Fecha de publicaci&oacute;n</th>
@@ -32,6 +33,7 @@
 									<tr>
 										<td><c:out value="${comic.id}"/></td>
 										<td><c:out value="${comic.coleccion.nombre}"/></td>
+										<td><c:out value="${comic.autor.nombre}"/>&nbsp;</td>
 										<td><c:out value="${comic.numero}"/></td>
 										<td><c:out value="${comic.isbn}"/></td>
 										<td><fmt:formatDate pattern = "dd/MM/yyyy" value="${comic.fechaPublicacion}"/></td>

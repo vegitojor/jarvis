@@ -18,21 +18,21 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 
 @Controller
 public class ControladorEditorial {
-	
+
 	@Inject
 	private ServicioEditorial servicioEditorial;
-	
+
 	@RequestMapping("/editorial-{nombreEditorial}")
 	public ModelAndView coleccionesPorEditorial(@PathVariable ("nombreEditorial") String nombreEditorial){
 		ModelMap modelo = new ModelMap();
 		Editorial editorial = servicioEditorial.buscarEditorialPorNombre(nombreEditorial);
-		
+
 		modelo.put("editorial", editorial);
 		modelo.put("titulo", editorial.getNombre());
-		
+
 		return new ModelAndView("coleccionesPorEditorial", modelo);
 	}
-	
+
 	@RequestMapping("/administrar-editoriales")
 	public ModelAndView administrarEditoriales(HttpServletRequest request){
 		if ( request.getSession().getAttribute("usuario") != null ){
@@ -45,39 +45,57 @@ public class ControladorEditorial {
 				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
 			}
 		}
-		
+
 		return new ModelAndView("redirect:/login");
 	}
-	
-	@RequestMapping("/nueva-editorial")
-	public ModelAndView nuevaEditorial(){
-		ModelMap modelo = new ModelMap();
-		Editorial editorial = new Editorial();
-		editorial.setActivo(true);
-		modelo.put("editorial", editorial);
 
-		return new ModelAndView("formularioEditorial", modelo);
+	@RequestMapping("/nueva-editorial")
+	public ModelAndView nuevaEditorial(HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				Editorial editorial = new Editorial();
+				editorial.setActivo(true);
+				modelo.put("editorial", editorial);
+
+				return new ModelAndView("formularioEditorial", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping("/editar-editorial")
-	public ModelAndView editarEditorial(@RequestParam (value="editorial") Long idEditorial){
-		ModelMap modelo = new ModelMap();
-		modelo.put("editorial", servicioEditorial.buscarEditorial(idEditorial));
-		return new ModelAndView("formularioEditorial", modelo);
+	public ModelAndView editarEditorial(@RequestParam (value="editorial") Long idEditorial, HttpServletRequest request){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+
+			if ( usuario.isAdministrador() ) {
+				ModelMap modelo = new ModelMap();
+				modelo.put("editorial", servicioEditorial.buscarEditorial(idEditorial));
+				return new ModelAndView("formularioEditorial", modelo);
+			} else {
+				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");
+			}
+		}
+		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping(path="/guardar-editorial", method=RequestMethod.POST)
 	public ModelAndView guardarEditorial(@ModelAttribute("editorial") Editorial editorial) {
 		servicioEditorial.guardarEditorial(editorial);
 		return new ModelAndView("redirect:/administrar-editoriales?mensaje=La editorial ha sido guardada.");
 	}
-	
+
 	@RequestMapping("/activar-editorial")
 	public ModelAndView activarEditorial(@RequestParam (value="editorial") Long idEditorial){
 		servicioEditorial.cambiarEstadoEditorial(idEditorial, true);
 		return new ModelAndView("redirect:/administrar-editoriales?mensaje=La editorial "+idEditorial+" ha sido activada.");
 	}
-	
+
 	@RequestMapping("/desactivar-editorial")
 	public ModelAndView desactivarEditorial(@RequestParam (value="editorial") Long idEditorial){
 		servicioEditorial.cambiarEstadoEditorial(idEditorial, false);

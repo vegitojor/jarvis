@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.dao.AutorDao;
 import ar.edu.unlam.tallerweb1.dao.ColeccionDao;
 import ar.edu.unlam.tallerweb1.dao.ComicDao;
 import ar.edu.unlam.tallerweb1.modelo.Comic;
@@ -18,6 +19,8 @@ import ar.edu.unlam.tallerweb1.modelo.Comic;
 @Transactional
 public class ServicioComicImpl implements ServicioComic {
 	
+	@Inject
+	private AutorDao autorDao;
 	@Inject
 	private ComicDao comicDao;
 	@Inject
@@ -34,7 +37,7 @@ public class ServicioComicImpl implements ServicioComic {
 	}
 
 	@Override
-	public Comic guardarComic(Long id, String numero, Long idColeccion, String fechaPublicacion, String isbn,
+	public Comic guardarComic(Long id, String numero, Long idColeccion, Long idAutor, String fechaPublicacion, String isbn,
 			String cantidadDePaginas, String pvp, String pathImagen) {
 		
 		Comic comic = null;
@@ -48,6 +51,9 @@ public class ServicioComicImpl implements ServicioComic {
 		
 		comic.setNumero(numero);
 		comic.setColeccion( coleccionDao.buscarColeccion(idColeccion) );
+		if ( idAutor!=null ) {
+			comic.setAutor(autorDao.buscarAutor(idAutor));
+		}
 		comic.setFechaPublicacion( new Timestamp(fechaPublicacionDate.getTime()) );
 		if ( isbn!=null && isbn!="" ) {
 			comic.setIsbn(isbn);
