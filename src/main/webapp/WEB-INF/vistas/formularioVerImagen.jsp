@@ -1,5 +1,5 @@
-<!-- Imagen coleccion -->
-<div class="modal fade" id="imagenColeccion">
+<!-- Imagen -->
+<div class="modal fade" id="modalImagen">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">

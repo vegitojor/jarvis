@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -16,7 +18,7 @@ public class ComicDaoImpl implements ComicDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Comic agregarNuevoComic(Long id) {
+	public Comic buscarComic(Long id) {
 		final Session session = sessionFactory.getCurrentSession();
 		Comic comic = (Comic) session.createCriteria(Comic.class)
 				.add(Restrictions.eq("id", id)).uniqueResult();
@@ -24,10 +26,24 @@ public class ComicDaoImpl implements ComicDao {
 	}
 
 	@Override
-	public Comic buscarComic(Long id) {
+	public List<Comic> listarComics() {
 		final Session session = sessionFactory.getCurrentSession();
-		Comic comic = (Comic) session.createCriteria(Comic.class)
-				.add(Restrictions.eq("id", id)).uniqueResult();
-		return comic;
+
+		@SuppressWarnings("unchecked")
+		List<Comic> comics = session.createCriteria(Comic.class).list();
+
+		return comics;
+	}
+
+	@Override
+	public void guardarNuevoComic(Comic comic) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(comic);
+	}
+
+	@Override
+	public void guardarComic(Comic comic) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.update(comic);
 	}
 }

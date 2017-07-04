@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#nombre").focus();
+	$("#numero").focus();
 	
 	// AL HACER CLICK EN EL BOTON PARA CAMBIAR IMAGEN, CAMBIAMOS ATRIBUTOS Y ABRIMOS LA VENTANA PARA ELEGIR ARCHIVOS
 	$("#btnCambiarImagen").click(function(){
@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 	$("#verImagen").bind("click", function(){
 		var pathImagen = $(this).attr("pathImagen");
-		$("#imagen").attr('src', 'img/colecciones/'+pathImagen);
+		$("#imagen").attr('src', 'img/comics/'+pathImagen);
 		$('#modalImagen').modal('show');
 	});
 	

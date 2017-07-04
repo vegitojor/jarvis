@@ -95,7 +95,7 @@ public class ControladorColeccion {
 	}
 	
 	@RequestMapping(path="/guardar-coleccion", method=RequestMethod.POST)
-	public ModelAndView guardarColeccion(@RequestParam (required=false, value="id") Long id, @RequestParam (required=false, value="nombre") String nombre,
+	public ModelAndView guardarColeccion(@RequestParam (required=false, value="id") Long id, @RequestParam (value="nombre") String nombre,
 			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile, @RequestParam (required=false, value="descripcion") String descripcion,
 			@RequestParam (value="editorial") Long idEditorial, @RequestParam (value="formato") Long idFormato,
 			@RequestParam (required=false, value="volumen") String volumen, @RequestParam (required=false, value="enCurso", defaultValue="false") Boolean enCurso,

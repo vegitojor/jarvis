@@ -2,7 +2,7 @@
 	<script type="text/javascript" src="js/jarvis-web.formularioColeccion.js"></script>
 	</head>
 	<body>
-		<%@include file='formularioColeccionVerImagen.jsp' %>
+		<%@include file='formularioVerImagen.jsp' %>
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class="container">
 			<div class="row">

@@ -17,6 +17,7 @@
 						<table class="table table-striped">
 							<thead>
 								<tr>
+									<th>Id</th>
 									<th>Nombre</th>
 									<th>Editorial</th>
 									<th>Formato</th>
@@ -28,6 +29,7 @@
 							<tbody>
 								<c:forEach items="${colecciones}" var="coleccion">
 									<tr>
+										<td><c:out value="${coleccion.id}"/></td>
 										<td><c:out value="${coleccion.nombre}"/></td>
 										<td><c:out value="${coleccion.editorial.nombre}"/>&nbsp;</td>
 										<td><c:out value="${coleccion.formato.nombre}"/>&nbsp;</td>
