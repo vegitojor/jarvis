@@ -134,4 +134,14 @@ public class ControladorComic {
 
 		return new ModelAndView("redirect:/administrar-comics?mensaje=El comic ha sido guardado.");
 	}
+	
+	@RequestMapping(path="/detalle-comic", method=RequestMethod.GET)
+	public ModelAndView detalleComic(@RequestParam (value="comic") Long idComic){
+		ModelMap modelo = new ModelMap();
+		Comic comic = servicioComic.buscarComic(idComic);
+		modelo.put("comic", comic);
+		modelo.put("titulo", comic.getColeccion().getNombre()+" - Nro. "+comic.getNumero());
+		
+		return new ModelAndView("comic", modelo);
+	}
 }

@@ -19,6 +19,10 @@ h1, h2, h3, h4, h5 {
 	
 /* CLASES */
 
+.detalle-comic > .datos-comic {
+	font-size: 2em;
+}
+
 .error {
 	font-weight: bold;
 	color: #dd0000;
@@ -99,7 +103,15 @@ h1, h2, h3, h4, h5 {
 
 /* MEDIA QUERIES */
 
+@media screen and (min-width: 50px) and (max-width: 424px) {
+	
+	.detalle-comic > .datos-comic {
+		font-size: 1em;
+	}
+}
+
 @media screen and (max-width: 425px) {
+	
 	.registro-exitoso-panel {
 		margin-top: 0;
 		padding-top: 4em;
@@ -108,8 +120,15 @@ h1, h2, h3, h4, h5 {
 }
 
 @media screen and (max-width: 768px) {
+	
 	#indexScreen .subtitulo {
 		font-size: 16px;
 		margin: 10px 0;
+	}
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+	.detalle-comic > .datos-comic {
+		font-size: 1.5em;
 	}
 }

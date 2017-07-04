@@ -1,0 +1,4 @@
+<!-- BOTONES DE ACCION DISPONIBLES UNA VEZ QUE EL USUARIO ESTÉ LOGUEADO -->
+<button type="button" id="seguir" class="btn btn-primary" idComic="<c:out value="${comic.id}"/>" idUsuario="<c:out value="${usuario.id}"/>" style="display: block;"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Marcar comic</button>
+<button type="button" id="loTengo" class="btn btn-success" style="display: none;"><span class="glyphicon glyphicon-check"></span>&nbsp;Lo tengo</button>
+<button type="button" id="noLoTengo" class="btn btn-danger" idComic="<c:out value="${comic.id}"/>" idUsuario="<c:out value="${usuario.id}"/>" style="display: none;"><span class="glyphicon glyphicon-trash"></span>&nbsp;Ya no lo tengo</button>
