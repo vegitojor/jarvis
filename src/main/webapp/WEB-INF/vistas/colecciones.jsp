@@ -59,7 +59,7 @@
 							<div class="col-sm-6 col-md-4">
 								<div class="panel panel-default panel-coleccion">
 									<div class="panel-heading">
-										<h3 class="text-center coleccion-nombre"><c:out value="${coleccion.nombre}"/></h3>
+										<h4 class="text-center coleccion-nombre"><c:out value="${coleccion.nombre}"/></h4>
 									</div>
 									<div class="panel-body">
 										<div class="col-xs-6 imagen">

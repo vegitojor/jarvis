@@ -5,6 +5,16 @@
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
 				<h1><span class="white"><c:out value="${coleccion.nombre}"/></span></h1>
+				<h3 class="white">Volumen <c:out value="${coleccion.volumen}"/>&nbsp;|&nbsp;<c:out value="${coleccion.editorial.nombre}"/>&nbsp;|&nbsp;<c:out value="${coleccion.formato.nombre}"/></h3>
+				<h4 class="white">
+					<c:choose>
+						<c:when test="${coleccion.enCurso}">
+							Actualmente en curso
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+				</h4>
 			</div>
 		</div>
 		<div class="container">
@@ -15,7 +25,7 @@
 							<div class="col-sm-6 col-md-4">
 								<div class="panel panel-default panel-comic">
 									<div class="panel-heading">
-										<h3 class="text-center">Nro: <c:out value="${comic.numero}"/></h3>
+										<h4 class="text-center">Nro: <c:out value="${comic.numero}"/></h4>
 									</div>
 									<div class="panel-body">
 										<div class="col-xs-6 imagen">

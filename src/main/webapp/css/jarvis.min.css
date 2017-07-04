@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5 {
     text-overflow: ellipsis; 
 }
 
-.panel-coleccion > .panel-heading > h3 {
+.panel-coleccion > .panel-heading > h4 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
