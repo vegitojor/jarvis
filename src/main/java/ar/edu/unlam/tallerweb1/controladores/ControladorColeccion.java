@@ -46,6 +46,12 @@ public class ControladorColeccion {
 			@RequestParam (required=false, value="formato") Long idFormato){
 		
 		ModelMap modelo = servicioColeccion.coleccionesFiltradas(nombre, idEditorial, idFormato);
+		
+		modelo.put("editoriales", servicioEditorial.listarEditoriales());
+		modelo.put("formatos", servicioFormato.listarFormatos());
+		
+		modelo.put("action", "colecciones");
+		
 		modelo.put("titulo", "Colecciones");
 		
 		return new ModelAndView("colecciones", modelo);

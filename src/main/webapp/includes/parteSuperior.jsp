@@ -9,6 +9,9 @@
 				<span class="icon-bar"></span>
 			</button>
 			
+			<!-- SETEAMOS EL USUARIO DE LA SESSION -->
+			<c:set var="usuario" value="${usuario}" scope="session"/>
+			
 			<!-- SETEAMOS EL DESTINO HACIA DONDE SE IRÁ AL HACER CLICK EN EN LOGO -->
 			<c:choose>
 				<c:when test="${not empty usuario.administrador and not usuario.administrador}">
@@ -75,4 +78,4 @@
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
-<section id="contenido">
+<div id="contenido">

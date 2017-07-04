@@ -45,16 +45,17 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 		
 		if ( nombre!=null && nombre!="" ) {
 			criterion = Restrictions.and(criterion, Restrictions.ilike("nombre", "%"+nombre+"%"));
-			modelo.put("nombre", nombre);
 		}
 		if ( idEditorial!=null ) {
 			criterion = Restrictions.and(criterion, Restrictions.eq("editorial.id", idEditorial));
-			modelo.put("editorial", idEditorial);
 		}
 		if ( idFormato!=null ) {
 			criterion = Restrictions.and(criterion, Restrictions.eq("formato.id", idFormato));
-			modelo.put("formato", idFormato);
 		}
+		
+		modelo.put("nombre", nombre);
+		modelo.put("idEditorial", idEditorial);
+		modelo.put("idFormato", idFormato);
 		
 		modelo.put("colecciones", coleccionDao.listarColeccionesPorCriterion(criterion));
 		
