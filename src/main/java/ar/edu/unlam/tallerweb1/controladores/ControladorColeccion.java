@@ -149,4 +149,12 @@ public class ControladorColeccion {
 
 		return new ModelAndView("redirect:/administrar-colecciones?mensaje=La coleccion ha sido guardada.");
 	}
+	
+	@RequestMapping(path="/detalle-coleccion", method=RequestMethod.GET)
+	public ModelAndView detalleColeccion(@RequestParam (value="coleccion") Long idColeccion){
+		
+		ModelMap modelo = servicioColeccion.datosColeccion(idColeccion);
+		
+		return new ModelAndView("coleccion", modelo);
+	}
 }

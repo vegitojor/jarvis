@@ -34,6 +34,14 @@ public class ComicDaoImpl implements ComicDao {
 
 		return comics;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comic> listarComicsDeColeccion(Long idColeccion) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Comic.class)
+				.add(Restrictions.eq("coleccion.id", idColeccion)).list();
+	}
 
 	@Override
 	public void guardarNuevoComic(Comic comic) {

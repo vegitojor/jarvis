@@ -58,6 +58,9 @@
 						<c:forEach items="${colecciones}" var="coleccion">
 							<div class="col-sm-6 col-md-4">
 								<div class="panel panel-default panel-coleccion">
+									<div class="panel-heading">
+										<h3 class="text-center coleccion-nombre"><c:out value="${coleccion.nombre}"/></h3>
+									</div>
 									<div class="panel-body">
 										<div class="col-xs-6 imagen">
 											<c:choose>
@@ -71,7 +74,6 @@
 											<div class="coleccion-imagen-bg" style="background-image: url(<c:out value="${pathImagen}"/>);"></div>
 										</div>
 										<div class="col-xs-6 texto">
-											<h3 class=""><c:out value="${coleccion.nombre}"/></h3>
 											<p class="coleccion-editorial"><strong>Editorial: </strong><c:out value="${coleccion.editorial.nombre}"/></p>
 											<p class="coleccion-formato"><strong>Formato: </strong><c:out value="${coleccion.formato.nombre}"/></p>
 											<a href="detalle-coleccion?coleccion=<c:out value="${coleccion.id}"/>" class="btn btn-info btn-block btn-ver-mas">Ver m&aacute;s</a>

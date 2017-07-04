@@ -10,6 +10,8 @@ public interface ComicDao {
 	
 	List<Comic> listarComics();
 	
+	List<Comic> listarComicsDeColeccion(Long idColeccion);
+	
 	void guardarNuevoComic(Comic comic);
 	
 	void guardarComic(Comic comic);

@@ -34,7 +34,13 @@ h1, h2, h3, h4, h5 {
 	background-size: cover;
 }
 
-.panel-coleccion > .panel-body > .imagen > .coleccion-imagen-bg {
+.panel-coleccion,
+.panel-comic {
+	position: relative;
+}
+
+.panel-coleccion > .panel-body > .imagen > .coleccion-imagen-bg,
+.panel-comic > .panel-body > .imagen > .comic-imagen-bg {
 	height: 15em;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -46,6 +52,11 @@ h1, h2, h3, h4, h5 {
 	white-space: nowrap;
 	overflow: hidden;
     text-overflow: ellipsis; 
+}
+
+.panel-coleccion > .panel-heading > h3 {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .registro-exitoso {

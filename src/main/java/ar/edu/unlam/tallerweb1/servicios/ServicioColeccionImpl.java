@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
 import ar.edu.unlam.tallerweb1.dao.ColeccionDao;
+import ar.edu.unlam.tallerweb1.dao.ComicDao;
 import ar.edu.unlam.tallerweb1.dao.EditorialDao;
 import ar.edu.unlam.tallerweb1.dao.FormatoDao;
 import ar.edu.unlam.tallerweb1.modelo.Coleccion;
@@ -20,6 +21,8 @@ import ar.edu.unlam.tallerweb1.modelo.Coleccion;
 @Transactional
 public class ServicioColeccionImpl implements ServicioColeccion {
 
+	@Inject
+	private ComicDao comicDao;
 	@Inject
 	private ColeccionDao coleccionDao;
 	@Inject
@@ -94,5 +97,18 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 		}
 
 		return coleccion;
+	}
+
+	@Override
+	public ModelMap datosColeccion(Long idColeccion) {
+		ModelMap modelo = new ModelMap();
+		Coleccion coleccion = coleccionDao.buscarColeccion(idColeccion);
+		
+		modelo.put("coleccion", coleccion);
+		modelo.put("comics", comicDao.listarComicsDeColeccion(idColeccion));
+		
+		modelo.put("titulo", coleccion.getNombre());
+		
+		return modelo;
 	}
 }
