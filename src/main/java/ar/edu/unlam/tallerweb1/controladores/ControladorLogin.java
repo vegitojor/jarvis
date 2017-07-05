@@ -33,6 +33,8 @@ public class ControladorLogin {
 	private ServicioFormato servicioFormato;
 	@Inject
 	private ServicioLogin servicioLogin;
+	@Inject
+	private ServicioUsuarioComic servicioUsuarioComic;
 	
 	public ServicioLogin getServicioLogin() {
 		return servicioLogin;
@@ -87,7 +89,7 @@ public class ControladorLogin {
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 			
 			ModelMap modelo = new ModelMap();
-			modelo.put("comicsDeUsuario", servicioComic.listarComicsDeUsuario( usuario.getId() ));
+			modelo.put("usuarioComics", servicioUsuarioComic.listarUsuarioComics(usuario.getId()) );
 			
 			return new ModelAndView("home", modelo);
 		}
