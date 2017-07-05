@@ -4,5 +4,5 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioComic;
 
 public interface ServicioUsuarioComic {
 	
-	public UsuarioComic guardarUsuarioComic(Long idUsuario, Long idComic);
+	public UsuarioComic guardarUsuarioComic(UsuarioComic usuarioComic);
 }

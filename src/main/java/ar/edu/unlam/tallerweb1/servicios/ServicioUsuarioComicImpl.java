@@ -23,28 +23,13 @@ public class ServicioUsuarioComicImpl implements ServicioUsuarioComic {
 	private ComicDao comicDao;
 	@Inject
 	private UsuarioDao usuarioDao;
-	
+
 	@Override
-	public UsuarioComic guardarUsuarioComic(Long idUsuario, Long idComic) {
+	public UsuarioComic guardarUsuarioComic(UsuarioComic usuarioComic) {
 		Date fechaDate = new Date();
-		UsuarioComic usuarioComic = usuarioComicDao.consultarUsuarioComic(idUsuario, idComic);
-		
-		if ( usuarioComic != null ) {
-			if ( !usuarioComic.isSiguiendoActualmente() ) {
-				usuarioComic.setFechaCreacion( new Timestamp(fechaDate.getTime()) );
-				usuarioComic.setSiguiendoActualmente(true);
-				
-				usuarioComicDao.guardarUsuarioComic(usuarioComic);
-			}
-		} else {
-			usuarioComic = new UsuarioComic();
-			usuarioComic.setUsuario(usuarioDao.obtenerUsuarioPorId(idUsuario));
-			usuarioComic.setComic(comicDao.buscarComic(idComic));
-			usuarioComic.setFechaCreacion( new Timestamp(fechaDate.getTime()) );
-			usuarioComic.setSiguiendoActualmente(true);
-			
-			usuarioComicDao.guardarNuevoUsuarioComic(usuarioComic);
-		}
+
+		usuarioComicDao.guardarUsuarioComic(usuarioComic);
+		usuarioComicDao.guardarNuevoUsuarioComic(usuarioComic);
 		
 		return usuarioComic;
 	}

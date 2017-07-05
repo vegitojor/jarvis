@@ -82,11 +82,13 @@ public class ControladorLogin {
 
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome(HttpServletRequest request) {
-		ModelMap modelo = new ModelMap();
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		
-		if ( usuario != null ){
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+			
+			ModelMap modelo = new ModelMap();
 			modelo.put("comicsDeUsuario", servicioComic.listarComicsDeUsuario( usuario.getId() ));
+			
 			return new ModelAndView("home", modelo);
 		}
 		
