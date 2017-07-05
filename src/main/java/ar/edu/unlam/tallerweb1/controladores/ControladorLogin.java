@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,19 +16,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Coleccion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComic;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEditorial;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFormato;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioComic;
 
 @Controller
 public class ControladorLogin {
 
 	@Inject
-	private ServicioLogin servicioLogin;
+	private ServicioComic servicioComic;
 	@Inject
 	private ServicioEditorial servicioEditorial;
 	@Inject
 	private ServicioFormato servicioFormato;
+	@Inject
+	private ServicioLogin servicioLogin;
 	
 	public ServicioLogin getServicioLogin() {
 		return servicioLogin;
@@ -78,16 +80,18 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		//usuario.setColecciones(servicio);
-		List<Coleccion> colecciones = usuario.getColecciones();
-		if ( request.getSession().getAttribute("usuario") != null ){
-			modelo.put("coleccionesDeUsuario", colecciones);
-			modelo.put("comicsDeUsuario", usuario.getComics());
-			return new ModelAndView("home");
+		//List<Coleccion> colecciones = usuario.getColecciones();
+		
+		if ( usuario != null ){
+			//modelo.put("coleccionesDeUsuario", colecciones);
+			modelo.put("comicsDeUsuario", servicioComic.listarComicsDeUsuario( usuario.getId() ));
+			return new ModelAndView("home", modelo);
 		}
 		return new ModelAndView("redirect:/login");
 	}

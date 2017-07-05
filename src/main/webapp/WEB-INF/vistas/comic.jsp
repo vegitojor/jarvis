@@ -33,7 +33,7 @@
 							<%@include file='../../includes/comicsBotones.jsp' %>
 						</c:when>
 						<c:otherwise>
-							<button type="button" id="seguir" class="btn btn-primary" idComic="<c:out value="${comic.id}"/>" idUsuario=""><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Marcar comic</button>
+							<button type="button" id="seguirSinLogin" class="btn btn-primary" idComic="<c:out value="${comic.id}"/>" idUsuario=""><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Marcar comic</button>
 						</c:otherwise>
 					</c:choose>
 				</div>

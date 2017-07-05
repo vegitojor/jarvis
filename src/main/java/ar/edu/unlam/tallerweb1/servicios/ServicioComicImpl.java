@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.AutorDao;
 import ar.edu.unlam.tallerweb1.dao.ColeccionDao;
 import ar.edu.unlam.tallerweb1.dao.ComicDao;
+import ar.edu.unlam.tallerweb1.dao.UsuarioComicDao;
 import ar.edu.unlam.tallerweb1.modelo.Comic;
 
 @Service("servicioComic")
@@ -25,6 +26,8 @@ public class ServicioComicImpl implements ServicioComic {
 	private ComicDao comicDao;
 	@Inject
 	private ColeccionDao coleccionDao;
+	@Inject
+	private UsuarioComicDao usuarioComicDao;
 	
 	@Override
 	public Comic buscarComic(Long id){
@@ -75,5 +78,10 @@ public class ServicioComicImpl implements ServicioComic {
 		}
 		
 		return comic;
+	}
+
+	@Override
+	public List<Comic> listarComicsDeUsuario(Long idUsuario) {
+		return usuarioComicDao.comicsDelUsuario(idUsuario);
 	}
 }
