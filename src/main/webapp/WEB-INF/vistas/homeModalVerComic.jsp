@@ -27,24 +27,6 @@
 						<p>
 							<strong>P.V.P.: </strong>&nbsp;<span id="comicPVP"></span>
 						</p>
-						<c:choose>
-							<c:when test="${not empty usuario}">
-								<div class="panel panel-default" id="loTengo" style="display:none;">
-									<div class="panel-body bg-success text-center">
-										<span class="glyphicon glyphicon-check"></span>&nbsp;Lo tengo
-									</div>
-								</div>
-								<form action="guardar-usuario-comic" method="POST" name="marcarComic" id="marcarComic">
-									<input type="hidden" name="comic" id="idComic" value=""/>
-									<input type="hidden" name="usuario" id="idUsuario" value="${usuario.id}" />
-									<input type="hidden" name="siguiendoActualmente" id="siguiendoActualmente" value=""/>
-									<button id="saveUsuarioComic" class="btn btn-primary btn-block" name="submit" type="submit"><span id="icono" class="glyphicon"></span>&nbsp;<span id="textoBoton"></span></button>
-								</form>
-							</c:when>
-							<c:otherwise>
-								<button type="button" id="seguirSinLogin" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;Marcar comic</button>
-							</c:otherwise>
-						</c:choose>
 					</div>
 				</div>
 			</div>

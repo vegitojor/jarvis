@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlam.tallerweb1.modelo.Comic;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioComic;
 
 @Service("usuarioComicDao")
@@ -32,34 +30,32 @@ public class UsuarioComicDaoImpl implements UsuarioComicDao {
 	}
 
 	@Override
-	public List<Comic> comicsDelUsuario(Long idUsuario) {
-		List<Comic> comics = new ArrayList<Comic>();
-		final Session session = sessionFactory.getCurrentSession();
-		
-		@SuppressWarnings("unchecked")
-		List<UsuarioComic> usuarioComics = session.createCriteria(UsuarioComic.class).add(Restrictions.eq("usuario.id", idUsuario)).list();
-		
-		if ( usuarioComics.size() > 0 ) {
-			for (UsuarioComic usuarioComic : usuarioComics) {
-				comics.add(usuarioComic.getComic());
-			}
-		}
-		
-		return comics;
-	}
-
-	@Override
 	public UsuarioComic consultarUsuarioComic(Long idUsuario, Long idComic) {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		@SuppressWarnings("unchecked")
 		List<UsuarioComic> usuarioComics = session.createCriteria(UsuarioComic.class)
 											.add(Restrictions.and(	Restrictions.eq("usuario.id", idUsuario),
-																	Restrictions.eq("comic.id", idComic))).list();
+																	Restrictions.eq("comic.id", idComic)))
+											.add(Restrictions.eq("siguiendoActualmente", true)).list();
 		if ( usuarioComics.size() < 1 ) {
 			return null;
 		} else {
 			return usuarioComics.get(0);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UsuarioComic> listarUsuarioComicsSiguiendoActualmente(Long idUsuario) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(UsuarioComic.class).add(Restrictions.and(	Restrictions.eq("usuario.id", idUsuario),
+																				Restrictions.eq("siguiendoActualmente", true))).list();
+	}
+
+	@Override
+	public UsuarioComic buscarUsuarioComic(Long id) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (UsuarioComic) session.createCriteria(UsuarioComic.class).add(Restrictions.eq("id", id)).uniqueResult();
 	}
 }

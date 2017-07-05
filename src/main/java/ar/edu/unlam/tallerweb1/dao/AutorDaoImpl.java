@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Autor;
+import ar.edu.unlam.tallerweb1.modelo.Comic;
 
 @Service("autorDao")
 public class AutorDaoImpl implements AutorDao {
@@ -24,6 +25,14 @@ public class AutorDaoImpl implements AutorDao {
 				.add(Restrictions.eq("id", id)).uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Comic> listarComicsPorAutor(Long idAutor) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Comic.class)
+				.add(Restrictions.eq("autor.id", idAutor)).list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Autor> listarAutores() {
@@ -42,4 +51,5 @@ public class AutorDaoImpl implements AutorDao {
 		final Session session = sessionFactory.getCurrentSession();
 		session.update(autor);
 	}
+
 }

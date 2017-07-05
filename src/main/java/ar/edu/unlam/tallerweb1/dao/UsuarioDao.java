@@ -15,5 +15,7 @@ public interface UsuarioDao {
 	Usuario obtenerUsuarioPorMail(String email);
 	
 	void guardarUsuario(Usuario usuario);
+	
+	List<Usuario> obtenerTodosLosUsuariosRegistrados();
 
 }

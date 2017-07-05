@@ -4,10 +4,14 @@
 	<body>
 		<%@include file='homeModalVerComic.jsp' %>
 		<%@include file='../../includes/parteSuperior.jsp' %>
+		<div class="jumbotron jarvis-bg">
+			<div class="container">
+				<h1><span class="white">Comics de ${usuario.nombre }</span></h1>
+			</div>
+		</div>
 		<div class = "container">
 			<%@include file='../../includes/alerta.jsp' %>
 			<div class="row">
-				<h2>Mis comics</h2>
 				<c:choose>
 					<c:when test="${not empty usuarioComics}">
 						<c:forEach items="${usuarioComics}" var="usuarioComic">
@@ -55,9 +59,6 @@
 				</c:choose>
 			</div>
 			<hr>
-			<div class="row">
-				<h2>Sugerencias</h2>
-			</div>
 		</div>
 		
 <%@include file='../../includes/pie.jsp' %>

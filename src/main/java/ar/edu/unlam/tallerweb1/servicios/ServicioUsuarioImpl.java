@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -49,5 +50,15 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		usuarioDao.guardarUsuario(usuario);
 
 		return usuario;
+	}
+
+	@Override
+	public List<Usuario> listarTodosLosUsuarios() {
+		return usuarioDao.obtenerTodosLosUsuariosRegistrados();
+	}
+
+	@Override
+	public Usuario buscarUsuario(Long idUsuario) {
+		return usuarioDao.obtenerUsuarioPorId(idUsuario);
 	}
 }
