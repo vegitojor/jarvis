@@ -33,6 +33,30 @@ public class ControladorComic {
 	private ServicioColeccion servicioColeccion;
 	@Inject
 	private ServicioComic servicioComic;
+	
+	public ServicioAutor getServicioAutor() {
+		return servicioAutor;
+	}
+
+	public void setServicioAutor(ServicioAutor servicioAutor) {
+		this.servicioAutor = servicioAutor;
+	}
+
+	public ServicioColeccion getServicioColeccion() {
+		return servicioColeccion;
+	}
+
+	public void setServicioColeccion(ServicioColeccion servicioColeccion) {
+		this.servicioColeccion = servicioColeccion;
+	}
+
+	public ServicioComic getServicioComic() {
+		return servicioComic;
+	}
+
+	public void setServicioComic(ServicioComic servicioComic) {
+		this.servicioComic = servicioComic;
+	}
 
 	@RequestMapping ("/comic")
 	public ModelAndView verComic (){
@@ -77,6 +101,8 @@ public class ControladorComic {
 		}
 		return new ModelAndView("redirect:/login");
 	}
+
+
 
 	@RequestMapping("/editar-comic")
 	public ModelAndView editarComic(@RequestParam (value="comic") Long idComic, HttpServletRequest request){

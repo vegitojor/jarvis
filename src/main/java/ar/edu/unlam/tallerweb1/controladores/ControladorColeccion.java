@@ -29,10 +29,36 @@ public class ControladorColeccion {
 
 	@Inject
 	private ServicioColeccion servicioColeccion;
+	
+
 	@Inject
 	private ServicioEditorial servicioEditorial;
 	@Inject
 	private ServicioFormato servicioFormato;
+	
+	public ServicioColeccion getServicioColeccion() {
+		return servicioColeccion;
+	}
+
+	public void setServicioColeccion(ServicioColeccion servicioColeccion) {
+		this.servicioColeccion = servicioColeccion;
+	}
+
+	public ServicioEditorial getServicioEditorial() {
+		return servicioEditorial;
+	}
+
+	public void setServicioEditorial(ServicioEditorial servicioEditorial) {
+		this.servicioEditorial = servicioEditorial;
+	}
+
+	public ServicioFormato getServicioFormato() {
+		return servicioFormato;
+	}
+
+	public void setServicioFormato(ServicioFormato servicioFormato) {
+		this.servicioFormato = servicioFormato;
+	}
 
 	@RequestMapping("/coleccion-{nombreColeccion}")
 	public ModelAndView mostrarColeccion(@PathVariable ("nombreColeccion") String nombreColeccion){
@@ -83,7 +109,7 @@ public class ControladorColeccion {
 				ModelMap modelo = new ModelMap();
 				modelo.put("editoriales", servicioEditorial.listarEditoriales());
 				modelo.put("formatos", servicioFormato.listarFormatos());
-
+			
 				return new ModelAndView("formularioColeccion", modelo);
 			} else {
 				return new ModelAndView("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");

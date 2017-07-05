@@ -46,4 +46,14 @@ public class ServicioEditorialImpl implements ServicioEditorial {
 		Editorial editorial = editorialDao.buscarEditorial(id);
 		editorial.setActivo(activo);
 	}
+
+	public EditorialDao getEditorialDao() {
+		return editorialDao;
+	}
+
+	public void setEditorialDao(EditorialDao editorialDao) {
+		this.editorialDao = editorialDao;
+	}
+	
+	
 }
