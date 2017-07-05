@@ -10,5 +10,7 @@ public interface ServicioUsuario {
 	
 	Usuario obtenerUsuarioPorMail(String email);
 	
+	Usuario buscarUsuario (Long idUsuario);
+	
 	public List<Usuario> listarTodosLosUsuarios();
 }

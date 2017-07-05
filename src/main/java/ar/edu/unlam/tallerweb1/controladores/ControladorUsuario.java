@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPais;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioComic;
 
 @Controller
 public class ControladorUsuario {
@@ -21,6 +22,8 @@ public class ControladorUsuario {
 	private ServicioPais servicioPais;
 	@Inject
 	private ServicioUsuario servicioUsuario;
+	@Inject
+	private ServicioUsuarioComic servicioUsuarioComic;
 
 	@RequestMapping(path = "/registro-usuario", method = RequestMethod.GET)
 	public ModelAndView irARegistroUsuario() {
@@ -66,5 +69,14 @@ public class ControladorUsuario {
 		ModelMap modelo = new ModelMap();
 		modelo.put("usuarios", servicioUsuario.listarTodosLosUsuarios());
 		return new ModelAndView ("comunidadUsuarios", modelo);
+	}
+	
+	@RequestMapping("/comunidad-vista-usuario")
+	public ModelAndView verUsuario(@RequestParam (value="usuario") Long idUsuario){
+		ModelMap modelo = new ModelMap();
+		Usuario usuario = servicioUsuario.buscarUsuario(idUsuario);
+		modelo.put("usuarioComics", servicioUsuarioComic.listarUsuarioComics(idUsuario));
+		modelo.put("usuario", usuario);
+		return new ModelAndView ("usuarioVistaExterna", modelo);
 	}
 }
