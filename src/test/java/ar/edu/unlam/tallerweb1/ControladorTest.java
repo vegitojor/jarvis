@@ -111,7 +111,7 @@ import javax.servlet.http.HttpSession;
 		
 		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/login");
 	}*/
-	/*
+	
 	@Test
 	public void sePruebaControladorLoginVerTodasLasColecciones(){
 		ModelMap modelo = new ModelMap();
@@ -138,10 +138,13 @@ import javax.servlet.http.HttpSession;
 		when(servicioEditorialFake.listarEditoriales()).thenReturn(listaEditoriales);
 		when(servicioFormatoFake.listarFormatos()).thenReturn(listaFormatos);
 		
+		controladorColeccionFake.setServicioColeccion(servicioColeccionFake);
+		controladorColeccionFake.setServicioEditorial(servicioEditorialFake);
+		controladorColeccionFake.setServicioFormato(servicioFormatoFake);
 		ModelAndView miVista = controladorColeccionFake.verTodasLasColecciones(nombre, idEditorial, idFormato);
 		
 		assertThat(miVista.getViewName()).isEqualTo("colecciones");	
 		
-	}*/
+	}
 
 }
