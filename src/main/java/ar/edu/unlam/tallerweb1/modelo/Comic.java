@@ -19,8 +19,8 @@ public class Comic {
 	private String numero;
 	private String isbn;
 	private Timestamp fechaPublicacion;
-	private String pvp;
-	private String cantidadDePaginas;
+	private Double pvp;
+	private Integer cantidadDePaginas;
 	private String pathImagen;
 	
 	@ManyToOne ( cascade = CascadeType.ALL)
@@ -54,16 +54,16 @@ public class Comic {
 	public void setFechaPublicacion(Timestamp fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-	public String getPvp() {
+	public Double getPvp() {
 		return pvp;
 	}
-	public void setPvp(String pvp) {
+	public void setPvp(Double pvp) {
 		this.pvp = pvp;
 	}
-	public String getCantidadDePaginas() {
+	public Integer getCantidadDePaginas() {
 		return cantidadDePaginas;
 	}
-	public void setCantidadDePaginas(String cantidadDePaginas) {
+	public void setCantidadDePaginas(Integer cantidadDePaginas) {
 		this.cantidadDePaginas = cantidadDePaginas;
 	}
 	public String getPathImagen() {
