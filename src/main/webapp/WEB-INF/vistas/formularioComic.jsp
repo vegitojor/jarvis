@@ -46,11 +46,11 @@
 							</div>
 							<div class="form-group">
 								<label for="cantidadDePaginas">Cantidad de p&aacute;ginas</label>
-								<input type="text" class="form-control" name="cantidadDePaginas" id="cantidadDePaginas" placeholder="Cantidad de p&aacute;ginas" required="required" value="<c:out value="${comic.cantidadDePaginas}"/>"/>
+								<input type="number" class="form-control" name="cantidadDePaginas" id="cantidadDePaginas" placeholder="Cantidad de p&aacute;ginas" required="required" value="<c:out value="${comic.cantidadDePaginas}"/>"/>
 							</div>
 							<div class="form-group">
 								<label for="pvp">PVP</label>
-								<input type="text" class="form-control" name="pvp" id="pvp" placeholder="PVP" required="required" value="<c:out value="${comic.pvp}"/>"/>
+								<input type="number" class="form-control" name="pvp" id="pvp" placeholder="PVP" required="required" step="any" value="<c:out value="${comic.pvp}"/>"/>
 							</div>
 							<div class="form-group">
 								<label for="imagenFile">Imagen</label>

@@ -35,13 +35,6 @@ public class Coleccion {
 	private Boolean enCurso;
 	private String volumen;
     
-	//@ManyToMany(cascade=CascadeType.ALL, mappedBy="colecciones")  
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_coleccion", 
-	joinColumns = @JoinColumn(name = "usuario_id"), 
-	inverseJoinColumns = @JoinColumn(name = "coleccion_id"))
-    private List<Usuario> usuarios = new ArrayList();
-	
 	public Long getId() {
 		return id;
 	}
@@ -109,13 +102,5 @@ public class Coleccion {
 	
 	public void setVolumen(String volumen) {
 		this.volumen = volumen;
-	}
-	
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
 	}
 }
