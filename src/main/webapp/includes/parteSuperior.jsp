@@ -46,9 +46,9 @@
 						</li>
 					</c:when>
 				</c:choose>
-				<li><a href="comunidad"><strong>Comunidad</strong></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="comunidad"><span class="glyphicon glyphicon-link"></span>&nbsp;Comunidad</a></li>
 				<!-- MOSTRAMOS LOS DATOS DEL NAVBAR DEPENDIENDO DEL USUARIO EN SESSION. SI NO ESTÁ LOGUEADO, SE MUESTRA EL LINK AL LOGIN -->
 				<c:choose>
 					<c:when test="${not empty usuario}">

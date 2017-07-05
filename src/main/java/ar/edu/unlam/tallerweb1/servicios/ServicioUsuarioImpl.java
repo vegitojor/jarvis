@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,5 +62,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public Usuario buscarUsuario(Long idUsuario) {
 		return usuarioDao.obtenerUsuarioPorId(idUsuario);
+	}
+
+	@Override
+	public List<Usuario> listarUsuariosComunidad(Long idUsuario) {
+		Criterion criterion = Restrictions.ne("administrador", true);
+		if(idUsuario != null){
+			criterion = Restrictions.and(criterion, Restrictions.ne("id", idUsuario));
+		}
+		return usuarioDao.obtenerUsuarioConCriterion(criterion);
 	}
 }
