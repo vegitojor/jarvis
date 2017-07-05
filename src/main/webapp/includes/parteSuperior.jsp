@@ -33,6 +33,7 @@
 		<div class="collapse navbar-collapse" id="jarvis-navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="colecciones">Colecciones</a></li>
+				<li><a href="autores">Autores</a></li>
 				<c:choose>
 					<c:when test="${not empty usuario.administrador and not usuario.administrador}">
 						<li class="dropdown">
