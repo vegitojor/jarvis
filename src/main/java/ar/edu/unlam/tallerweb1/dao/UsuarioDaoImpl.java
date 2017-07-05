@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.Autor;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Service("usuarioDao")
@@ -52,5 +53,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public List<Usuario> obtenerUsuarioConCriterion() {
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Usuario> obtenerTodosLosUsuariosRegistrados() {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Usuario.class).list();
 	}
 }

@@ -60,4 +60,11 @@ public class ControladorUsuario {
     		return "false";
     	}
 	}
+	
+	@RequestMapping("/comunidad")
+	public ModelAndView listaDeUsuarios(){
+		ModelMap modelo = new ModelMap();
+		modelo.put("usuarios", servicioUsuario.listarTodosLosUsuarios());
+		return new ModelAndView ("comunidadUsuarios", modelo);
+	}
 }

@@ -2,12 +2,14 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.dao.AutorDao;
 import ar.edu.unlam.tallerweb1.dao.PaisDao;
 import ar.edu.unlam.tallerweb1.dao.UsuarioDao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -49,5 +51,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		usuarioDao.guardarUsuario(usuario);
 
 		return usuario;
+	}
+
+	@Override
+	public List<Usuario> listarTodosLosUsuarios() {
+		return usuarioDao.obtenerTodosLosUsuariosRegistrados();
 	}
 }
