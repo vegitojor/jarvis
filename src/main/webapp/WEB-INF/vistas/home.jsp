@@ -41,7 +41,8 @@
 												fechaPublicacion="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.comic.fechaPublicacion}"/>"
 												isbn="<c:out value="${usuarioComic.comic.isbn}"/>"
 												cantidadDePaginas="<c:out value="${usuarioComic.comic.cantidadDePaginas}"/>"
-												pvp="<c:out value="${usuarioComic.comic.pvp}"/>">Ver m&aacute;s
+												pvp="<c:out value="${usuarioComic.comic.pvp}"/>"
+												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>">Ver m&aacute;s
 											</button>
 										</div>
 									</div>

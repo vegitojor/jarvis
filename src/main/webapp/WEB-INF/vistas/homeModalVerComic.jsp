@@ -25,8 +25,13 @@
 							<strong>I.S.B.N.: </strong>&nbsp;<span id="comicISBN"></span>
 						</p>
 						<p>
-							<strong>P.V.P.: </strong>&nbsp;<span id="comicPVP"></span>
+							<strong>P.V.P.: </strong>$&nbsp;<span id="comicPVP"></span>
 						</p>
+						<hr>
+						<p>
+							<strong>Adquirido el <span id="usuarioComicFecha"></span></strong>
+						</p>
+						<hr>
 					</div>
 				</div>
 			</div>
