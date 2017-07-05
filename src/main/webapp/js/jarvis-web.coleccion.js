@@ -9,6 +9,7 @@ $(document).ready(function() {
 	
 	$(".btn-ver-mas").bind("click", function(){
 		// OBTENEMOS LOS DATOS DESDE LOS ATRIBUTOS DEL BOTON
+		var idComic = $(this).attr("idComic");
 		var pathImagen = $(this).attr("pathImagen");
 		var titulo = $(this).attr("titulo");
 		var fechaPublicacion = $(this).attr("fechaPublicacion");
@@ -19,6 +20,7 @@ $(document).ready(function() {
 		
 		vaciarDatosModalComic();
 		
+		$("#idComic").val(idComic);
 		$("#comicImagen").attr('src', pathImagen);
 		$("#comicTitulo").html(titulo);
 		$("#comicFechaPublicacion").html(fechaPublicacion);
@@ -27,11 +29,15 @@ $(document).ready(function() {
 		$("#comicISBN").html(isbn);
 		$("#comicPVP").html(pvp);
 		
+		// VALIDAMOS LOS BOTONES QUE SE DEBEN MOSTRAR AL USUARIO
+		validarBotonesParaElUsuario();
+		
 		$("#modalComic").modal("show");
 	});
 });
 
 function vaciarDatosModalComic() {
+	$("#idComic").val("");
 	$("#comicTitulo").html("");
 	$("#comicFechaPublicacion").html("");
 	$("#comicAutor").html("");
@@ -39,4 +45,39 @@ function vaciarDatosModalComic() {
 	$("#comicISBN").html("");
 	$("#comicPVP").html("");
 	$("#comicImagen").attr('src', '');
+	
+	$("#saveUsuarioComic").removeClass("btn-primary");
+	$("#saveUsuarioComic").removeClass("btn-danger");
+	
+	$("#icono").removeClass("glyphicon-list-alt");
+	$("#icono").removeClass("glyphicon-trash");
+}
+
+function validarBotonesParaElUsuario() {
+	if ( $("#idUsuario")!="" ) {
+
+		$.ajax({
+			url:"consultar-usuario-comic",
+			method: "POST",
+			data:"usuario="+$("#idUsuario").val()+"&comic="+$("#idComic").val(),
+			dataType: "json",
+			success: function(exists){
+				if (exists==true || exists=="true"){
+					$("#loTengo").show();
+					$("#icono").addClass("glyphicon-trash");
+					$("#siguiendoActualmente").val(false)
+					$("#saveUsuarioComic").addClass("btn-danger");
+					$("#textoBoton").text("Quitar de la lista");
+				} else {
+					$("#loTengo").hide();
+					$("#siguiendoActualmente").val(true)
+					$("#icono").addClass("glyphicon-list-alt");
+					$("#saveUsuarioComic").addClass("btn-primary");
+					$("#textoBoton").text("Marcar comic");
+				}
+			}
+
+		});
+
+	}
 }
