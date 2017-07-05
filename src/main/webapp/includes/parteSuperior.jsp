@@ -46,6 +46,7 @@
 						</li>
 					</c:when>
 				</c:choose>
+				<li><a href="comunidad"><strong>Comunidad</strong></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<!-- MOSTRAMOS LOS DATOS DEL NAVBAR DEPENDIENDO DEL USUARIO EN SESSION. SI NO ESTÁ LOGUEADO, SE MUESTRA EL LINK AL LOGIN -->
