@@ -41,7 +41,7 @@ public class ServicioComicImpl implements ServicioComic {
 
 	@Override
 	public Comic guardarComic(Long id, String numero, Long idColeccion, Long idAutor, String fechaPublicacion, String isbn,
-			String cantidadDePaginas, String pvp, String pathImagen) {
+			Integer cantidadDePaginas, Double pvp, String pathImagen) {
 		
 		Comic comic = null;
 		Date fechaPublicacionDate = FechaHelper.convertirFechaADate(fechaPublicacion);
@@ -61,10 +61,10 @@ public class ServicioComicImpl implements ServicioComic {
 		if ( isbn!=null && isbn!="" ) {
 			comic.setIsbn(isbn);
 		}
-		if ( cantidadDePaginas!=null && cantidadDePaginas!="" ) {
+		if ( cantidadDePaginas!=null ) {
 			comic.setCantidadDePaginas(cantidadDePaginas);
 		}
-		if ( pvp!=null && pvp!="" ) {
+		if ( pvp!=null ) {
 			comic.setPvp(pvp);
 		}
 		if ( pathImagen!=null && pathImagen!="" ) {

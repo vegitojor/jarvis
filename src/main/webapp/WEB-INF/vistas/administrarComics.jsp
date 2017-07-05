@@ -23,7 +23,7 @@
 									<th>Autor</th>
 									<th>ISBN</th>
 									<th>Fecha de publicaci&oacute;n</th>
-									<th>PVP</th>
+									<th>PVP - <small>Precio de venta al p&uacute;blico</small></th>
 									<th>Cantidad de p&aacute;ginas</th>
 									<th>Acciones</th>
 								</tr>
@@ -37,7 +37,7 @@
 										<td><c:out value="${comic.autor.nombre}"/>&nbsp;</td>
 										<td><c:out value="${comic.isbn}"/></td>
 										<td><fmt:formatDate pattern = "dd/MM/yyyy" value="${comic.fechaPublicacion}"/></td>
-										<td><c:out value="${comic.pvp}"/></td>
+										<td>$ <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${comic.pvp}"/></td>
 										<td><c:out value="${comic.cantidadDePaginas}"/></td>
 										<td>
 											<a href="editar-comic?comic=<c:out value="${comic.id}"/>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Editar</a>
