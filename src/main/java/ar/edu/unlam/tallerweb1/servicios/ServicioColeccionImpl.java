@@ -110,4 +110,10 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 		
 		return modelo;
 	}
+
+	@Override
+	public List<Coleccion> listarColeccionesPorEditorial(Long idEditorial) {
+		Criterion criterion = Restrictions.eq("editorial.id", idEditorial);
+		return coleccionDao.listarColeccionesPorCriterion(criterion);
+	}
 }
