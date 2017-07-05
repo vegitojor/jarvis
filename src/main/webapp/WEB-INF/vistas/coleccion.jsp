@@ -46,6 +46,7 @@
 											<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comic.cantidadDePaginas}"/></p>
 											<br>
 											<button class="btn btn-info btn-block btn-ver-mas"
+												idComic="<c:out value="${comic.id}"/>"
 												titulo="<c:out value="${comic.coleccion.nombre}"/> - Nro. <c:out value="${comic.numero}"/>"
 												editorial="<c:out value="${comic.coleccion.editorial.nombre}"/>"
 												formato="<c:out value="${comic.coleccion.formato.nombre}"/>"

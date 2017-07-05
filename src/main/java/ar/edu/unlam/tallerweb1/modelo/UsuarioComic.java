@@ -23,7 +23,7 @@ public class UsuarioComic {
 	@ManyToOne ( cascade = CascadeType.ALL)
 	@JoinColumn( name="id_usuario" )
 	private Usuario usuario;
-	private Timestamp fechaCreacion;
+	private Timestamp fechaRegistro;
 	private Boolean siguiendoActualmente;
 	
 	public Long getId() {
@@ -50,12 +50,12 @@ public class UsuarioComic {
 		this.usuario = usuario;
 	}
 	
-	public Timestamp getFechaCreacion() {
-		return fechaCreacion;
+	public Timestamp getFechaRegistro() {
+		return fechaRegistro;
 	}
-	
-	public void setFechaCreacion(Timestamp fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
+
+	public void setFechaRegistro(Timestamp fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public Boolean getSiguiendoActualmente() {
