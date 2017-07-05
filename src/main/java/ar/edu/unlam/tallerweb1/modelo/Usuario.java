@@ -32,15 +32,6 @@ public class Usuario {
 	@JoinColumn( name="id_pais" )
 	private Pais pais;
 	
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="usuarios")  
-	private List<Coleccion> colecciones = new ArrayList();
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "usuario_comic", 
-	joinColumns = @JoinColumn(name = "usuario_id"), 
-	inverseJoinColumns = @JoinColumn(name = "comic_id"))
-	private List<Comic> comics;
-	
 	private Boolean administrador;
 	
 	public Long getId() {
@@ -102,21 +93,5 @@ public class Usuario {
 	@Transient
 	public Boolean isAdministrador() {
 		return administrador;
-	}
-	
-	public List<Coleccion> getColecciones() {
-		return colecciones;
-	}
-
-	public void setColecciones(List<Coleccion> colecciones) {
-		this.colecciones = colecciones;
-	}
-
-	public List<Comic> getComics() {
-		return comics;
-	}
-
-	public void setComics(List<Comic> comics) {
-		this.comics = comics;
 	}
 }

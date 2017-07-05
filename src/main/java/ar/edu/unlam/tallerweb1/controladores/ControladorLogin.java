@@ -80,19 +80,16 @@ public class ControladorLogin {
 		return new ModelAndView("login", modelo);
 	}
 
-	@SuppressWarnings("unused")
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-		//usuario.setColecciones(servicio);
-		//List<Coleccion> colecciones = usuario.getColecciones();
 		
 		if ( usuario != null ){
-			//modelo.put("coleccionesDeUsuario", colecciones);
 			modelo.put("comicsDeUsuario", servicioComic.listarComicsDeUsuario( usuario.getId() ));
 			return new ModelAndView("home", modelo);
 		}
+		
 		return new ModelAndView("redirect:/login");
 	}
 	
