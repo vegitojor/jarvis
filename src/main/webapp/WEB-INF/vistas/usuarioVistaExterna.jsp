@@ -6,7 +6,7 @@
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
-				<h1><span class="white">Comics de ${usuario.nombre }</span></h1>
+				<h1><span class="white">Comics de <c:out value="${usuarioComunidad.nombre}"/></span></h1>
 			</div>
 		</div>
 		<div class = "container">
@@ -54,7 +54,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<p class="text-center">A&uacute;n no se han cargado los comics de la colecci&oacute;n</p>
+						<p class="text-center"><c:out value="${usuarioComunidad.nombre}"/> a&uacute;n no ha cargado comics</p>
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -83,7 +83,8 @@ public class ControladorUsuario {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = servicioUsuario.buscarUsuario(idUsuario);
 		modelo.put("usuarioComics", servicioUsuarioComic.listarUsuarioComics(idUsuario));
-		modelo.put("usuario", usuario);
+		modelo.put("usuarioComunidad", usuario);
+		modelo.put("titulo", usuario.getNombre());
 		return new ModelAndView ("usuarioVistaExterna", modelo);
 	}
 }
