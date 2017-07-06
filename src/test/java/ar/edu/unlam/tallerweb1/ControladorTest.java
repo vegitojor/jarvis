@@ -7,11 +7,14 @@ import org.mockito.Mockito;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.controladores.ControladorAutor;
 import ar.edu.unlam.tallerweb1.controladores.ControladorColeccion;
 import ar.edu.unlam.tallerweb1.controladores.ControladorComic;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.dao.EditorialDao;
+import ar.edu.unlam.tallerweb1.modelo.Autor;
+import ar.edu.unlam.tallerweb1.modelo.Comic;
 import ar.edu.unlam.tallerweb1.modelo.Editorial;
 import ar.edu.unlam.tallerweb1.modelo.Formato;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -33,10 +36,11 @@ import static org.assertj.core.api.Assertions.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-;public class ControladorTest {
+public class ControladorTest {
 
 	@Test
 	public void sePruebaControladorUsuarioMetodovalidarLoginCorrecto() {
+//		ControladorUsuario controladorUsuarioMock = new ControladorUsuario();
 		Usuario usuarioFake = mock(Usuario.class);
 		ServicioLogin servicioLoginFake = mock(ServicioLogin.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
@@ -144,6 +148,46 @@ import javax.servlet.http.HttpSession;
 		
 		assertThat(miVista.getViewName()).isEqualTo("colecciones");	
 		
+	}
+	
+	@Test
+	public void sePruebaQueSePuedanListarTodosLosAutores(){
+		Autor a1 = mock(Autor.class);
+		Autor a2 = mock(Autor.class);
+		List<Autor> listaAutores = new ArrayList<Autor>();
+		listaAutores.add(a1);
+		listaAutores.add(a2);
+		
+		ControladorAutor controladorAutorFake = mock(ControladorAutor.class);
+		ServicioAutor servicioAutorFake = mock(ServicioAutor.class);
+		
+		when(servicioAutorFake.listarAutores()).thenReturn(listaAutores);
+		
+		controladorAutorFake.setServicioAutor(servicioAutorFake);
+		ModelAndView miVista = controladorAutorFake.verListaAutores();
+		
+		assertThat(miVista.getViewName()).isEqualTo("autores");
+	}
+	
+	@Test
+	public void sePruebaQueSePuedanListarTodosLosComicsDeUnAutor(){
+		Long idAutor = 1L;
+		Comic c1 = mock(Comic.class);
+		Comic c2 = mock(Comic.class);
+		List<Comic> listaComicsDeAutor = new ArrayList<Comic>();
+		listaComicsDeAutor.add(c1);
+		listaComicsDeAutor.add(c2);
+		
+		
+		ControladorAutor controladorAutorFake = mock(ControladorAutor.class);
+		ServicioAutor servicioAutorFake = mock(ServicioAutor.class);
+		
+		when(servicioAutorFake.listarComicsPorAutor(idAutor)).thenReturn(listaComicsDeAutor);
+		
+		controladorAutorFake.setServicioAutor(servicioAutorFake);
+		ModelAndView miVista = controladorAutorFake.verListaDeComicsPorAutor(idAutor);
+		
+		assertThat(miVista.getViewName()).isEqualTo("comicsDeAutor");
 	}
 
 }
