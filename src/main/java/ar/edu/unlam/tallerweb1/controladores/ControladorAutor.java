@@ -25,7 +25,7 @@ public class ControladorAutor {
 	}
 	
 	@RequestMapping ("/comics-de-autor")
-	public ModelAndView verListaDeComicsPorAutor(@RequestParam (value= "idAutor") Long idAutor){
+	public ModelAndView verListaDeComicsPorAutor(@RequestParam (value="autor") Long idAutor){
 		ModelMap modelo = new ModelMap();
 		Autor autor = servicioAutor.buscarAutor(idAutor);
 		modelo.put("comics", servicioAutor.listarComicsPorAutor(idAutor));
