@@ -57,11 +57,10 @@ import javax.servlet.http.HttpSession;
 		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/home");   
 		
 	}
-	/*
-	@Test
+		@Test
 	public void queUnUsuarioNoAdministradorNoPuedaCargarColecciones() {
 		Usuario usuarioFake = mock(Usuario.class);
-		ControladorColeccion controladorColleccionFake = mock ( ControladorColeccion.class);
+		ControladorColeccion controladorColleccionFake = new ControladorColeccion();
 		List<Formato> listaFormatosFake = new ArrayList<Formato>();
 		List<Editorial> listaEditorialesFake = new ArrayList<Editorial>();
 		ServicioColeccion servicioColeccionFake = mock(ServicioColeccion.class);
@@ -73,7 +72,7 @@ import javax.servlet.http.HttpSession;
 		
 	
 		when(request.getSession()).thenReturn(session);
-		when(usuarioFake.isAdministrador()).thenReturn(true);
+		when(usuarioFake.isAdministrador()).thenReturn(false);
 		when(session.getAttribute("usuario")).thenReturn(usuarioFake);
 		when(servicioEditorialFake.listarEditoriales()).thenReturn(listaEditorialesFake);
 		when(servicioFormatoFake.listarFormatos()).thenReturn(listaFormatosFake);
@@ -85,32 +84,32 @@ import javax.servlet.http.HttpSession;
 		
 		ModelAndView modeloVista = controladorColleccionFake.nuevaColeccion(request);
 		
-		assertThat(modeloVista.getViewName()).isEqualTo("formularioColeccion");   
+		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/home?mensaje=No tienes permiso para acceder a esa informacion.");   
 		
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void queUnUsuarioAdminPuedeAgregarUnComic(){
 		Usuario usuarioFake =mock(Usuario.class);
-		ControladorComic controladorComicFake = mock(ControladorComic.class);
+		ControladorComic controladorComicFake = new ControladorComic();
 		HttpServletRequest requestFake = mock(HttpServletRequest.class);
 		HttpSession sessionFake = mock(HttpSession.class);
 		ServicioColeccion servicioColeccionFake = mock(ServicioColeccion.class);
 		ServicioAutor servicioAutorFake = mock(ServicioAutor.class);
 		ServicioComic servicioComicFake = mock(ServicioComic.class);
 		
-		usuarioFake.setAdministrador(false);
-		sessionFake.setAttribute("usuario", usuarioFake);
+
 		when(requestFake.getSession()).thenReturn(sessionFake);
-		
+		when(usuarioFake.isAdministrador()).thenReturn(true);
+		when(sessionFake.getAttribute("usuario")).thenReturn(usuarioFake);
 		
 		controladorComicFake.setServicioAutor(servicioAutorFake);
 		controladorComicFake.setServicioColeccion(servicioColeccionFake);
 		controladorComicFake.setServicioComic(servicioComicFake);
 		ModelAndView modeloVista = controladorComicFake.nuevoComic(requestFake);
 		
-		assertThat(modeloVista.getViewName()).isEqualTo("redirect:/login");
-	}*/
+		assertThat(modeloVista.getViewName()).isEqualTo("formularioComic");
+	}
 	
 	@Test
 	public void sePruebaControladorLoginVerTodasLasColecciones(){
@@ -129,7 +128,7 @@ import javax.servlet.http.HttpSession;
 		listaFormatos.add(f1);
 		listaFormatos.add(f2);
 		
-		ControladorColeccion controladorColeccionFake = mock(ControladorColeccion.class);
+		ControladorColeccion controladorColeccionFake = new ControladorColeccion();
 		ServicioColeccion servicioColeccionFake = mock(ServicioColeccion.class);
 		ServicioFormato servicioFormatoFake = mock(ServicioFormato.class);
 		ServicioEditorial servicioEditorialFake = mock(ServicioEditorial.class);
@@ -143,7 +142,7 @@ import javax.servlet.http.HttpSession;
 		controladorColeccionFake.setServicioFormato(servicioFormatoFake);
 		ModelAndView miVista = controladorColeccionFake.verTodasLasColecciones(nombre, idEditorial, idFormato);
 		
-		assertThat(miVista.getViewName()).isEqualTo("/colecciones");	
+		assertThat(miVista.getViewName()).isEqualTo("colecciones");	
 		
 	}
 
