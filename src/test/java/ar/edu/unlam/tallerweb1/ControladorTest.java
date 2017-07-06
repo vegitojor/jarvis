@@ -120,10 +120,10 @@ import javax.servlet.http.HttpSession;
 		Long idFormato = 1L;
 		Editorial e1 = mock(Editorial.class);
 		Editorial e2 = mock(Editorial.class);
-		List<Editorial> listaEditoriales = new ArrayList<Editorial>();
+		List<Editorial> listaEditoriales = new ArrayList<>();
 		Formato f1 = mock(Formato.class);
 		Formato f2 = mock(Formato.class);
-		List<Formato> listaFormatos =  new ArrayList<Formato>();
+		List<Formato> listaFormatos =  new ArrayList<>();
 		listaEditoriales.add(e1);
 		listaEditoriales.add(e2);
 		listaFormatos.add(f1);
@@ -143,7 +143,7 @@ import javax.servlet.http.HttpSession;
 		controladorColeccionFake.setServicioFormato(servicioFormatoFake);
 		ModelAndView miVista = controladorColeccionFake.verTodasLasColecciones(nombre, idEditorial, idFormato);
 		
-		assertThat(miVista.getViewName()).isEqualTo("colecciones");	
+		assertThat(miVista.getViewName()).isEqualTo("/colecciones");	
 		
 	}
 
