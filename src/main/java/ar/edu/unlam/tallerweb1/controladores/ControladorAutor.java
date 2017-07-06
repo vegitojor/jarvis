@@ -34,4 +34,9 @@ public class ControladorAutor {
 		return new ModelAndView ("comicsDeAutor", modelo);
 	}
 
+	public void setServicioAutor(ServicioAutor servicioAutor) {
+		this.servicioAutor = servicioAutor;
+		
+	}
+
 }
