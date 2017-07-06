@@ -24,12 +24,19 @@ $(document).ready(function() {
 		$("#comicCantidadDePaginas").html(cantidadDePaginas);
 		$("#comicISBN").html(isbn);
 		$("#comicPVP").html(pvp);
-		$("#usuarioComicFecha").text(usuarioComicFecha)
+		$("#usuarioComicFecha").text(usuarioComicFecha);
 
-		$("#modalComic").modal("show");
+		$("#usuarioComic").val(idUsuarioComic);
 
 		// CREAMOS UNA FUNCION PARA CARGAR TODOS LOS COMENTARIOS DE LA PUBLICACION
 		cargarComentarios( idUsuarioComic );
+
+		$("#btnEnviarComentario").unbind("click");
+		$("#btnEnviarComentario").bind("click", function(){
+			enviarComentario( idUsuarioComic );
+		});
+
+		$("#modalComic").modal("show");
 	});
 });
 
@@ -41,10 +48,10 @@ function vaciarDatosModalComic() {
 	$("#comicISBN").html("");
 	$("#comicPVP").html("");
 	$("#comicImagen").attr('src', '');
-	$("#usuarioComicFecha").text("")
+	$("#usuarioComicFecha").text("");
 
 	$("#usuarioComic").val("");
-
+	
 	$("#comentarios").hide();
 	$("#comentarios").empty();
 }
@@ -53,7 +60,7 @@ function cargarComentarios( idUsuarioComic ) {
 	$.getJSON( "obtener-comentarios-comic?usuarioComic="+idUsuarioComic, function( usuarioComicComentarios ) {
 		if ( usuarioComicComentarios.length > 0 ) {
 			$.each(usuarioComicComentarios, function(indice, comentario) {
-
+				
 				var _date = new Date(comentario.fecha)
 				// CALCULAMOS EL DIA
 				var dia = (_date.getDate()<10)?'0'+_date.getDate():_date.getDate();
@@ -64,20 +71,40 @@ function cargarComentarios( idUsuarioComic ) {
 				var hora = (_date.getHours()<10)?'0'+_date.getHours():_date.getHours();
 				var minutos = (_date.getMinutes()<10)?'0'+_date.getMinutes():_date.getMinutes();
 				var horaComentario = hora + ":" + minutos;
-
+				
 				var divComentario = " <div class='panel panel-default panel-comentario'> " +
-				" 	<div class='panel-body comentario'> " +
-				" 		<p><a href='comunidad-vista-usuario?usuario="+comentario.usuario.id+"'><strong>"+comentario.usuario.nombre+"</strong></a> - <small>El "+ diaComentario +" a las "+ horaComentario +" hs.</small></p> " +
-				"		<hr class='comentario-divider'>" +
-				" 		<p class='text'>"+comentario.comentario+"</p> " +
-				" 	</div> " +
-				" </div> " ;
-
+									" 	<div class='panel-body comentario'> " +
+									" 		<p><a href='comunidad-vista-usuario?usuario="+comentario.usuario.id+"'><strong>"+comentario.usuario.nombre+"</strong></a> - <small>El "+ diaComentario +" a las "+ horaComentario +" hs.</small></p> " +
+									"		<hr class='comentario-divider'>" +
+									" 		<p class='text'>"+comentario.comentario+"</p> " +
+									" 	</div> " +
+									" </div> " ;
+				
 				$("#comentarios").append(divComentario);
-
+				
 			});
-
+			
 			$("#comentarios").show();
 		}
 	});
+} 
+
+function enviarComentario( idUsuarioComic ) {
+	if ( $("#comentario").val() != "" ) {
+
+		$.ajax({
+			url: "guardar-comentario",
+			type: "POST",
+			contentType: "application/x-www-form-urlencoded;charset=ISO-8859-1",
+			data: 'usuarioComic='+idUsuarioComic+"&usuario="+$("#usuario").val()+"&comentario="+$("#comentario").val(),
+			success: function(){
+				$("#comentario").val("");
+				$("#modalComic").modal("hide");
+				$('.alert-info').html("<p>Tu comentario ha sido enviado</p>");
+				$('.alert-info').fadeIn();
+				setTimeout("$('.alert-info').fadeOut()","3000");
+				//bootbox.alert("Se envio el comentario");
+			}
+		});
+	}
 }

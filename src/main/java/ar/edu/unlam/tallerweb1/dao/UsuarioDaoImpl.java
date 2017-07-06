@@ -6,10 +6,10 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unlam.tallerweb1.modelo.Autor;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Service("usuarioDao")
@@ -50,9 +50,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.uniqueResult();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> obtenerUsuarioConCriterion() {
-		return null;
+	public List<Usuario> obtenerUsuarioConCriterion(Criterion criterion) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Usuario.class).add(criterion).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -60,5 +62,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public List<Usuario> obtenerTodosLosUsuariosRegistrados() {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Usuario.class).list();
+	}
+
+	@Override
+	public List<Usuario> obtenerUsuarioConCriterion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

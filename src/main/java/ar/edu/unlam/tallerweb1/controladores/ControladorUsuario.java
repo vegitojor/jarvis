@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -65,9 +66,15 @@ public class ControladorUsuario {
 	}
 	
 	@RequestMapping("/comunidad")
-	public ModelAndView listaDeUsuarios(){
+	public ModelAndView listaDeUsuarios(HttpServletRequest request){
 		ModelMap modelo = new ModelMap();
-		modelo.put("usuarios", servicioUsuario.listarTodosLosUsuarios());
+		Long idUsuario = null;
+		if(request.getSession().getAttribute("usuario") != null){
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
+			idUsuario = usuario.getId();
+		}
+		modelo.put("usuarios", servicioUsuario.listarUsuariosComunidad(idUsuario));
+		modelo.put("titulo", "Comunidad");
 		return new ModelAndView ("comunidadUsuarios", modelo);
 	}
 	
@@ -76,7 +83,8 @@ public class ControladorUsuario {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = servicioUsuario.buscarUsuario(idUsuario);
 		modelo.put("usuarioComics", servicioUsuarioComic.listarUsuarioComics(idUsuario));
-		modelo.put("usuario", usuario);
+		modelo.put("usuarioComunidad", usuario);
+		modelo.put("titulo", usuario.getNombre());
 		return new ModelAndView ("usuarioVistaExterna", modelo);
 	}
 }

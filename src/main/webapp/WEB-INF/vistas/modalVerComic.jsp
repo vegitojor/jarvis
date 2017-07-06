@@ -25,7 +25,7 @@
 							<strong>I.S.B.N.: </strong>&nbsp;<span id="comicISBN"></span>
 						</p>
 						<p>
-							<strong>P.V.P.: </strong>&nbsp;<span id="comicPVP"></span>
+							<strong>P.V.P.: </strong>$&nbsp;<span id="comicPVP"></span>
 						</p>
 						<c:choose>
 							<c:when test="${not empty usuario}">

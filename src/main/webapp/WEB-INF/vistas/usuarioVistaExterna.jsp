@@ -1,12 +1,12 @@
 <%@include file='../../includes/cabecera.jsp' %>
-		<script type="text/javascript" src="js/jarvis-web.home.js"></script>
+		<script type="text/javascript" src="js/jarvis-web.usuarioVistaExterna.js"></script>
 	</head>
 	<body>
-		<%@include file='homeModalVerComic.jsp' %>
+		<%@include file='usuarioVistaExternaModalVerComic.jsp' %>
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
-				<h1><span class="white">Comics de ${usuario.nombre }</span></h1>
+				<h1><span class="white">Comics de <c:out value="${usuarioComunidad.nombre}"/></span></h1>
 			</div>
 		</div>
 		<div class = "container">
@@ -45,7 +45,9 @@
 												fechaPublicacion="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.comic.fechaPublicacion}"/>"
 												isbn="<c:out value="${usuarioComic.comic.isbn}"/>"
 												cantidadDePaginas="<c:out value="${usuarioComic.comic.cantidadDePaginas}"/>"
-												pvp="<c:out value="${usuarioComic.comic.pvp}"/>">Ver m&aacute;s
+												pvp="<c:out value="${usuarioComic.comic.pvp}"/>"
+												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>"
+												idUsuarioComic="<c:out value="${usuarioComic.id}"/>">Ver m&aacute;s
 											</button>
 										</div>
 									</div>
@@ -54,7 +56,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<p class="text-center">A&uacute;n no se han cargado los comics de la colecci&oacute;n</p>
+						<p class="text-center"><c:out value="${usuarioComunidad.nombre}"/> a&uacute;n no ha cargado comics</p>
 					</c:otherwise>
 				</c:choose>
 			</div>

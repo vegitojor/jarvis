@@ -1,4 +1,4 @@
-<!-- Modal Comic -->
+<!-- Modal Comic - usuarioVistaExterna -->
 <div class="modal fade" id="modalComic">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -32,6 +32,18 @@
 							<strong>Adquirido el <span id="usuarioComicFecha"></span></strong>
 						</p>
 						<hr>
+						<c:if test="${not empty usuario}">
+							<div class="row box-nuevo-comentario">
+								<div class="col-sm-12">
+									<form id="enviar-comentario">
+										<input type="hidden" name="usuarioComic" id="usuarioComic" value=""/>
+										<input type="hidden" name="usuario" id="usuario" value="<c:out value="${usuario.id}"/>"/>
+										<textarea rows="3" class="form-control" name="comentario" id="comentario" placeholder="Env&iacute;a un comentario"></textarea>
+										<button type="button" id="btnEnviarComentario" class="btn btn-primary btn-block">Enviar</button>
+									</form>
+								</div>
+							</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="row" id="comentarios" style="display: none;">
