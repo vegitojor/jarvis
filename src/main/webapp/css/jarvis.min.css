@@ -19,6 +19,19 @@ h1, h2, h3, h4, h5 {
 	
 /* CLASES */
 
+.box-nuevo-comentario {
+	margin-top: 1em;
+}
+
+.comentario > .text {
+	font-size: 1.2em;
+}
+
+.comentario-divider {
+	margin-top: 0;
+	margin-bottom: 1em;	
+}
+
 .error {
 	font-weight: bold;
 	color: #dd0000;
@@ -32,6 +45,10 @@ h1, h2, h3, h4, h5 {
 	background-image: url(../img/index_bg.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.panel-comentario {
+	margin-bottom: 0;
 }
 
 .panel-usuario > .panel-body > h3,
@@ -83,8 +100,19 @@ h1, h2, h3, h4, h5 {
 
 /* ID'S */
 
+#comentarios {
+	margin-top: 1em;
+	padding-top: 1em;
+	width: 95%;
+	margin: auto;
+}
+
 #contenido {
 	margin-top: 50px;
+}
+
+#enviar-comentario > div > #comentario {
+	width: 100%;
 }
 
 #indexScreen {

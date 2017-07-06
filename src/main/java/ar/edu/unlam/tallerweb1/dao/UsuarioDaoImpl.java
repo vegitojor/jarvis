@@ -63,4 +63,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		final Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Usuario.class).list();
 	}
+
+	@Override
+	public List<Usuario> obtenerUsuarioConCriterion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

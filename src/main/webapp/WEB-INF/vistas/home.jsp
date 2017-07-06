@@ -42,7 +42,8 @@
 												isbn="<c:out value="${usuarioComic.comic.isbn}"/>"
 												cantidadDePaginas="<c:out value="${usuarioComic.comic.cantidadDePaginas}"/>"
 												pvp="<c:out value="${usuarioComic.comic.pvp}"/>"
-												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>">Ver m&aacute;s
+												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>"
+												idUsuarioComic="<c:out value="${usuarioComic.id}"/>">Ver m&aacute;s
 											</button>
 										</div>
 									</div>
@@ -56,9 +57,6 @@
 				</c:choose>
 			</div>
 			<hr>
-			<div class="row">
-				<h2>Sugerencias</h2>
-			</div>
 		</div>
 		
 <%@include file='../../includes/pie.jsp' %>

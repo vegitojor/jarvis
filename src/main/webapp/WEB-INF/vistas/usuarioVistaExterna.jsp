@@ -1,8 +1,8 @@
 <%@include file='../../includes/cabecera.jsp' %>
-		<script type="text/javascript" src="js/jarvis-web.home.js"></script>
+		<script type="text/javascript" src="js/jarvis-web.usuarioVistaExterna.js"></script>
 	</head>
 	<body>
-		<%@include file='homeModalVerComic.jsp' %>
+		<%@include file='usuarioVistaExternaModalVerComic.jsp' %>
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class="jumbotron jarvis-bg">
 			<div class="container">
@@ -45,7 +45,9 @@
 												fechaPublicacion="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.comic.fechaPublicacion}"/>"
 												isbn="<c:out value="${usuarioComic.comic.isbn}"/>"
 												cantidadDePaginas="<c:out value="${usuarioComic.comic.cantidadDePaginas}"/>"
-												pvp="<c:out value="${usuarioComic.comic.pvp}"/>">Ver m&aacute;s
+												pvp="<c:out value="${usuarioComic.comic.pvp}"/>"
+												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>"
+												idUsuarioComic="<c:out value="${usuarioComic.id}"/>">Ver m&aacute;s
 											</button>
 										</div>
 									</div>
