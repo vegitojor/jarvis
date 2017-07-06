@@ -40,7 +40,7 @@ public class ControladorTest {
 
 	@Test
 	public void sePruebaControladorUsuarioMetodovalidarLoginCorrecto() {
-//		ControladorUsuario controladorUsuarioMock = new ControladorUsuario();
+
 		Usuario usuarioFake = mock(Usuario.class);
 		ServicioLogin servicioLoginFake = mock(ServicioLogin.class);
 		HttpServletRequest request = mock(HttpServletRequest.class);
@@ -158,7 +158,7 @@ public class ControladorTest {
 		listaAutores.add(a1);
 		listaAutores.add(a2);
 		
-		ControladorAutor controladorAutorFake = mock(ControladorAutor.class);
+		ControladorAutor controladorAutorFake = new ControladorAutor();
 		ServicioAutor servicioAutorFake = mock(ServicioAutor.class);
 		
 		when(servicioAutorFake.listarAutores()).thenReturn(listaAutores);
@@ -171,18 +171,22 @@ public class ControladorTest {
 	
 	@Test
 	public void sePruebaQueSePuedanListarTodosLosComicsDeUnAutor(){
-		Long idAutor = 1L;
+		Long idAutor = Long.parseLong("1");
 		Comic c1 = mock(Comic.class);
 		Comic c2 = mock(Comic.class);
 		List<Comic> listaComicsDeAutor = new ArrayList<Comic>();
-		listaComicsDeAutor.add(c1);
-		listaComicsDeAutor.add(c2);
+//		listaComicsDeAutor.add(c1);
+//		listaComicsDeAutor.add(c2);
+		Autor autor = new Autor();
+		autor.setId(idAutor);
+		autor.setNombre("nombre");
+	
 		
-		
-		ControladorAutor controladorAutorFake = mock(ControladorAutor.class);
+		ControladorAutor controladorAutorFake = new ControladorAutor();
 		ServicioAutor servicioAutorFake = mock(ServicioAutor.class);
 		
 		when(servicioAutorFake.listarComicsPorAutor(idAutor)).thenReturn(listaComicsDeAutor);
+		when(servicioAutorFake.buscarAutor(idAutor)).thenReturn(autor);
 		
 		controladorAutorFake.setServicioAutor(servicioAutorFake);
 		ModelAndView miVista = controladorAutorFake.verListaDeComicsPorAutor(idAutor);
