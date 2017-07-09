@@ -69,7 +69,18 @@
 						</c:choose>
 						
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;<c:out value="${usuario.nombre}"/>&nbsp;<span class="caret"></span></a>
+							<!-- DEFINIMOS EL PATH DE LA IMAGEN -->
+							<c:choose>
+								<c:when test="${not empty usuario.pathImagen}">
+									<c:set var="pathImagenPerfil" value="img/usuarios/${usuario.pathImagen}"/>
+								</c:when>
+								<c:otherwise>
+									<c:set var="pathImagenPerfil" value="img/jarvis_default.jpg"/>
+								</c:otherwise>
+							</c:choose>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<img id="navbar-profile-img" alt="<c:out value="${usuario.nombre}"/>" src="<c:out value="${pathImagenPerfil}"/>">&nbsp;&nbsp;<c:out value="${usuario.nombre}"/>&nbsp;<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
 								<c:choose>
 									<c:when test="${not empty usuario.administrador and not usuario.administrador}">

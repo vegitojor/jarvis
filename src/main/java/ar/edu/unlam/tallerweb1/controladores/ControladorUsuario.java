@@ -1,17 +1,26 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.imgscalr.Scalr;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ImagenHelper;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPais;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioComic;
@@ -38,10 +47,37 @@ public class ControladorUsuario {
 	}
 
 	@RequestMapping(path="/registrar-usuario", method=RequestMethod.POST)
-	public ModelAndView registrarUsuario(@RequestParam String nombre, @RequestParam String fechaDeNacimiento,
-			@RequestParam (value="pais") Long idPais, @RequestParam String email, @RequestParam String password){
+	public ModelAndView registrarUsuario(@RequestParam String nombre, @RequestParam String email, @RequestParam String fechaDeNacimiento,
+			@RequestParam (value="pais") Long idPais, @RequestParam String password,
+			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile, HttpServletRequest request){
 		
-		servicioUsuario.guardarUsuario(null, nombre, fechaDeNacimiento, idPais, email, password, false);
+		String nombreArchivoImagen = null;
+		String extensionArchivoImagen = null;
+		String pathImagen = null;
+		
+		try {
+			if (imagenFile != null && !imagenFile.isEmpty()) {
+				nombreArchivoImagen = ImagenHelper.normalizarNombreArchivo("profile-picture-"+nombre);
+				extensionArchivoImagen = imagenFile.getOriginalFilename().substring(imagenFile.getOriginalFilename().lastIndexOf(".") + 1);
+
+				File logo = new File(request.getRealPath("/img/usuarios") + "/" + nombreArchivoImagen + extensionArchivoImagen);
+				imagenFile.transferTo(logo);
+
+				BufferedImage imagen = ImageIO.read(logo);
+				BufferedImage thumbnail = Scalr.resize(imagen, 950);
+				File outputfileThumbnail = new File(request.getRealPath("/img/usuarios") + "/" + nombreArchivoImagen + "." + extensionArchivoImagen);
+				ImageIO.write(thumbnail, extensionArchivoImagen, outputfileThumbnail);
+
+				pathImagen = nombreArchivoImagen+"."+extensionArchivoImagen;
+			}
+
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		servicioUsuario.guardarUsuario(null, nombre, fechaDeNacimiento, idPais, email, password, false, pathImagen);
 
 		return new ModelAndView("redirect:/registro-exitoso?username="+nombre+"&usermail="+email);
 	}

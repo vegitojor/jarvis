@@ -10,12 +10,18 @@
 			</div>
 		</div>
 		<div class="container">
-			<form:form action="registrar-usuario" method="POST">
+			<form:form action="registrar-usuario" method="POST" enctype="multipart/form-data">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="nombre" class="cols-sm-2 control-label">Nombre</label>
 						<div class="cols-sm-10">
 							<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="cols-sm-2 control-label">E-mail</label>
+						<div class="cols-sm-10">
+							<input type="text" class="form-control" name="email" id="email" placeholder="E-mail" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -43,12 +49,6 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label for="email" class="cols-sm-2 control-label">E-mail</label>
-						<div class="cols-sm-10">
-							<input type="text" class="form-control" path="email" name="email" id="email" placeholder="E-mail" required="required"/>
-						</div>
-					</div>
-					<div class="form-group">
 						<label for="password" class="cols-sm-2 control-label">Password</label>
 						<div class="cols-sm-10">
 							<input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required"/>
@@ -58,6 +58,12 @@
 						<label for="confirm" class="cols-sm-2 control-label">Confirme su password</label>
 						<div class="cols-sm-10">
 							<input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirme su Password" required="required"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="imagenFile" class="cols-sm-2 control-label">Imagen de perfil</label>
+						<div class="cols-sm-10">
+							<input type="file" class="form-control required" id="imagenFile" name="imagenFile" value=""/>
 						</div>
 					</div>
 				</div>
