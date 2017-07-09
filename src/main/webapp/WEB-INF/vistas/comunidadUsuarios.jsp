@@ -11,15 +11,24 @@
 			<div class="row">
 				<c:choose>
 					<c:when test="${not empty usuarios}">
-						<c:forEach items="${usuarios}" var="usuario">
+						<c:forEach items="${usuarios}" var="usuarioComunidad">
 							<div class="col-sm-6 col-md-4">
 								<div class="panel panel-default panel-usuario">
 									<div class="panel-body">
-										<h3 class="text-center"><a href="comunidad-vista-usuario?usuario=<c:out value="${usuario.id}"/>"><c:out value="${usuario.nombre}"/></a></h3>
+										<!-- DEFINIMOS EL PATH DE LA IMAGEN -->
+										<c:choose>
+											<c:when test="${not empty usuarioComunidad.pathImagen}">
+												<c:set var="pathImagenUsuarioComunidad" value="img/usuarios/${usuarioComunidad.pathImagen}"/>
+											</c:when>
+											<c:otherwise>
+												<c:set var="pathImagenUsuarioComunidad" value="img/usuarios/jarvis_user_default.jpg"/>
+											</c:otherwise>
+										</c:choose>
+										<img class="img-thumbnail img-user center-block" alt="<c:out value="${usuarioComunidad.nombre}"/>" src="<c:out value="${pathImagenUsuarioComunidad}"/>">&nbsp;<h3 class="text-center"><a href="comunidad-vista-usuario?usuario=<c:out value="${usuarioComunidad.id}"/>"><c:out value="${usuarioComunidad.nombre}"/></a></h3>
 										<hr>
-										<h4 class="text-center">Pa&iacute;s: <c:out value="${usuario.pais.nombre}"/></h4>
-										<h4 class="text-center">Fecha de Nacimiento: <fmt:formatDate pattern = "dd/MM/yyyy" value="${usuario.fechaDeNacimiento}"/></h4>
-										<h4 class="text-center">E-Mail: <c:out value="${usuario.email}"></c:out></h4>
+										<p class="text-center"><strong>Pa&iacute;s: </strong><c:out value="${usuarioComunidad.pais.nombre}"/></p>
+										<p class="text-center"><strong>Fecha de Nacimiento:</strong> <fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComunidad.fechaDeNacimiento}"/></p>
+										<p class="text-center"><strong>E-Mail:</strong> <c:out value="${usuarioComunidad.email}"></c:out></p>
 									</div>
 								</div>
 							</div>

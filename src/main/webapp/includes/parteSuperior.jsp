@@ -75,7 +75,7 @@
 									<c:set var="pathImagenPerfil" value="img/usuarios/${usuario.pathImagen}"/>
 								</c:when>
 								<c:otherwise>
-									<c:set var="pathImagenPerfil" value="img/jarvis_default.jpg"/>
+									<c:set var="pathImagenPerfil" value="img/usuarios/jarvis_user_default.jpg"/>
 								</c:otherwise>
 							</c:choose>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -81,6 +81,10 @@ h1, h2, h3, h4, h5 {
 	margin-bottom: 10px;
 }
 
+.panel-usuario > .panel-body > .img-user {
+	height: 15em;
+}
+
 .registro-exitoso {
 	width: 100%;
 	height: 100vh;
