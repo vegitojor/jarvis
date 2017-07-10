@@ -32,6 +32,12 @@
 							<strong>Adquirido el <span id="usuarioComicFecha"></span></strong>
 						</p>
 						<hr>
+						<form action="guardar-usuario-comic" method="POST" name="marcarComic" id="marcarComic">
+							<input type="hidden" name="comic" id="idComic" value=""/>
+							<input type="hidden" name="usuario" id="idUsuario" value="${usuario.id}" />
+							<input type="hidden" name="siguiendoActualmente" id="siguiendoActualmente" value="false"/>
+							<button id="saveUsuarioComic" class="btn btn-danger btn-block" name="submit" type="submit"><span class="glyphicon glyphicon-trash"></span>&nbsp;Quitar de la lista</button>
+						</form>
 					</div>
 				</div>
 				<div class="row" id="comentarios" style="display: none;">

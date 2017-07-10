@@ -11,9 +11,12 @@ $(document).ready(function() {
 		var isbn = $(this).attr("isbn");
 		var pvp = $(this).attr("pvp");
 		var usuarioComicFecha = $(this).attr("usuarioComicFecha");
-
+		
 		// DATO REQUERIDO PARA LOS COMENTARIOS DE LA PUBLICACION
 		var idUsuarioComic = $(this).attr("idUsuarioComic");
+		
+		// DATO REQUERIDO PARA QUITAR COMIC DE MI LA LISTA
+		var idComic = $(this).attr("idComic");
 
 		vaciarDatosModalComic();
 
@@ -25,6 +28,8 @@ $(document).ready(function() {
 		$("#comicISBN").html(isbn);
 		$("#comicPVP").html(pvp);
 		$("#usuarioComicFecha").text(usuarioComicFecha)
+		
+		$("#idComic").val(idComic);
 
 		$("#modalComic").modal("show");
 
@@ -44,6 +49,8 @@ function vaciarDatosModalComic() {
 	$("#usuarioComicFecha").text("")
 
 	$("#usuarioComic").val("");
+	
+	$("#idComic").val("");
 
 	$("#comentarios").hide();
 	$("#comentarios").empty();
