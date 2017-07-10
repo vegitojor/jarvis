@@ -56,8 +56,8 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 		}
 		
 		modelo.put("nombre", nombre);
-		modelo.put("idEditorial", idEditorial);
-		modelo.put("idFormato", idFormato);
+		modelo.put("editorialFilter", idEditorial);
+		modelo.put("formatoFilter", idFormato);
 		
 		modelo.put("colecciones", coleccionDao.listarColeccionesPorCriterion(criterion));
 		

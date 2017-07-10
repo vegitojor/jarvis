@@ -9,6 +9,31 @@
 		</div>
 		<div class="container">
 			<div class="row">
+				<!-- FORMULARIO PARA FILTRAR LOS USUARIOS POR PAIS -->
+				<form action="<c:out value="${action}"/>" method="GET" name="filtroComunidad" id="filtroComunidad" class="form-horizontal">    
+					<div class="col-sm-3 col-sm-offset-3">
+						<div class="form-group">
+							<div class="col-xs-12">
+								<select id="pais" name="pais" class="form-control">
+									<option value="">- Todos los paises -</option>
+									<c:forEach items="${paises}" var="pais">
+										<option value="<c:out value="${pais.id}"/>" <c:if test="${pais.id eq paisFilter}">selected='selected'</c:if>><c:out value="${pais.nombre}"/></option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<div class="col-xs-12">
+								<button class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-search"></span>&nbsp;Buscar</button>  			
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<hr>
+			<div class="row">
 				<c:choose>
 					<c:when test="${not empty usuarios}">
 						<c:forEach items="${usuarios}" var="usuarioComunidad">

@@ -102,15 +102,22 @@ public class ControladorUsuario {
 	}
 	
 	@RequestMapping("/comunidad")
-	public ModelAndView listaDeUsuarios(HttpServletRequest request){
+	public ModelAndView listaDeUsuarios(@RequestParam (required=false, value="pais") Long idPais, HttpServletRequest request){
 		ModelMap modelo = new ModelMap();
 		Long idUsuario = null;
 		if(request.getSession().getAttribute("usuario") != null){
 			Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
 			idUsuario = usuario.getId();
 		}
-		modelo.put("usuarios", servicioUsuario.listarUsuariosComunidad(idUsuario));
+		
+		// DATOS PARA EL FORMULARIO DE FILTRO
+		modelo.put("action", "comunidad");
+		modelo.put("paisFilter", idPais);
+		
+		modelo.put("paises", servicioPais.listarPaises());
+		modelo.put("usuarios", servicioUsuario.listarUsuariosComunidad(idUsuario, idPais));
 		modelo.put("titulo", "Comunidad");
+		
 		return new ModelAndView ("comunidadUsuarios", modelo);
 	}
 	

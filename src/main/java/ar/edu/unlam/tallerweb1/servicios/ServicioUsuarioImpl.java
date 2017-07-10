@@ -68,11 +68,16 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public List<Usuario> listarUsuariosComunidad(Long idUsuario) {
+	public List<Usuario> listarUsuariosComunidad(Long idUsuario, Long idPais) {
 		Criterion criterion = Restrictions.ne("administrador", true);
-		if(idUsuario != null){
+		
+		if (idUsuario != null) {
 			criterion = Restrictions.and(criterion, Restrictions.ne("id", idUsuario));
 		}
+		if (idPais != null) {
+			criterion = Restrictions.and(criterion, Restrictions.eq("pais.id", idPais));
+		}
+		
 		return usuarioDao.obtenerUsuarioConCriterion(criterion);
 	}
 }

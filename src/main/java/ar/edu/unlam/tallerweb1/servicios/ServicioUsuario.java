@@ -14,5 +14,5 @@ public interface ServicioUsuario {
 	
 	public List<Usuario> listarTodosLosUsuarios();
 	
-	public List<Usuario> listarUsuariosComunidad(Long idUsuario);
+	public List<Usuario> listarUsuariosComunidad(Long idUsuario, Long idPais);
 }
