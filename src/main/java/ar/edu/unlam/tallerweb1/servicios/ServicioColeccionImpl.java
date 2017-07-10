@@ -116,4 +116,10 @@ public class ServicioColeccionImpl implements ServicioColeccion {
 		Criterion criterion = Restrictions.eq("editorial.id", idEditorial);
 		return coleccionDao.listarColeccionesPorCriterion(criterion);
 	}
+
+	@Override
+	public List<Coleccion> buscarColeccionesPorNombre(String nombre) {
+		Criterion criterion = Restrictions.ilike("nombre", "%"+nombre+"%");
+		return coleccionDao.listarColeccionesPorCriterion(criterion);
+	}
 }

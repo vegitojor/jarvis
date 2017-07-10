@@ -3,10 +3,13 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.imgscalr.Scalr;
 import org.springframework.stereotype.Controller;
@@ -15,9 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
+import ar.edu.unlam.tallerweb1.modelo.Coleccion;
+import ar.edu.unlam.tallerweb1.modelo.JsonAutocompleteObject;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ImagenHelper;
 import ar.edu.unlam.tallerweb1.servicios.ServicioColeccion;
@@ -182,5 +190,21 @@ public class ControladorColeccion {
 		ModelMap modelo = servicioColeccion.datosColeccion(idColeccion);
 		
 		return new ModelAndView("coleccion", modelo);
+	}
+	
+	@RequestMapping(value="/buscar-colecciones-por-nombre")
+	public @ResponseBody void buscarColeccionesPorNombre(@RequestParam String term, HttpServletResponse response) throws IOException{
+		
+		List<Coleccion> colecciones = servicioColeccion.buscarColeccionesPorNombre(term);
+		
+		List<JsonAutocompleteObject> jsonAutocompleteObjects = new ArrayList<JsonAutocompleteObject>();
+		for (Coleccion coleccion : colecciones) {
+			JsonAutocompleteObject jsonAutocompleteObject = new JsonAutocompleteObject(coleccion.getNombre(), coleccion.getNombre());
+			jsonAutocompleteObjects.add(jsonAutocompleteObject);
+		}
+
+		response.setContentType("application/x-json");
+		response.setCharacterEncoding("ISO-8859-1");
+		response.getWriter().print(new Gson().toJson(jsonAutocompleteObjects));
 	}
 }

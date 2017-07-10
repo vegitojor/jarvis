@@ -12,6 +12,8 @@ public interface ServicioColeccion {
 	
 	public List<Coleccion> listarColecciones();
 	
+	public List<Coleccion> buscarColeccionesPorNombre(String nombre);
+	
 	public ModelMap coleccionesFiltradas(String nombre, Long idEditorial, Long idFormato);
 	
 	public List<Coleccion> listarColeccionesPorEditorial(Long idEditorial);

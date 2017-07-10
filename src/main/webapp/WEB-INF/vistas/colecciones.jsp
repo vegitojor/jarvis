@@ -1,4 +1,5 @@
 <%@include file='../../includes/cabecera.jsp' %>
+		<script type="text/javascript" src="js/jarvis-web.colecciones.js"></script>
 	</head>
 	<body>
 		<%@include file='../../includes/parteSuperior.jsp' %>
