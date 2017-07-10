@@ -85,17 +85,17 @@
 											<p class="comic-fecha"><strong>Fecha de publicaci&oacute;n: </strong><fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/></p>
 											<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comicSugerido.cantidadDePaginas}"/></p>
 											<br>
-											<button class="btn btn-info btn-block btn-sugerencia-ver-mas"
-												titulo="<c:out value="${comicSugerido.coleccion.nombre}"/> - Nro. <c:out value="${comicSugerido.numero}"/>"
-												editorial="<c:out value="${comicSugerido.coleccion.editorial.nombre}"/>"
-												formato="<c:out value="${comicSugerido.coleccion.formato.nombre}"/>"
-												autor="<c:out value="${comicSugerido.autor.nombre}"/>"
-												pathImagen="<c:out value="${pathImagen}"/>"
-												fechaPublicacion="<fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/>"
-												isbn="<c:out value="${comicSugerido.isbn}"/>"
-												cantidadDePaginas="<c:out value="${comicSugerido.cantidadDePaginas}"/>"
-												pvp="<c:out value="${comicSugerido.pvp}"/>"
-												idComic="<c:out value="${comicSugerido.id}"/>">Ver m&aacute;s
+											<button class="btn btn-info btn-block btn-ver-mas-sugerido"
+												tituloSugerido="<c:out value="${comicSugerido.coleccion.nombre}"/> - Nro. <c:out value="${comicSugerido.numero}"/>"
+												editorialSugerido="<c:out value="${comicSugerido.coleccion.editorial.nombre}"/>"
+												formatoSugerido="<c:out value="${comicSugerido.coleccion.formato.nombre}"/>"
+												autorSugerido="<c:out value="${comicSugerido.autor.nombre}"/>"
+												pathImagenSugerido="<c:out value="${pathImagen}"/>"
+												fechaPublicacionSugerido="<fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/>"
+												isbnSugerido="<c:out value="${comicSugerido.isbn}"/>"
+												cantidadDePaginasSugerido="<c:out value="${comicSugerido.cantidadDePaginas}"/>"
+												pvpSugerido="<c:out value="${comicSugerido.pvp}"/>"
+												idComicSugerido="<c:out value="${comicSugerido.id}"/>">Ver m&aacute;s
 											</button>
 										</div>
 									</div>

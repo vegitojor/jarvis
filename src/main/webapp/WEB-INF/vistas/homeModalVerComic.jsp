@@ -16,6 +16,12 @@
 							<strong>Fecha de publicaci&oacute;n:</strong>&nbsp;<span id="comicFechaPublicacion"></span>
 						</p>
 						<p>
+							<strong>Formato: </strong>&nbsp;<span id="comicFormato"></span>
+						</p>
+						<p>
+							<strong>Editorial: </strong>&nbsp;<span id="comicEditorial"></span>
+						</p>
+						<p>
 							<strong>Autor: </strong>&nbsp;<span id="comicAutor"></span>
 						</p>
 						<p>

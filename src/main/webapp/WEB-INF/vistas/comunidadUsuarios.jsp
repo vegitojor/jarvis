@@ -60,7 +60,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<p class="text-center">No se encontraron usuarios registrados</p>
+						<p class="text-center">No se han encontrado m&aacute;s usuarios registrados</p>
 					</c:otherwise>
 				</c:choose>
 			</div>

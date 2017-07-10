@@ -6,6 +6,8 @@ $(document).ready(function() {
 		var pathImagen = $(this).attr("pathImagen");
 		var titulo = $(this).attr("titulo");
 		var fechaPublicacion = $(this).attr("fechaPublicacion");
+		var editorial = $(this).attr("editorial");
+		var formato = $(this).attr("formato");
 		var autor = $(this).attr("autor");
 		var cantidadDePaginas = $(this).attr("cantidadDePaginas");
 		var isbn = $(this).attr("isbn");
@@ -23,6 +25,8 @@ $(document).ready(function() {
 		$("#comicImagen").attr('src', pathImagen);
 		$("#comicTitulo").html(titulo);
 		$("#comicFechaPublicacion").html(fechaPublicacion);
+		$("#comicEditorial").html(editorial);
+		$("#comicFormato").html(formato);
 		$("#comicAutor").html(autor);
 		$("#comicCantidadDePaginas").html(cantidadDePaginas);
 		$("#comicISBN").html(isbn);
@@ -36,11 +40,46 @@ $(document).ready(function() {
 		// CREAMOS UNA FUNCION PARA CARGAR TODOS LOS COMENTARIOS DE LA PUBLICACION
 		cargarComentarios( idUsuarioComic );
 	});
+	
+	$(".btn-ver-mas-sugerido").unbind("click");
+	$(".btn-ver-mas-sugerido").bind("click", function(){
+		// OBTENEMOS LOS DATOS DESDE LOS ATRIBUTOS DEL BOTON
+		var pathImagenSugerido = $(this).attr("pathImagenSugerido");
+		var tituloSugerido = $(this).attr("tituloSugerido");
+		var fechaPublicacionSugerido = $(this).attr("fechaPublicacionSugerido");
+		var editorialSugerido = $(this).attr("editorialSugerido");
+		var formatoSugerido = $(this).attr("formatoSugerido");
+		var autorSugerido = $(this).attr("autorSugerido");
+		var cantidadDePaginasSugerido = $(this).attr("cantidadDePaginasSugerido");
+		var isbnSugerido = $(this).attr("isbnSugerido");
+		var pvpSugerido = $(this).attr("pvpSugerido");
+		
+		// DATO REQUERIDO PARA AGREGAR COMIC SUGERIDO A MI LISTA
+		var idComicSugerido = $(this).attr("idComicSugerido");
+
+		vaciarDatosModalComicSugerido();
+
+		$("#comicSugeridoImagen").attr('src', pathImagenSugerido);
+		$("#comicSugeridoTitulo").html(tituloSugerido);
+		$("#comicSugeridoFechaPublicacion").html(fechaPublicacionSugerido);
+		$("#comicSugeridoEditorial").html(editorialSugerido);
+		$("#comicSugeridoFormato").html(formatoSugerido);
+		$("#comicSugeridoAutor").html(autorSugerido);
+		$("#comicSugeridoCantidadDePaginas").html(cantidadDePaginasSugerido);
+		$("#comicSugeridoISBN").html(isbnSugerido);
+		$("#comicSugeridoPVP").html(pvpSugerido);
+		
+		$("#idComicSugerido").val(idComicSugerido);
+
+		$("#modalComicSugerido").modal("show");
+	});
 });
 
 function vaciarDatosModalComic() {
 	$("#comicTitulo").html("");
 	$("#comicFechaPublicacion").html("");
+	$("#comicEditorial").html("");
+	$("#comicFormato").html("");
 	$("#comicAutor").html("");
 	$("#comicCantidadDePaginas").html("");
 	$("#comicISBN").html("");
@@ -54,6 +93,20 @@ function vaciarDatosModalComic() {
 
 	$("#comentarios").hide();
 	$("#comentarios").empty();
+}
+
+function vaciarDatosModalComicSugerido() {
+	$("#comicSugeridoTitulo").html("");
+	$("#comicSugeridoFechaPublicacion").html("");
+	$("#comicSugeridoEditorial").html("");
+	$("#comicSugeridoFormato").html("");
+	$("#comicSugeridoAutor").html("");
+	$("#comicSugeridoCantidadDePaginas").html("");
+	$("#comicSugeridoISBN").html("");
+	$("#comicSugeridoPVP").html("");
+	$("#comicSugeridoImagen").attr('src', '');
+
+	$("#idComicSugerido").val("");
 }
 
 function cargarComentarios( idUsuarioComic ) {
