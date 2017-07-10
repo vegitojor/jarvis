@@ -3,6 +3,7 @@
 	</head>
 	<body>
 		<%@include file='homeModalVerComic.jsp' %>
+		<%@include file='homeModalVerComicSugerido.jsp' %>
 		<%@include file='../../includes/parteSuperior.jsp' %>
 		<div class = "container">
 			<%@include file='../../includes/alerta.jsp' %>
@@ -82,9 +83,9 @@
 										</div>
 										<div class="col-xs-6 texto">
 											<p class="comic-fecha"><strong>Fecha de publicaci&oacute;n: </strong><fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/></p>
-											<p class="usuarioComic.comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comicSugerido.cantidadDePaginas}"/></p>
+											<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comicSugerido.cantidadDePaginas}"/></p>
 											<br>
-											<button class="btn btn-info btn-block btn-ver-mas"
+											<button class="btn btn-info btn-block btn-sugerencia-ver-mas"
 												titulo="<c:out value="${comicSugerido.coleccion.nombre}"/> - Nro. <c:out value="${comicSugerido.numero}"/>"
 												editorial="<c:out value="${comicSugerido.coleccion.editorial.nombre}"/>"
 												formato="<c:out value="${comicSugerido.coleccion.formato.nombre}"/>"
@@ -94,7 +95,6 @@
 												isbn="<c:out value="${comicSugerido.isbn}"/>"
 												cantidadDePaginas="<c:out value="${comicSugerido.cantidadDePaginas}"/>"
 												pvp="<c:out value="${comicSugerido.pvp}"/>"
-												usuarioComicFecha="<fmt:formatDate pattern = "dd/MM/yyyy" value="${usuarioComic.fechaRegistro}"/>"
 												idComic="<c:out value="${comicSugerido.id}"/>">Ver m&aacute;s
 											</button>
 										</div>

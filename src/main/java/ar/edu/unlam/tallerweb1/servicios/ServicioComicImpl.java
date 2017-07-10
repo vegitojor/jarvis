@@ -79,4 +79,9 @@ public class ServicioComicImpl implements ServicioComic {
 		
 		return comic;
 	}
+
+	@Override
+	public List<Comic> listarSugerencias(Long idUsuario) {
+		return comicDao.listarSugerencias(idUsuario);
+	}
 }

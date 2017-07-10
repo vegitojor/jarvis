@@ -90,6 +90,7 @@ public class ControladorLogin {
 			
 			ModelMap modelo = new ModelMap();
 			modelo.put("usuarioComics", servicioUsuarioComic.listarUsuarioComics(usuario.getId()) );
+			modelo.put("comicsSugeridos", servicioComic.listarSugerencias(usuario.getId()));
 			
 			return new ModelAndView("home", modelo);
 		}
