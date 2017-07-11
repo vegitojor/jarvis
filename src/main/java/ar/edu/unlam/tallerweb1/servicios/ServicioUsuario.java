@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioComicComentario;
 
 public interface ServicioUsuario {
 	
@@ -15,4 +16,6 @@ public interface ServicioUsuario {
 	public List<Usuario> listarTodosLosUsuarios();
 	
 	public List<Usuario> listarUsuariosComunidad(Long idUsuario, Long idPais);
+	
+	public List<UsuarioComicComentario> listarNotificaciones(Long idUsuario);
 }

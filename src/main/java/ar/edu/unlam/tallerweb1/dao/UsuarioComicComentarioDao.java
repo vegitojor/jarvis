@@ -8,9 +8,13 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioComicComentario;
 
 public interface UsuarioComicComentarioDao {
 	
+	UsuarioComicComentario obtenerUsuarioComicComentario(Long id);
+	
 	void guardarUsuarioComicComentario(UsuarioComicComentario usuarioComicComentario);
 	
 	List<UsuarioComicComentario> listarUsuarioComicComentarios(Long idUsuarioComic);
+	
+	List<UsuarioComicComentario> listarNotificaciones(Long idUsuario);
 	
 	List<UsuarioComicComentario> listarUsuarioComicComentarios(Criterion criterion);
 }

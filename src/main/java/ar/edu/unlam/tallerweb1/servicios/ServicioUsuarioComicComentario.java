@@ -9,4 +9,6 @@ public interface ServicioUsuarioComicComentario {
 	public UsuarioComicComentario guardarUsuarioComicComentario(Long idUsuarioComic, Long idUsuario, String comentario);
 	
 	List<UsuarioComicComentario> listarUsuarioComicComentarios(Long idUsuarioComic);
+	
+	public UsuarioComicComentario marcarComentarioLeido(Long idUsuarioComicComentario);
 }

@@ -33,7 +33,6 @@
 		<div class="collapse navbar-collapse" id="jarvis-navbar-collapse">
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="colecciones">Colecciones</a></li>
-				<li><a href="autores">Autores</a></li>
 				<c:choose>
 					<c:when test="${not empty usuario.administrador and not usuario.administrador}">
 						<li class="dropdown">
@@ -49,9 +48,13 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="comunidad"><span class="glyphicon glyphicon-link"></span>&nbsp;Comunidad</a></li>
+				<c:if test="${not empty usuario and not usuario.administrador}">
+					<li><a href="notificaciones"><span class="glyphicon glyphicon-bell"></span>&nbsp;Notificaciones</a></li>
+				</c:if>
 				<!-- MOSTRAMOS LOS DATOS DEL NAVBAR DEPENDIENDO DEL USUARIO EN SESSION. SI NO ESTÁ LOGUEADO, SE MUESTRA EL LINK AL LOGIN -->
 				<c:choose>
 					<c:when test="${not empty usuario}">
+						
 						<c:choose>
 							<c:when test="${not empty usuario.administrador and usuario.administrador}">
 								<li class="dropdown">

@@ -36,6 +36,7 @@ public class ServicioUsuarioComicComentarioImpl implements ServicioUsuarioComicC
 		if ( comentario!=null && comentario!="" ){
 			usuarioComicComentario.setComentario(comentario);
 		}
+		usuarioComicComentario.setLeido(false);
 		usuarioComicComentario.setDisponible(true);
 		
 		usuarioComicComentarioDao.guardarUsuarioComicComentario(usuarioComicComentario);
@@ -46,6 +47,14 @@ public class ServicioUsuarioComicComentarioImpl implements ServicioUsuarioComicC
 	@Override
 	public List<UsuarioComicComentario> listarUsuarioComicComentarios(Long idUsuarioComic) {
 		return usuarioComicComentarioDao.listarUsuarioComicComentarios(idUsuarioComic);
+	}
+
+	@Override
+	public UsuarioComicComentario marcarComentarioLeido(Long idUsuarioComicComentario) {
+		UsuarioComicComentario usuarioComicComentario = usuarioComicComentarioDao.obtenerUsuarioComicComentario(idUsuarioComicComentario);
+		usuarioComicComentario.setLeido(true);
+		
+		return usuarioComicComentario;
 	}
 
 }

@@ -79,7 +79,10 @@ public class ComicDaoImpl implements ComicDao {
 			idComicsUsuario.add(usuarioComic.getComic().getId());
 		}
 		
-		Criterion criterionSugerencias = Restrictions.not(Restrictions.in("id", idComicsUsuario));
+		Criterion criterionSugerencias = Restrictions.ge("id", 1L);
+		if ( idComicsUsuario.size() > 0 ) {
+			criterionSugerencias = Restrictions.and( criterionSugerencias, Restrictions.not(Restrictions.in("id", idComicsUsuario)) );
+		}
 		
 		return session.createCriteria(Comic.class).add(criterionSugerencias).list();
 	}

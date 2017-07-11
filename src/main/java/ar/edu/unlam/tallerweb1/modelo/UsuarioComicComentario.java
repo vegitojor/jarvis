@@ -25,6 +25,7 @@ public class UsuarioComicComentario {
 	private Usuario usuario;
 	private Timestamp fecha;
 	private String comentario;
+	private Boolean leido;
 	private Boolean disponible;
 	
 	public Long getId() {
@@ -56,6 +57,16 @@ public class UsuarioComicComentario {
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	public Boolean getLeido() {
+		return leido;
+	}
+	public void setLeido(Boolean leido) {
+		this.leido = leido;
+	}
+	@Transient
+	public Boolean isLeido() {
+		return leido;
 	}
 	public Boolean getDisponible() {
 		return disponible;

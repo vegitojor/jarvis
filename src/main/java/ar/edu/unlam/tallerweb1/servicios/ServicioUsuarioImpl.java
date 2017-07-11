@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.dao.PaisDao;
+import ar.edu.unlam.tallerweb1.dao.UsuarioComicComentarioDao;
 import ar.edu.unlam.tallerweb1.dao.UsuarioDao;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioComicComentario;
 
 @Service("servicioUsuario")
 @Transactional
@@ -23,6 +25,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private PaisDao paisDao;
 	@Inject
 	private UsuarioDao usuarioDao;
+	@Inject
+	private UsuarioComicComentarioDao usuarioComicComentarioDao;
 
 	@Override
 	public Usuario obtenerUsuarioPorMail(String email) {
@@ -79,5 +83,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		}
 		
 		return usuarioDao.obtenerUsuarioConCriterion(criterion);
+	}
+
+	@Override
+	public List<UsuarioComicComentario> listarNotificaciones(Long idUsuario) {
+		return usuarioComicComentarioDao.listarNotificaciones(idUsuario);
 	}
 }
