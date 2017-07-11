@@ -52,17 +52,24 @@ public class UsuarioComicComentarioDaoImpl implements UsuarioComicComentarioDao 
 		
 		List<UsuarioComic> usuarioComics = usuarioComicDao.listarUsuarioComicsSiguiendoActualmente(idUsuario);
 		
-		List<Long> idsUsuarioComic = new ArrayList<Long>();
-		for (UsuarioComic usuarioComic : usuarioComics) {
-			idsUsuarioComic.add(usuarioComic.getId());
+		
+		if ( !usuarioComics.isEmpty() ) {
+			
+			List<Long> idsUsuarioComic = new ArrayList<Long>();
+			for (UsuarioComic usuarioComic : usuarioComics) {
+				idsUsuarioComic.add(usuarioComic.getId());
+			}
+			
+			Criterion criterionNotificaciones = Restrictions.and(	Restrictions.eq("disponible", true),
+																	Restrictions.in("usuarioComic.id", idsUsuarioComic) );
+			
+			return session.createCriteria(UsuarioComicComentario.class).add(criterionNotificaciones).list();
+			
+		} else {
+			
+			return null;
 		}
 		
-		Criterion criterionNotificaciones = Restrictions.eq("disponible", true);
-		if ( idsUsuarioComic.size() > 0 ) {
-			criterionNotificaciones = Restrictions.and( criterionNotificaciones, Restrictions.in("usuarioComic.id", idsUsuarioComic) );
-		}
-		
-		return session.createCriteria(UsuarioComicComentario.class).add(criterionNotificaciones).list();
 	}
 
 	@Override
