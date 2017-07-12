@@ -124,8 +124,8 @@ public class ControladorComic {
 	}
 
 	@RequestMapping(path="/guardar-comic", method=RequestMethod.POST)
-	public ModelAndView guardarComic(@RequestParam (required=false, value="id") Long id, @RequestParam (value="numero") String numero,
-			@RequestParam (value="coleccion") Long idColeccion, @RequestParam (value="autor") Long idAutor, @RequestParam (required=false, value="fechaPublicacion") String fechaPublicacion,
+	public ModelAndView guardarComic(@RequestParam (required=false, value="id") Long id, @RequestParam (value="coleccion") Long idColeccion, @RequestParam (value="numero") String numero,
+			@RequestParam (value="autor") Long idAutor, @RequestParam (required=false, value="fechaPublicacion") String fechaPublicacion,
 			@RequestParam (required=false, value="isbn") String isbn, @RequestParam (required=false, value="cantidadDePaginas") Integer cantidadDePaginas, @RequestParam (required=false, value="pvp") Double pvp,
 			@RequestParam (required=false, value="imagenFile") MultipartFile imagenFile,
 			HttpServletRequest request){

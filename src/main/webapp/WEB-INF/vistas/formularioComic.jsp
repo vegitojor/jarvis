@@ -13,10 +13,6 @@
 						<div class="col-md-6">
 							<input type="hidden" name="id" id="id" value="<c:out value="${comic.id}"/>"/>
 							<div class="form-group">
-								<label for="numero">N&uacute;mero</label>
-								<input type="text" class="form-control" name="numero" id="numero" placeholder="N&uacute;mero" required="required" value="<c:out value="${comic.numero}"/>"/>
-							</div>
-							<div class="form-group">
 								<label for="coleccion">Colecci&oacute;n</label>
 								<select id="coleccion" name="coleccion" class="form-control" required="required">
 									<option value="">Seleccione una colecci&oacute;n</option>
@@ -24,6 +20,10 @@
 										<option value="<c:out value="${coleccion.id}"/>" <c:if test="${comic.coleccion.id eq coleccion.id}">selected='selected'</c:if>><c:out value="${coleccion.nombre}"/></option>
 									</c:forEach>
 								</select>
+							</div>
+							<div class="form-group">
+								<label for="numero">N&uacute;mero</label>
+								<input type="text" class="form-control" name="numero" id="numero" placeholder="N&uacute;mero" required="required" value="<c:out value="${comic.numero}"/>"/>
 							</div>
 							<div class="form-group">
 								<label for="autor">Autor</label>
