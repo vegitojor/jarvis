@@ -13,10 +13,10 @@ $(document).ready(function() {
 		var isbn = $(this).attr("isbn");
 		var pvp = $(this).attr("pvp");
 		var usuarioComicFecha = $(this).attr("usuarioComicFecha");
-		
+
 		// DATO REQUERIDO PARA LOS COMENTARIOS DE LA PUBLICACION
 		var idUsuarioComic = $(this).attr("idUsuarioComic");
-		
+
 		// DATO REQUERIDO PARA QUITAR COMIC DE MI LA LISTA
 		var idComic = $(this).attr("idComic");
 
@@ -32,7 +32,7 @@ $(document).ready(function() {
 		$("#comicISBN").html(isbn);
 		$("#comicPVP").html(pvp);
 		$("#usuarioComicFecha").text(usuarioComicFecha)
-		
+
 		$("#idComic").val(idComic);
 
 		$("#modalComic").modal("show");
@@ -40,7 +40,7 @@ $(document).ready(function() {
 		// CREAMOS UNA FUNCION PARA CARGAR TODOS LOS COMENTARIOS DE LA PUBLICACION
 		cargarComentarios( idUsuarioComic );
 	});
-	
+
 	$(".btn-ver-mas-sugerido").unbind("click");
 	$(".btn-ver-mas-sugerido").bind("click", function(){
 		// OBTENEMOS LOS DATOS DESDE LOS ATRIBUTOS DEL BOTON
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		var cantidadDePaginasSugerido = $(this).attr("cantidadDePaginasSugerido");
 		var isbnSugerido = $(this).attr("isbnSugerido");
 		var pvpSugerido = $(this).attr("pvpSugerido");
-		
+
 		// DATO REQUERIDO PARA AGREGAR COMIC SUGERIDO A MI LISTA
 		var idComicSugerido = $(this).attr("idComicSugerido");
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
 		$("#comicSugeridoCantidadDePaginas").html(cantidadDePaginasSugerido);
 		$("#comicSugeridoISBN").html(isbnSugerido);
 		$("#comicSugeridoPVP").html(pvpSugerido);
-		
+
 		$("#idComicSugerido").val(idComicSugerido);
 
 		$("#modalComicSugerido").modal("show");
@@ -88,7 +88,7 @@ function vaciarDatosModalComic() {
 	$("#usuarioComicFecha").text("")
 
 	$("#usuarioComic").val("");
-	
+
 	$("#idComic").val("");
 
 	$("#comentarios").hide();

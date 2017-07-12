@@ -63,45 +63,47 @@
 				<h2>Sugerencias</h2>
 				<c:choose>
 					<c:when test="${not empty comicsSugeridos}">
-						<c:forEach items="${comicsSugeridos}" var="comicSugerido">
-							<div class="col-sm-6 col-md-4">
-								<div class="panel panel-default panel-comic">
-									<div class="panel-heading">
-										<h4 class="text-center"><c:out value="${comicSugerido.coleccion.nombre}"/> - Nro: <c:out value="${comicSugerido.numero}"/></h4>
-									</div>
-									<div class="panel-body">
-										<div class="col-xs-6 imagen">
-											<c:choose>
-												<c:when test="${not empty comicSugerido.pathImagen}">
-													<c:set var="pathImagen" value="img/comics/${comicSugerido.pathImagen}"/>
-												</c:when>
-												<c:otherwise>
-													<c:set var="pathImagen" value="img/jarvis_default.jpg"/>
-												</c:otherwise>
-											</c:choose>
-											<div class="comic-imagen-bg" style="background-image: url(<c:out value="${pathImagen}"/>);"></div>
+						<div id="slider-sugerencias">
+							<c:forEach items="${comicsSugeridos}" var="comicSugerido">
+								<div class="col-sm-6 col-md-4">
+									<div class="panel panel-default panel-comic">
+										<div class="panel-heading">
+											<h4 class="text-center"><c:out value="${comicSugerido.coleccion.nombre}"/> - Nro: <c:out value="${comicSugerido.numero}"/></h4>
 										</div>
-										<div class="col-xs-6 texto">
-											<p class="comic-fecha"><strong>Fecha de publicaci&oacute;n: </strong><fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/></p>
-											<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comicSugerido.cantidadDePaginas}"/></p>
-											<br>
-											<button class="btn btn-info btn-block btn-ver-mas-sugerido"
-												tituloSugerido="<c:out value="${comicSugerido.coleccion.nombre}"/> - Nro. <c:out value="${comicSugerido.numero}"/>"
-												editorialSugerido="<c:out value="${comicSugerido.coleccion.editorial.nombre}"/>"
-												formatoSugerido="<c:out value="${comicSugerido.coleccion.formato.nombre}"/>"
-												autorSugerido="<c:out value="${comicSugerido.autor.nombre}"/>"
-												pathImagenSugerido="<c:out value="${pathImagen}"/>"
-												fechaPublicacionSugerido="<fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/>"
-												isbnSugerido="<c:out value="${comicSugerido.isbn}"/>"
-												cantidadDePaginasSugerido="<c:out value="${comicSugerido.cantidadDePaginas}"/>"
-												pvpSugerido="<c:out value="${comicSugerido.pvp}"/>"
-												idComicSugerido="<c:out value="${comicSugerido.id}"/>">Ver m&aacute;s
-											</button>
+										<div class="panel-body">
+											<div class="col-xs-6 imagen">
+												<c:choose>
+													<c:when test="${not empty comicSugerido.pathImagen}">
+														<c:set var="pathImagen" value="img/comics/${comicSugerido.pathImagen}"/>
+													</c:when>
+													<c:otherwise>
+														<c:set var="pathImagen" value="img/jarvis_default.jpg"/>
+													</c:otherwise>
+												</c:choose>
+												<div class="comic-imagen-bg" style="background-image: url(<c:out value="${pathImagen}"/>);"></div>
+											</div>
+											<div class="col-xs-6 texto">
+												<p class="comic-fecha"><strong>Fecha de publicaci&oacute;n: </strong><fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/></p>
+												<p class="comic-paginas"><strong>P&aacute;ginas: </strong><c:out value="${comicSugerido.cantidadDePaginas}"/></p>
+												<br>
+												<button class="btn btn-info btn-block btn-ver-mas-sugerido"
+													tituloSugerido="<c:out value="${comicSugerido.coleccion.nombre}"/> - Nro. <c:out value="${comicSugerido.numero}"/>"
+													editorialSugerido="<c:out value="${comicSugerido.coleccion.editorial.nombre}"/>"
+													formatoSugerido="<c:out value="${comicSugerido.coleccion.formato.nombre}"/>"
+													autorSugerido="<c:out value="${comicSugerido.autor.nombre}"/>"
+													pathImagenSugerido="<c:out value="${pathImagen}"/>"
+													fechaPublicacionSugerido="<fmt:formatDate pattern = "dd/MM/yyyy" value="${comicSugerido.fechaPublicacion}"/>"
+													isbnSugerido="<c:out value="${comicSugerido.isbn}"/>"
+													cantidadDePaginasSugerido="<c:out value="${comicSugerido.cantidadDePaginas}"/>"
+													pvpSugerido="<c:out value="${comicSugerido.pvp}"/>"
+													idComicSugerido="<c:out value="${comicSugerido.id}"/>">Ver m&aacute;s
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</c:when>
 					<c:otherwise>
 						<p class="text-center">No se encuentran sugerencias para t&iacute;.</p>
