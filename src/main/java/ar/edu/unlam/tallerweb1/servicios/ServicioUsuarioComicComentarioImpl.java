@@ -57,4 +57,9 @@ public class ServicioUsuarioComicComentarioImpl implements ServicioUsuarioComicC
 		return usuarioComicComentario;
 	}
 
+	@Override
+	public Integer cantidadNotificacionesNoLeidas(Long idUsuario) {
+		return usuarioComicComentarioDao.cantidadNotificacionesNoLeidas(idUsuario);
+	}
+
 }
