@@ -49,12 +49,12 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="comunidad"><span class="glyphicon glyphicon-link"></span>&nbsp;Comunidad</a></li>
 				<c:if test="${not empty usuario and not usuario.administrador}">
-					<li><a href="notificaciones"><span class="glyphicon glyphicon-bell"></span>&nbsp;Notificaciones</a></li>
+					<li><a href="notificaciones"><span class="glyphicon glyphicon-bell"></span>&nbsp;Notificaciones&nbsp;<span class="badge" id="badge-notificaciones" style="display: none;"></span></a></li>
+					<script type="text/javascript" src="js/jarvis-web.notificaciones.js"></script>
 				</c:if>
 				<!-- MOSTRAMOS LOS DATOS DEL NAVBAR DEPENDIENDO DEL USUARIO EN SESSION. SI NO ESTÁ LOGUEADO, SE MUESTRA EL LINK AL LOGIN -->
 				<c:choose>
 					<c:when test="${not empty usuario}">
-						
 						<c:choose>
 							<c:when test="${not empty usuario.administrador and usuario.administrador}">
 								<li class="dropdown">

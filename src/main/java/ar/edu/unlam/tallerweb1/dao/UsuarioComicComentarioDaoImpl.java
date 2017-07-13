@@ -44,10 +44,15 @@ public class UsuarioComicComentarioDaoImpl implements UsuarioComicComentarioDao 
 		return session.createCriteria(UsuarioComicComentario.class)
 				.add(criterion).list();
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<UsuarioComicComentario> listarNotificaciones(Long idUsuario) {
+		return listarNotificaciones(idUsuario, null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UsuarioComicComentario> listarNotificaciones(Long idUsuario, Criterion criterion) {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		List<UsuarioComic> usuarioComics = usuarioComicDao.listarUsuarioComicsSiguiendoActualmente(idUsuario);
@@ -63,6 +68,10 @@ public class UsuarioComicComentarioDaoImpl implements UsuarioComicComentarioDao 
 			Criterion criterionNotificaciones = Restrictions.and(	Restrictions.eq("disponible", true),
 																	Restrictions.in("usuarioComic.id", idsUsuarioComic) );
 			
+			if ( criterion!=null ) {
+				criterionNotificaciones = Restrictions.and(criterionNotificaciones, criterion);
+			}
+			
 			return session.createCriteria(UsuarioComicComentario.class).add(criterionNotificaciones).list();
 			
 		} else {
@@ -76,5 +85,17 @@ public class UsuarioComicComentarioDaoImpl implements UsuarioComicComentarioDao 
 	public UsuarioComicComentario obtenerUsuarioComicComentario(Long id) {
 		final Session session = sessionFactory.getCurrentSession();
 		return (UsuarioComicComentario) session.createCriteria(UsuarioComicComentario.class).add(Restrictions.eq("id", id)).uniqueResult();
+	}
+
+	@Override
+	public Integer cantidadNotificacionesNoLeidas(Long idUsuario) {
+		Criterion criterion = Restrictions.eq("leido", false);
+		List<UsuarioComicComentario> notificaciones = listarNotificaciones(idUsuario, criterion);
+		
+		if ( notificaciones!=null && !notificaciones.isEmpty() ) {
+			return notificaciones.size();
+		} else {
+			return 0;
+		}
 	}
 }

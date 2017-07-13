@@ -11,4 +11,6 @@ public interface ServicioUsuarioComicComentario {
 	List<UsuarioComicComentario> listarUsuarioComicComentarios(Long idUsuarioComic);
 	
 	public UsuarioComicComentario marcarComentarioLeido(Long idUsuarioComicComentario);
+	
+	public Integer cantidadNotificacionesNoLeidas(Long idUsuario);
 }

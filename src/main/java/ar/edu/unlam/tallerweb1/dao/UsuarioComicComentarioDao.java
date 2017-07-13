@@ -16,5 +16,9 @@ public interface UsuarioComicComentarioDao {
 	
 	List<UsuarioComicComentario> listarNotificaciones(Long idUsuario);
 	
+	List<UsuarioComicComentario> listarNotificaciones(Long idUsuario, Criterion criterion);
+	
 	List<UsuarioComicComentario> listarUsuarioComicComentarios(Criterion criterion);
+	
+	Integer cantidadNotificacionesNoLeidas(Long idUsuario);
 }

@@ -72,28 +72,39 @@ public class ControladorUsuarioComic {
 		response.setCharacterEncoding("ISO-8859-1");
 		response.getWriter().print(new Gson().toJson(comentarios));
 	}
-	
+
 	@RequestMapping(value="/notificaciones", method=RequestMethod.GET)
 	public ModelAndView notificaciones(HttpServletRequest request) {
-		
+
 		if ( request.getSession().getAttribute("usuario") != null ){
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-			
+
 			ModelMap modelo = new ModelMap();
 			modelo.put( "notificaciones", servicioUsuario.listarNotificaciones( usuario.getId() ) );
 			modelo.put("titulo", "Notificaciones");
-			
+
 			return new ModelAndView("notificaciones", modelo);
 		}
-		
+
 		return new ModelAndView("redirect:/login");
 	}
-	
+
 	@RequestMapping(value="/marcar-notoficacion-leida", method=RequestMethod.GET)
 	public ModelAndView notificaciones(@RequestParam (value="notificacion") Long idUsuarioComicComentario) {
-		
+
 		servicioUsuarioComicComentario.marcarComentarioLeido(idUsuarioComicComentario);
-		
+
 		return new ModelAndView("redirect:/notificaciones?mensaje=Tu notificacion ha sido marcada como leida.");
+	}
+
+	@RequestMapping("/obtener-cantidad-notificaciones")
+	public @ResponseBody void obtenerCantidadNotificaciones(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		if ( request.getSession().getAttribute("usuario") != null ){
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+			
+			response.setContentType("application/x-json");
+			response.setCharacterEncoding("ISO-8859-1");
+			response.getWriter().print(new Gson().toJson( servicioUsuarioComicComentario.cantidadNotificacionesNoLeidas( usuario.getId() ) ));
+		}
 	}
 }
