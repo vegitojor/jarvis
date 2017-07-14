@@ -6,6 +6,8 @@
 			<div class="hidden-xs col-sm-7 col-md-8 jarvis-bg" id="indexScreen">
 				<img src="img/logo_blanco.png" class="col-sm-10" alt="Jarvis"></img>
 				<p class="white subtitulo">El mejor asistente para controlar tus comics.</p>
+				
+				<p><h3><a href="colecciones" class="white vistazo">¡Echa un vistazo!</a></h3></p>
 			</div>
 			<div class="col-xs-12 col-sm-5 col-md-4">
 				<div class="col-xs-10 col-xs-offset-1 indexForm">

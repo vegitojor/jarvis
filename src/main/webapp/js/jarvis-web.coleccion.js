@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	$("#seguirSinLogin").click(function(){
 		$("#modalComic").modal("hide");
-		bootbox.alert("<strong>Debes ingresar para marcar tu comic.</strong>", function(){
+		bootbox.alert("<p class='text-center'>Debes ingresar para marcar tu comic.</p><p class='text-center'>Si no tienes cuenta, haz click <a href='registro-usuario'>aqu&iacute;.</a></p>", function(){
 			window.location.href="login";
 		});
 	});
